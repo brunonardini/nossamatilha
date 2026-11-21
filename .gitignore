@@ -44,3 +44,6 @@ next-env.d.ts
 # Temporary files
 old-website/
 tmp/
+
+# graphify (local knowledge graph, rebuilt by hooks)
+graphify-out/

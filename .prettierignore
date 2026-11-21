@@ -21,8 +21,14 @@ next-env.d.ts
 # lockfiles
 package-lock.json
 
-# IA
+# AI files (machine-read; left unformatted to save tokens)
 AGENTS.md
+CLAUDE.md
+.claude/
+.rtk/
 
 # Temporary files
 old-website/
+
+# graphify (generated graph)
+graphify-out/

@@ -60,6 +60,40 @@ When unsure whether some data is personal or confidential, treat it as such and 
 - Install dependencies with `npm ci` (not `npm install`) unless you are intentionally changing dependencies.
 - Pin exact versions when adding dependencies.
 
+## AI tooling
+
+Two local tools are wired into Claude Code through the project hooks in `.claude/settings.json`. The hooks are no-ops when a tool is not installed; if `rtk` or `graphify` is missing, install it before working.
+
+### RTK (command output compression)
+
+[RTK](https://github.com/rtk-ai/rtk) rewrites Bash commands (e.g. `git status` → `rtk git status`) to condense their output. Install from the official repository only — `cargo install rtk` from crates.io is an unrelated project:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh
+```
+
+Verify with `rtk gain` (must print the savings dashboard). Project-specific output filters go in `.rtk/filters.toml`.
+
+<!-- rtk-instructions v2 -->
+
+Command output here is condensed to save tokens, keeping every signal and dropping costly noise. Treat it as the complete result: run commands normally, and batch related commands into one call to avoid extra turns. Truncated results state their recovery path in their own output. Re-run a command as `rtk bypass <cmd>` only when its result is unusable: empty when output was clearly expected, contradicting its exit code, or garbled.
+
+<!-- /rtk-instructions -->
+
+### graphify (codebase knowledge graph)
+
+[graphify](https://pypi.org/project/graphifyy/) keeps a knowledge graph of the repository in `graphify-out/`. The graph is **local only**: `graphify-out/` is gitignored and must never be committed. The skill is vendored in `.claude/skills/graphify/`. Install the CLI with `uv tool install graphifyy` (or `pipx install graphifyy`).
+
+Rules:
+
+- Before your first grep, search or source-file read for a codebase question, run `graphify query "<question>"`. Use `graphify path "<A>" "<B>"` for relationships and `graphify explain "<concept>"` for a focused concept. Read raw files only for lines the graph or an earlier read already located. Put this rule in every subagent prompt that explores code.
+- Read `graphify-out/GRAPH_REPORT.md` only for broad architecture review or when query/path/explain are not enough.
+- Always work with an up-to-date graph. It is refreshed automatically (AST only, no LLM cost) on session start, at the end of every turn (`Stop` hook) and after commits, checkouts, merges and rebases (git hooks). After modifying code mid-task, run `graphify update .` yourself before querying again.
+- If `graphify-out/graph.json` is missing, run `graphify update .` to build it.
+- The automatic updates cover code only. After significant changes to `docs/` or other non-code files, run `/graphify . --update` to re-extract them semantically.
+- On a fresh clone, install the git hooks once with `graphify hook install`, then delete the `.gitattributes` file it creates (the graph is not committed, so the merge driver is not needed).
+- `tmp/` is gitignored and therefore excluded from the graph. Do not force it in: it contains personal data (see [Privacy and LGPD](#privacy-and-lgpd)).
+
 ## Before finishing a task
 
 Run all checks and make sure they pass — they mirror the CI pipeline:
@@ -101,7 +135,8 @@ A task is not done while any check fails or reports warnings. Fix the root cause
 
 - Prettier (`.prettierrc`) and `.editorconfig` own all formatting. Do not hand-format against them or add per-file overrides.
 - Run `npm run format:write` after editing and before committing; `npm run format:check` must pass.
-- Do not add files to `.prettierignore` to skip formatting, except generated files.
+- Do not add files to `.prettierignore` to skip formatting, except generated files and AI files.
+- AI files (`AGENTS.md`, `CLAUDE.md`, `.claude/`, `.rtk/`) are read by machines and are intentionally not formatted by Prettier, to save tokens. Keep them compact: no alignment padding in tables, no decorative whitespace.
 
 ## Commits
 

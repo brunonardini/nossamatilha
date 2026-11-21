@@ -59,6 +59,8 @@ Reservation only, requested via the official WhatsApp, at least **48 hours** bef
 
 The booking is confirmed only after documents are checked, availability is confirmed, rules are accepted and payment is made. A quote is not a booking. Packages also require 48 hours' notice.
 
+> **Personal data (LGPD).** The registration form, vaccination card, veterinary prescriptions, payment receipts and feeding/health instructions contain personal data about the dog's owner and sensitive information about the dog. They are exchanged **only through the official WhatsApp**. The site must never collect, upload, store or log them: booking and quote calls to action link to WhatsApp, and any future site form follows the data-minimization rules in "Privacy and LGPD" (`AGENTS.md`).
+
 ## Pricing ("Valores")
 
 - **R$ 120,00 per day (diária)**.
