@@ -87,7 +87,7 @@ Avoid unless a specific need appears:
 
 **Phase 1 — done.** The page is live at `/guia-da-hospedagem` (`app/guia-da-hospedagem/page.tsx`, components in `components/boarding-guide/`, data in `lib/boarding-guide/`):
 
-- Sticky header with the brand mark (vector, extracted from the brochure: `assets/brand/`), a no-JS chapter index (`<details>`) and a CSS reading-progress bar.
+- Sticky header with the brand mark (vector, extracted from the brochure: `assets/brand/`), a chapter index menu (`chapter-menu.tsx`, native Popover API: closes on outside click, Escape and when a chapter is chosen) and a CSS reading-progress bar.
 - All 11 chapters with the script copy, Bacon's lines, the photos and the tones.
 - Scroll effects in pure CSS: reveals, counting numbers and the morning → night sky of "Um dia na Matilha". No client JavaScript in the page itself.
 - The 4 checkpoints show their full rules as static content (also their future no-JS fallback).
