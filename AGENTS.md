@@ -73,12 +73,56 @@ npm run build
 
 Use `npm run format:write` to fix formatting issues.
 
+A task is not done while any check fails or reports warnings. Fix the root cause; never weaken a check to make it pass.
+
 ## Conventions
 
 - Next.js App Router lives in `app/`. Import alias `@/*` maps to the repo root.
 - Generated files are not committed: `.next/`, `next-env.d.ts` (recreated by `next dev`, `next build` and `next typegen`).
-- Formatting is owned by Prettier (`.prettierrc`) and `.editorconfig`; do not hand-format against them.
-- Commits follow [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `chore:`, `docs:`, `ci:`…).
+
+## TypeScript
+
+- `strict` mode is mandatory. Do not disable or relax compiler options in `tsconfig.json`.
+- All code is TypeScript (`.ts`/`.tsx`); no new `.js` source files.
+- No `any` — use precise types, generics or `unknown` with narrowing.
+- No `@ts-ignore` or `@ts-nocheck`. `@ts-expect-error` only with a comment explaining why, and only when there is no typed alternative.
+- No non-null assertions (`!`) or type assertions (`as`) to silence errors; narrow with type guards instead. `as const` is fine.
+- Type exported APIs explicitly (component props, function parameters and return types of exported functions).
+- Use `import type` for type-only imports.
+- Use Next.js generated types (`PageProps`, `LayoutProps`, `Metadata`, …) instead of hand-written equivalents; run `npm run typecheck` to regenerate them.
+
+## ESLint
+
+- Configuration is `eslint.config.mjs` (Next.js core-web-vitals + TypeScript rules). `npm run lint` must finish with zero errors **and zero warnings** (`--max-warnings=0`).
+- No `eslint-disable` comments, unless for a single line with the rule name and a comment explaining why. Never disable rules globally or for whole files.
+- Do not change the ESLint config to silence a rule; change the code. Adding stricter rules is welcome.
+
+## Prettier
+
+- Prettier (`.prettierrc`) and `.editorconfig` own all formatting. Do not hand-format against them or add per-file overrides.
+- Run `npm run format:write` after editing and before committing; `npm run format:check` must pass.
+- Do not add files to `.prettierignore` to skip formatting, except generated files.
+
+## Commits
+
+Every commit must follow [Conventional Commits v1.0.0](https://www.conventionalcommits.org/en/v1.0.0/):
+
+```
+<type>[optional scope][!]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+- Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`.
+- Description in English, imperative mood, lowercase, no trailing period (e.g. `feat(home): add boarding pricing section`).
+- Breaking changes: `!` after the type/scope and a `BREAKING CHANGE:` footer.
+- One logical change per commit. PR titles follow the same format.
+
+## Issue and PR templates
+
+Templates live in `.github/ISSUE_TEMPLATE/` (bug report and feature request) and `.github/pull_request_template.md`. Keep them up to date as the project evolves: whenever a rule in this file, an npm script, a CI check or a privacy requirement changes, update the templates' checklists in the same change.
 
 ## CI
 
@@ -87,4 +131,4 @@ CircleCI config is in `.circleci/config.yml`. A `setup` job installs dependencie
 ## Documentation
 
 - Extra documentation goes in `docs/`. Keep it current when the facts it describes change.
-- When a rule for agents changes, update this file; when setup or scripts change, update `README.md`.
+- When a rule for agents changes, update this file (and the issue/PR templates); when setup or scripts change, update `README.md`.

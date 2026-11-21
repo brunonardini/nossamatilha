@@ -37,7 +37,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 | `npm run dev`          | Starts the development server with hot reload.                       |
 | `npm run build`        | Creates an optimized production build.                               |
 | `npm run start`        | Serves the production build (run `npm run build` first).             |
-| `npm run lint`         | Lints the code with ESLint.                                          |
+| `npm run lint`         | Lints the code with ESLint (fails on any warning).                   |
 | `npm run typecheck`    | Generates Next.js route types and checks types with the TS compiler. |
 | `npm run format:check` | Checks formatting with Prettier.                                     |
 | `npm run format:write` | Formats all files with Prettier.                                     |
