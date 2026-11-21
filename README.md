@@ -22,6 +22,12 @@ nvm use
 npm install
 ```
 
+Create your local environment file and fill in the real values (see [`docs/environment.md`](docs/environment.md)):
+
+```bash
+cp .env.example .env
+```
+
 Run the development server:
 
 ```bash

@@ -35,17 +35,22 @@ The project must comply with the LGPD (Lei Geral de Proteção de Dados, Lei nº
 - Business information not meant to be public (internal processes, finances, contracts).
 - Secrets and credentials. Use environment variables (`.env*` is gitignored; document keys in `.env.example` without values).
 
-Contact data shown on the site (WhatsApp, email, etc.) must be confirmed by the owner as public before it is added, and lives only where the site renders it — not duplicated in `docs/`.
+Contact data shown on the site must be confirmed by the owner as public. Phone numbers are never written in the repository: they come from environment variables read through `lib/contact.ts` (see [`docs/environment.md`](docs/environment.md)); `.env` is gitignored and `.env.example` holds fictitious values only. Other confirmed public channels (the Instagram URL) live in `lib/contact.ts`, not in `docs/`.
+
+**Approved exceptions** (owner's consent):
+
+- **Silvia Matrumoto**, CEO and public face of the brand: her name and photos (`tmp/marca/fotos/silvia`) may be used on the site and in docs. **Bacon**, her dog, is the site's narrator.
+- **Photos of staff and customers' dogs** in `tmp/marca/fotos`: the business holds signed image-use authorizations, so they may be published. Still strip metadata and never publish documents (vaccination cards, forms) visible in a photo.
 
 **Material in `tmp/`** may contain personal data (e.g. people in photos, a vaccination card with the owner's name). Before publishing any of it:
 
-- Use photos of identifiable people only with the owner's confirmation that consent was given; prefer photos of the dogs and the space.
+- Photos of identifiable people are covered by the authorizations above; any new photo source needs the owner's confirmation first.
 - Strip EXIF/GPS metadata from every image added to the repository.
 - Do not publish documents, cards or screenshots with personal data; crop or blur them.
 
 **Site features that touch personal data:**
 
-- Collect only the minimum data needed (data minimization) and state the purpose next to the form.
+- Collect only the minimum data needed (data minimization) and state the purpose next to the form. This applies to the planned online registration form (ficha cadastral), which today is exchanged on WhatsApp: it holds personal and pet health data and needs a privacy review before being built.
 - Do not store or log form data in the repository, build output or client storage; send it straight to the agreed channel.
 - Do not load analytics, marketing pixels or other non-essential cookies/trackers before the visitor consents; essential cookies only by default.
 - Keep a privacy policy page ("Política de Privacidade", pt-BR) linked in the footer, and update it whenever data collection, cookies or third-party services change.

@@ -78,6 +78,9 @@ jobs:
             - next-v1-{{ checksum "package-lock.json" }}-{{ .Revision }}
             - next-v1-{{ checksum "package-lock.json" }}-
       - run:
+          name: Use fictitious environment values
+          command: cp .env.example .env
+      - run:
           name: Build
           command: npm run build
       - save_cache:

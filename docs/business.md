@@ -10,13 +10,18 @@ Source of truth for site content. Extracted from the owner's boarding brochure (
 - Business hours: 7h–18h (check-in and pick-up only in this window).
 - Bookings, quotes, cancellations and written instructions go through the "WhatsApp oficial da Nossa Matilha".
 
-Contact details (address, phone numbers, email, social media) are intentionally not recorded here because this repository is public. Ask the owner for the values confirmed as public when a page needs them (see "Privacy and LGPD" in `AGENTS.md`).
+Contact channels are not recorded here because this repository is public: phone numbers come from environment variables ([environment.md](environment.md)) and the Instagram URL lives in `lib/contact.ts`. Ask the owner before adding any other contact data (see "Privacy and LGPD" in `AGENTS.md`).
+
+## People
+
+- **Silvia Matrumoto** — CEO, public face of the brand, and the lead trainer certified by FBAA. Usually wears the team uniform (white shirt with green sleeves and brown trim).
+- **Bacon** — Silvia's dog, a young male yellow Labrador Retriever with a lean build, caramel coat, white chest patch and a blue collar. He is the narrator of the site.
 
 ## Services
 
 - **Hospedagem** (boarding) — main service described in the brochure.
 - **Creche** (daycare) — dogs spend the day in the daycare areas; staff trained as daycare monitors.
-- **Banho e tosa** (bath and grooming) — provided on-site by partner **Encantacão**, booked directly with the partner (contact provided by the owner). Can be added to a boarding stay so the dog goes home clean.
+- **Banho e tosa** (bath and grooming) — provided on-site by partner **Encantacão**, booked directly with the partner on their WhatsApp (`NEXT_PUBLIC_GROOMING_WHATSAPP_PHONE_NUMBER`). Can be added to a boarding stay so the dog goes home clean.
 
 ## About ("Quem somos")
 
@@ -33,7 +38,7 @@ More than 1,100 m² for leisure, recreation and rest. Capacity: up to 32 dogs.
 
 ## Team ("Nossa equipe")
 
-- Lead trainer certified by FBAA (Federação Brasileira dos Adestradores de Animais).
+- Lead trainer: Silvia Matrumoto, certified by FBAA (Federação Brasileira dos Adestradores de Animais).
 - Continuous training for the whole team.
 - Everyone caring for boarded dogs is trained as a veterinary assistant (auxiliar veterinário).
 - Staff trained as dog daycare monitors (monitor de creche).
