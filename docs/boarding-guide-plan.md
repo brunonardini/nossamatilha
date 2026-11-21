@@ -93,12 +93,14 @@ Avoid unless a specific need appears:
 - The 4 checkpoints show their full rules as static content (also their future no-JS fallback).
 - WhatsApp links built from environment variables; a floating WhatsApp button on mobile.
 
-**Phase 2 — in progress.** One interactive checkpoint at a time:
+**Phase 2.** One interactive checkpoint at a time:
 
 - [x] Vaccine checklist (checkpoint 1): native checkboxes with CSS-only feedback (`:has()`), zero JavaScript. States: nothing ticked → hint; a required item missing → friendly warning; all required ticked → "Parada 1 de 4 concluída".
 - [x] Daily-rate simulator (checkpoint 2): the first client component (`daily-rate-simulator.tsx`, about 2 KB gzipped on top of the framework). Native selects for check-in/check-out day and hour (7h–18h only), result with the number of daily rates and total, one bar per daily rate filled with the hours used, the "no half day" note for stays under 24h, a tip when leaving up to 6h earlier would save a daily rate, and a warning when check-out is before check-in. Logic in `lib/boarding-guide/daily-rate.ts`. The server renders the Friday 10h → Sunday 16h example, so it reads fine without JavaScript. Completes after the first change.
 - [x] Pack the bag (checkpoint 3): `bag-packer.tsx`, CSS-only again (checkboxes + `:has()`), zero JavaScript. Items in three groups: "Não pode faltar" (food, medication), "Se quiser, pode trazer" (bed, blanket, toy) and "Não precisa trazer" (bowls: informative, not selectable, because the business uses its own sterilizable bowls). Each selectable item shows a note when packed ("pode trazer, mas aqui já temos!") and appears in the drawn bag. Food is the only required item: without it the visitor sees "Falta o mais importante: a ração"; with it, "Parada 3 de 4 concluída". The written-instructions alert stays below.
 - [x] Cancellation simulator (checkpoint 4): `cancellation-simulator.tsx` (client). Uses the number of daily rates from the daily-rate simulator (shared through `lib/boarding-guide/stay-store.ts`, in memory only), adjustable with − / +. The visitor picks the notice (48h or more / less than 48h or no-show) and sees both options with values: refund (and the amount retained) or credit (valid for 3 months). Completes after seeing both notices. The rule cards above stay as the static text.
-- [ ] Checkpoint counter and final summary (possibly CSS-only too, with `:has()` across the page).
+- [x] Checkpoint progress and final summary, CSS-only: each checkpoint's "concluída" element has `checkpoint-complete`, counted by a CSS counter that the summary prints ("Você concluiu N de 4 paradas"); the summary items and the chapter index tick their checkpoint with `:has()`; when all four are done, "Você é da Matilha!" appears. Summary items link back to their checkpoints. The WhatsApp call to action is never blocked.
+
+**Phase 2 — done.** All four checkpoints and the summary are interactive; only the two simulators use JavaScript.
 
 **Performance note:** the page ships no JavaScript of its own, but the Next.js/React framework baseline is about 180 KB gzipped, above the 100 KB budget above. Investigate whether the experimental flags in `next.config.ts` (`cacheComponents`, `partialPrefetching`, `agentFeedback`) add to it before adding client components.

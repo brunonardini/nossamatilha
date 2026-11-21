@@ -337,6 +337,105 @@
   }
 }
 
+/*
+ * Boarding guide checkpoint progress, without JavaScript.
+ *
+ * - `.guide` wraps the whole page and resets the `checkpoints` counter.
+ * - `.checkpoint-complete` marks the "Parada N concluída" element of each
+ *   checkpoint. It is hidden (CSS checkpoints) or not rendered (simulators)
+ *   until completed, so the counter only counts finished checkpoints.
+ * - `.checkpoint-count::after` prints the counter; it must come after the
+ *   checkpoints in the document (the final summary).
+ * - `[data-checkpoint-item]` elements (summary list, chapter index) get the
+ *   done style when their checkpoint is complete, using `:has()`. `:has()`
+ *   cannot be nested, so CSS-only checkpoints are matched by their input ids
+ *   (keep them in sync with vaccine-checklist.tsx and bag-packer.tsx).
+ */
+@layer components {
+  .guide {
+    counter-reset: checkpoints;
+  }
+
+  .checkpoint-complete {
+    counter-increment: checkpoints;
+  }
+
+  .checkpoint-count::after {
+    content: counter(checkpoints);
+  }
+
+  .checkpoint-mark {
+    border: 2px solid currentColor;
+    opacity: 0.55;
+    transition:
+      opacity var(--duration-base) var(--ease-out-soft),
+      transform var(--duration-base) var(--ease-playful);
+  }
+
+  .checkpoint-mark > svg {
+    opacity: 0;
+  }
+
+  :is(
+      .guide:has(#vacina-v10:checked):has(#vacina-raiva:checked):has(
+          #vacina-antiparasitario:checked
+        )
+        [data-checkpoint-item='vacinas'],
+      .guide:has([data-checkpoint='diaria'][data-done])
+        [data-checkpoint-item='diaria'],
+      .guide:has(#malinha-racao:checked) [data-checkpoint-item='malinha'],
+      .guide:has([data-checkpoint='cancelamento'][data-done])
+        [data-checkpoint-item='cancelamento']
+    )
+    .checkpoint-mark {
+    border-color: var(--color-lime);
+    background-color: var(--color-lime);
+    color: var(--color-forest);
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  :is(
+      .guide:has(#vacina-v10:checked):has(#vacina-raiva:checked):has(
+          #vacina-antiparasitario:checked
+        )
+        [data-checkpoint-item='vacinas'],
+      .guide:has([data-checkpoint='diaria'][data-done])
+        [data-checkpoint-item='diaria'],
+      .guide:has(#malinha-racao:checked) [data-checkpoint-item='malinha'],
+      .guide:has([data-checkpoint='cancelamento'][data-done])
+        [data-checkpoint-item='cancelamento']
+    )
+    .checkpoint-mark
+    > svg {
+    opacity: 1;
+  }
+
+  /* Shown only when every checkpoint is complete. */
+  [data-all-checkpoints='done'] {
+    display: none;
+  }
+
+  .guide:has(#vacina-v10:checked):has(#vacina-raiva:checked):has(
+      #vacina-antiparasitario:checked
+    ):has([data-checkpoint='diaria'][data-done]):has(
+      #malinha-racao:checked
+    ):has([data-checkpoint='cancelamento'][data-done])
+    [data-all-checkpoints='done'] {
+    display: block;
+    animation: scroll-reveal 500ms var(--ease-out-soft) both;
+  }
+
+  .guide:has(#vacina-v10:checked):has(#vacina-raiva:checked):has(
+      #vacina-antiparasitario:checked
+    ):has([data-checkpoint='diaria'][data-done]):has(
+      #malinha-racao:checked
+    ):has([data-checkpoint='cancelamento'][data-done])
+    [data-all-checkpoints='pending'] {
+    display: none;
+  }
+}
+
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;

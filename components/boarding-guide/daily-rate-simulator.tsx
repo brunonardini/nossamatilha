@@ -211,7 +211,7 @@ export function DailyRateSimulator(): ReactNode {
         )}
 
         {touched ? (
-          <p className="mt-6 flex items-center gap-2 rounded-card bg-lime p-4 font-heading font-bold text-forest">
+          <p className="checkpoint-complete mt-6 flex items-center gap-2 rounded-card bg-lime p-4 font-heading font-bold text-forest">
             <CheckIcon className="size-5" />
             Parada 2 de 4 concluída
           </p>

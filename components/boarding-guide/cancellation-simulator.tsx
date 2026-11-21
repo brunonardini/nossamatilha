@@ -164,7 +164,7 @@ export function CancellationSimulator(): ReactNode {
         </div>
 
         {done ? (
-          <p className="mt-6 flex items-center gap-2 rounded-card bg-lime p-4 font-heading font-bold text-forest">
+          <p className="checkpoint-complete mt-6 flex items-center gap-2 rounded-card bg-lime p-4 font-heading font-bold text-forest">
             <CheckIcon className="size-5" />
             Parada 4 de 4 concluída
           </p>

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 /** Interactive boarding guide (replaces the PDF sent to new customers). */
 export default function BoardingGuidePage(): ReactNode {
   return (
-    <>
+    <div className="guide">
       <GuideHeader />
       <main className="pb-24">
         <WelcomeChapter />
@@ -43,6 +43,6 @@ export default function BoardingGuidePage(): ReactNode {
         <ReadyChapter />
       </main>
       <WhatsAppFloatingButton />
-    </>
+    </div>
   );
 }

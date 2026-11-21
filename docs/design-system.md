@@ -123,7 +123,8 @@ Sizes are fluid (`clamp()`), so no breakpoint overrides are needed. Headings get
 
 ## Patterns
 
-- **Checklist without JavaScript** (`.checklist` in `app/globals.css`): wrap native checkboxes in an element with the `checklist` class, mark required inputs with `data-required`, and add feedback blocks with `data-checklist-state="empty" | "missing" | "done"`. CSS `:has()` shows only the block that matches the current state. Put the feedback blocks in an `aria-live="polite"` region. Browsers without `:has()` show the `done` block. Used by the vaccine checkpoint of the boarding guide.
+- **Checklist without JavaScript** (`.checklist` in `app/globals.css`): wrap native checkboxes in an element with the `checklist` class, mark required inputs with `data-required`, and add feedback blocks with `data-checklist-state="empty" | "missing" | "done"`. CSS `:has()` shows only the block that matches the current state. Put the feedback blocks in an `aria-live="polite"` region. Browsers without `:has()` show the `done` block. Used by the vaccine and bag checkpoints of the boarding guide.
+- **Checkpoint progress without JavaScript** (`.guide`, `.checkpoint-complete`, `.checkpoint-count`, `.checkpoint-mark`, `[data-checkpoint-item]`, `[data-all-checkpoints]` in `app/globals.css`): a CSS counter counts the visible "concluída" elements, and `:has()` ticks summary/index items and reveals the all-done block. `:has()` cannot be nested, so CSS-only checkpoints are matched by their input ids — keep those ids in sync when editing the checklists.
 
 ## Accessibility
 

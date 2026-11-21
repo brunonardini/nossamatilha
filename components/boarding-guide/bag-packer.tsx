@@ -251,7 +251,7 @@ export function BagPacker(): ReactNode {
           </p>
           <div
             data-checklist-state="done"
-            className="rounded-card bg-lime p-5 text-forest shadow-card"
+            className="checkpoint-complete rounded-card bg-lime p-5 text-forest shadow-card"
           >
             <p className="flex items-center gap-2 font-heading text-caption font-bold tracking-widest uppercase">
               <CheckIcon className="size-5" />

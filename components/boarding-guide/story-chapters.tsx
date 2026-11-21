@@ -482,11 +482,11 @@ export function GroomingChapter(): ReactNode {
 }
 
 const summary = [
-  'Carteirinha em dia',
-  'Diária de 24 horas, das 7h às 18h',
-  'Malinha com ração (e remédio, com receita)',
-  'Cancelamento pelo WhatsApp',
-];
+  { id: 'vacinas', text: 'Carteirinha em dia' },
+  { id: 'diaria', text: 'Diária de 24 horas, das 7h às 18h' },
+  { id: 'malinha', text: 'Malinha com ração (e remédio, com receita)' },
+  { id: 'cancelamento', text: 'Cancelamento pelo WhatsApp' },
+] as const;
 
 /** Chapter 10: summary and calls to action. */
 export function ReadyChapter(): ReactNode {
@@ -499,19 +499,42 @@ export function ReadyChapter(): ReactNode {
     >
       <div className="grid items-center gap-10 md:grid-cols-2">
         <div>
-          <ul className="space-y-3">
+          <p className="font-heading text-lead font-semibold">
+            Você concluiu{' '}
+            <span className="checkpoint-count font-display text-h2 text-leaf" />{' '}
+            de {summary.length} paradas.
+          </p>
+          <ul className="mt-4 space-y-2">
             {summary.map((item) => (
-              <li
-                key={item}
-                className="scroll-reveal flex items-center gap-3 font-heading text-lead font-semibold"
-              >
-                <span className="grid size-8 shrink-0 place-items-center rounded-full bg-lime text-forest">
-                  <CheckIcon className="size-5" />
-                </span>
-                {item}
+              <li key={item.id} data-checkpoint-item={item.id}>
+                <a
+                  href={`#${item.id}`}
+                  className="flex min-h-12 items-center gap-3 rounded-md font-heading text-lead font-semibold hover:text-leaf-ink"
+                >
+                  <span className="checkpoint-mark grid size-8 shrink-0 place-items-center rounded-full text-forest">
+                    <CheckIcon className="size-5" />
+                  </span>
+                  {item.text}
+                </a>
               </li>
             ))}
           </ul>
+          <p
+            data-all-checkpoints="pending"
+            className="mt-4 text-caption text-fg-muted"
+          >
+            Faltou alguma? Toque nela para voltar à parada.
+          </p>
+          <div
+            data-all-checkpoints="done"
+            className="mt-6 rounded-card bg-lime p-5 text-forest shadow-card"
+          >
+            <p className="font-display text-h2">Você é da Matilha!</p>
+            <p className="mt-1">
+              Passou por todas as paradas. Agora é só pedir o orçamento e
+              reservar com {BOOKING_NOTICE_HOURS}h de antecedência.
+            </p>
+          </div>
           <WhatsAppButton className="mt-10">
             Pedir orçamento no WhatsApp
           </WhatsAppButton>

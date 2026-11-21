@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import logoMark from '@/assets/brand/logo-mark.svg';
-import { ListIcon } from '@/components/ui/icons';
+import { CheckIcon, ListIcon } from '@/components/ui/icons';
 import { chapters } from '@/lib/boarding-guide/chapters';
 
 /**
@@ -35,6 +35,9 @@ export function GuideHeader(): ReactNode {
                 <li key={chapter.id}>
                   <a
                     href={`#${chapter.id}`}
+                    data-checkpoint-item={
+                      chapter.kind === 'rule' ? chapter.id : undefined
+                    }
                     className="flex min-h-11 items-center gap-3 rounded-md px-3 py-2 text-ink hover:bg-cream"
                   >
                     <span
@@ -44,6 +47,11 @@ export function GuideHeader(): ReactNode {
                       {index}
                     </span>
                     <span>{chapter.title}</span>
+                    {chapter.kind === 'rule' ? (
+                      <span className="checkpoint-mark ml-auto grid size-6 shrink-0 place-items-center rounded-full text-olive">
+                        <CheckIcon className="size-4" />
+                      </span>
+                    ) : null}
                   </a>
                 </li>
               ))}
