@@ -73,4 +73,4 @@ Done with Pillow (script kept outside the repository):
 | S14 | `goodbye-silvia-and-bacon.webp`                         |
 | C31 | `goodbye-happy-dog.webp`                                |
 
-When the page is built, enable AVIF in `next.config.ts` (`images.formats: ['image/avif', 'image/webp']`) and lazy-load every photo below the first screen.
+`next/image` serves WebP (the Next.js default, which its docs still recommend over AVIF for most cases). Every photo below the first screen is lazy-loaded; only the hero loads eagerly with high priority.

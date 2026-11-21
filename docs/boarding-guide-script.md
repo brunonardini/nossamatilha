@@ -1,6 +1,6 @@
 # Boarding guide page — script
 
-Chapter-by-chapter script for the interactive boarding guide (plan: [boarding-guide-plan.md](boarding-guide-plan.md)). Every fact comes from [business.md](business.md). Structure and notes are in English; the copy blocks are the pt-BR text visitors will read (draft for the owner's review).
+Chapter-by-chapter script for the interactive boarding guide, live at `/guia-da-hospedagem` (plan: [boarding-guide-plan.md](boarding-guide-plan.md)). Every fact comes from [business.md](business.md). Structure and notes are in English; the copy blocks are the pt-BR text visitors will read (draft for the owner's review).
 
 Tone meaning follows [design-system.md](design-system.md#what-each-tone-means): **light** = story, **dark** = rule or interactive checkpoint, **alert** = critical warning block.
 
@@ -169,6 +169,8 @@ A reserva é confirmada depois que conferimos a documentação e a vaga, você
 aceita as regras e o pagamento é feito.
 Orçamento não é reserva. Pacotes também precisam ser reservados com 48h de
 antecedência.
+
+🐶 Bacon: É tudo pelo WhatsApp. Até eu consigo!
 ```
 
 ### 6 · Como funciona a diária (dark · checkpoint 2)
@@ -287,6 +289,8 @@ Sem correria: o banho é feito aqui, junto com a hospedagem.
 Cuidado de quem conhece o seu cão: ele é atendido pela equipe que já está
 com ele.
 Chega em casa pronto: é só abraçar.
+
+🐶 Bacon: Banho? Só se tiver toalha quentinha depois.
 
 Agende direto com a Encantacão pelo WhatsApp [número de NEXT_PUBLIC_GROOMING_WHATSAPP_PHONE_NUMBER].
 ```

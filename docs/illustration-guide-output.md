@@ -6,7 +6,7 @@ The Bacon illustrations follow [the illustration guide](illustration-guide.md). 
 
 - Use the current conversation for the character sheet and all eleven poses. Wait for the owner's approval of the sheet, then attach the approved sheet as the visual reference for each pose.
 - Export each chapter pose as a transparent PNG at `tmp/marca/ilustracoes/` using the filename in the guide. If the generated PNG is smaller than 2048 px on its longest side, resize it proportionally to 2048 px, preserving its alpha channel. Record the native and delivered dimensions for any resized pose.
-- Generate transparent AVIF or WebP copies in `public/` for the boarding guide, targeting less than 40 KB each. Verify that the poses match the approved sheet and that transparency survives optimization.
+- Generate transparent WebP copies in `assets/illustrations/boarding-guide/` for the boarding guide, targeting less than 40 KB each. Verify that the poses match the approved sheet and that transparency survives optimization.
 - Apply lazy loading to illustrations below the initial viewport when the boarding-guide page consumes the assets.
 
 ## Character sheet
@@ -31,7 +31,7 @@ The Bacon illustrations follow [the illustration guide](illustration-guide.md). 
 
 The owner approved the third character sheet. Generated one pose per chapter with the built-in image generation tool, using the corresponding [chapter prompt](illustration-guide.md#poses-one-per-chapter), the guide's style block, and the approved sheet as an image reference for each generation. The prompts called for one centered full-body Bacon, true transparency, no cast shadow, and a blank tag. The clock pose was revised to remove a generated question mark and accent marks. The clock face retains only hands and hour ticks.
 
-All eleven generated poses were below 2048 px on their longest side. Sharp resized each pose proportionally using Lanczos3, preserving transparency. The transparent PNG masters are in `tmp/marca/ilustracoes/`. The transparent WebP files are in `public/illustrations/boarding-guide/` at 512 px on the longest side. The export checks confirmed alpha channels, transparent pixels, and the absence of embedded EXIF, IPTC, and XMP metadata. Each WebP is under 40000 bytes.
+All eleven generated poses were below 2048 px on their longest side. Sharp resized each pose proportionally using Lanczos3, preserving transparency. The transparent PNG masters are in `tmp/marca/ilustracoes/`. The transparent WebP files are in `assets/illustrations/boarding-guide/` (statically imported through `lib/boarding-guide/illustrations.ts`) at 512 px on the longest side. The export checks confirmed alpha channels, transparent pixels, and the absence of embedded EXIF, IPTC, and XMP metadata. Each WebP is under 40000 bytes.
 
 | File stem            | Native PNG (px) | Master PNG (px) | WebP (px) | WebP (bytes) |
 | -------------------- | --------------- | --------------- | --------- | ------------ |

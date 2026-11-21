@@ -82,3 +82,17 @@ Avoid unless a specific need appears:
 2. ~~**Design system.**~~ Done: tokens, fonts and base components, see [design-system.md](design-system.md).
 3. ~~**Photos.**~~ Done: selected and processed, see [photo-selection.md](photo-selection.md) (aerial view pending its source). Bacon illustrations: [illustration-guide-output.md](illustration-guide-output.md).
 4. ~~**Script.**~~ Done and reviewed by the owner, see [boarding-guide-script.md](boarding-guide-script.md).
+
+## Build status
+
+**Phase 1 — done.** The page is live at `/guia-da-hospedagem` (`app/guia-da-hospedagem/page.tsx`, components in `components/boarding-guide/`, data in `lib/boarding-guide/`):
+
+- Sticky header with the brand mark (vector, extracted from the brochure: `assets/brand/`), a no-JS chapter index (`<details>`) and a CSS reading-progress bar.
+- All 11 chapters with the script copy, Bacon's lines, the photos and the tones.
+- Scroll effects in pure CSS: reveals, counting numbers and the morning → night sky of "Um dia na Matilha". No client JavaScript in the page itself.
+- The 4 checkpoints show their full rules as static content (also their future no-JS fallback).
+- WhatsApp links built from environment variables; a floating WhatsApp button on mobile.
+
+**Next phases:** one interactive checkpoint at a time — vaccine checklist, daily-rate clock, pack the bag, cancellation simulator — then the checkpoint counter and final summary.
+
+**Performance note:** the page ships no JavaScript of its own, but the Next.js/React framework baseline is about 180 KB gzipped, above the 100 KB budget above. Investigate whether the experimental flags in `next.config.ts` (`cacheComponents`, `partialPrefetching`, `agentFeedback`) add to it before adding client components.

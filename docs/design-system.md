@@ -108,6 +108,11 @@ Sizes are fluid (`clamp()`), so no breakpoint overrides are needed. Headings get
 - Easings: `ease-out-soft` (default for entrances), `ease-playful` (slight overshoot, for buttons and playful details), `ease-in-out-soft` (loops).
 - Durations: `duration-(--duration-fast)` 150ms, `duration-(--duration-base)` 300ms, `duration-(--duration-slow)` 600ms.
 - Animations: `animate-reveal` (fade and rise on entry) and `animate-wag` (tail-wag rotation loop).
+- Scroll-driven utilities (CSS only, progressive enhancement: they run where `animation-timeline` is supported and motion is not reduced; otherwise content is shown as is):
+  - `scroll-reveal`: fades and rises an element as it enters the viewport.
+  - `scroll-progress`: a bar that grows with the page scroll (reading progress).
+  - `count-up` with `style={{ '--count-to': n }}`: counts an integer up on entry; keep the real number in `sr-only` text and mark the animated one `aria-hidden`.
+  - `day-timeline` on a section plus `day-afternoon`, `day-night` and `day-sun` on layers inside it: the morning → night sky of the boarding guide.
 - `prefers-reduced-motion: reduce` disables all animations and transitions globally. Content must be fully understandable without motion.
 - Animate only `transform` and `opacity` (plus colors and shadows on hover) to stay on the compositor.
 

@@ -38,7 +38,7 @@ From the photos in `tmp/marca/fotos/bacon` and `tmp/marca/fotos/silvia`:
 1. Start a new chat. Attach 3–4 photos of Bacon (e.g. `bacon/IMG_6272.JPG`, `bacon/IMG_6274.JPG`, `silvia/IMG_6064.JPG`) and run **Prompt 1** (character sheet).
 2. Iterate until the character sheet looks right. This image is the reference for everything else.
 3. For every pose, in the same chat, attach the approved character sheet and run the pose prompt. The style block is already included in each prompt.
-4. Export each pose as **PNG with transparent background, at least 2048 px** on the longest side, and save it in `tmp/marca/ilustracoes/` named as in the table (e.g. `bacon-01-ola.png`). The agent optimizes and moves them to `public/`.
+4. Export each pose as **PNG with transparent background, at least 2048 px** on the longest side, and save it in `tmp/marca/ilustracoes/` named as in the table (e.g. `bacon-01-ola.png`). The agent optimizes them into `assets/illustrations/boarding-guide/`.
 
 ### Style block (included in every prompt)
 
