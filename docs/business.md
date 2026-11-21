@@ -90,7 +90,8 @@ Options are alternatives; retentions do not add up. Credits are valid for 3 mont
 ## What to bring ("O que trazer")
 
 - Required: enough food for the whole stay, plus medication if any.
-- Optional: personal items (bed, blanket, toys). Beds, bowls and toys are already provided.
+- Optional: personal items (bed, blanket, toys). Beds and toys are already provided.
+- Do not bring food and water bowls: the business uses its own, which are all sterilizable and suited for use on site.
 - Feeding amounts and times must be given in writing (note in the dog's bag or via WhatsApp).
 - Dietary restrictions, allergies, health conditions and special care must be written in the registration form or sent via WhatsApp before check-in.
 

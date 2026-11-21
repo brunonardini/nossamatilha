@@ -1,11 +1,12 @@
 import type { ReactNode } from 'react';
 import { BaconSays } from '@/components/boarding-guide/bacon-says';
+import { BagPacker } from '@/components/boarding-guide/bag-packer';
 import { ChapterSection } from '@/components/boarding-guide/chapter-section';
 import { DailyRateSimulator } from '@/components/boarding-guide/daily-rate-simulator';
 import { GuidePhoto } from '@/components/boarding-guide/guide-photo';
 import { VaccineChecklist } from '@/components/boarding-guide/vaccine-checklist';
 import { Card } from '@/components/ui/card';
-import { CheckIcon, CrossIcon } from '@/components/ui/icons';
+import { CrossIcon } from '@/components/ui/icons';
 import { guidePhotos } from '@/lib/boarding-guide/photos';
 import {
   BUSINESS_HOURS,
@@ -142,30 +143,16 @@ export function BagChapter(): ReactNode {
       eyebrow="Parada 3 de 4"
       titleStyle="heading"
       title="Arrumando a malinha"
+      intro="Não pode faltar a ração para toda a estadia e os remédios, se o seu cão usar. Caminha, mantinha e brinquedo são opcionais. Potes não precisa trazer: usamos os nossos, que são esterilizáveis."
     >
-      <div className="grid items-start gap-10 md:grid-cols-2">
-        <div>
-          <h3 className="text-h2 font-bold">Indispensável</h3>
-          <ul className="mt-4 grid gap-3">
-            <li className="scroll-reveal flex min-h-12 items-center gap-4 rounded-md bg-surface-raised px-4 py-3 font-heading font-semibold">
-              <CheckIcon className="size-6 shrink-0 text-lime" />
-              Ração suficiente para toda a estadia
-            </li>
-            <li className="scroll-reveal flex min-h-12 items-center gap-4 rounded-md bg-surface-raised px-4 py-3 font-heading font-semibold">
-              <CheckIcon className="size-6 shrink-0 text-lime" />
-              Remédios, se o seu cão usar
-            </li>
-          </ul>
-          <h3 className="mt-10 text-h2 font-bold">Se quiser, pode trazer</h3>
-          <p className="mt-3 max-w-reading">
-            Caminha, mantinha e brinquedos favoritos deixam a estadia ainda mais
-            aconchegante. Mas fique tranquilo: caminhas, potes e brinquedos nós
-            já temos!
-          </p>
-          <BaconSays pose="bag" className="mt-8">
-            Ração é o mais importante. Sério. Não esquece a ração.
-          </BaconSays>
-        </div>
+      <BaconSays pose="bag">
+        Ração é o mais importante. Sério. Não esquece a ração.
+      </BaconSays>
+      <div className="mt-8">
+        <BagPacker />
+      </div>
+
+      <div className="mt-16 grid items-start gap-10 md:grid-cols-2">
         <div className="grid gap-4">
           <Card>
             <h3 className="text-h3 font-bold">Alimentação</h3>
@@ -192,12 +179,13 @@ export function BagChapter(): ReactNode {
               dose, os horários e o período do tratamento.
             </p>
           </Card>
-          <GuidePhoto
-            photo={guidePhotos.bagFoodRoom}
-            sizes="(min-width: 768px) 45vw, 100vw"
-            caption="A ração do seu cão fica guardada na nossa sala de alimentação."
-          />
         </div>
+        <GuidePhoto
+          photo={guidePhotos.bagFoodRoom}
+          sizes="(min-width: 768px) 45vw, 100vw"
+          caption="A ração do seu cão fica guardada na nossa sala de alimentação."
+          className="mx-auto w-full max-w-md"
+        />
       </div>
 
       <div className="tone-alert mt-12 max-w-reading rounded-card p-6 shadow-lift sm:p-8">

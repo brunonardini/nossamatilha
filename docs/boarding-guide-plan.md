@@ -97,7 +97,7 @@ Avoid unless a specific need appears:
 
 - [x] Vaccine checklist (checkpoint 1): native checkboxes with CSS-only feedback (`:has()`), zero JavaScript. States: nothing ticked → hint; a required item missing → friendly warning; all required ticked → "Parada 1 de 4 concluída".
 - [x] Daily-rate simulator (checkpoint 2): the first client component (`daily-rate-simulator.tsx`, about 2 KB gzipped on top of the framework). Native selects for check-in/check-out day and hour (7h–18h only), result with the number of daily rates and total, one bar per daily rate filled with the hours used, the "no half day" note for stays under 24h, a tip when leaving up to 6h earlier would save a daily rate, and a warning when check-out is before check-in. Logic in `lib/boarding-guide/daily-rate.ts`. The server renders the Friday 10h → Sunday 16h example, so it reads fine without JavaScript. Completes after the first change.
-- [ ] Pack the bag (checkpoint 3).
+- [x] Pack the bag (checkpoint 3): `bag-packer.tsx`, CSS-only again (checkboxes + `:has()`), zero JavaScript. Items in three groups: "Não pode faltar" (food, medication), "Se quiser, pode trazer" (bed, blanket, toy) and "Não precisa trazer" (bowls: informative, not selectable, because the business uses its own sterilizable bowls). Each selectable item shows a note when packed ("pode trazer, mas aqui já temos!") and appears in the drawn bag. Food is the only required item: without it the visitor sees "Falta o mais importante: a ração"; with it, "Parada 3 de 4 concluída". The written-instructions alert stays below.
 - [ ] Cancellation simulator (checkpoint 4).
 - [ ] Checkpoint counter and final summary (possibly CSS-only too, with `:has()` across the page).
 

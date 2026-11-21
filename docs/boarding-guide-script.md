@@ -204,7 +204,7 @@ Logic: `diárias = max(1, ceil((saída − entrada) / 24h))`; the tip appears wh
 
 ### 7 · Arrumando a malinha (dark · checkpoint 3)
 
-**Interaction:** pack the bag. Items are tapped (or dragged on desktop) into the bag. Required items (food, medication if used) must go in; optional items show "pode trazer, mas aqui já temos!". The checkpoint completes when the food is in.
+**Interaction:** pack the bag. Items are grouped as "Não pode faltar" (food, medication), "Se quiser, pode trazer" (bed, blanket, toy) and "Não precisa trazer" (bowls, shown but not selectable). Items are tapped into the bag (tap only: no drag, so it works the same on mobile, desktop and keyboard). Required items (food, medication if used) must go in; optional items show "pode trazer, mas aqui já temos!". The checkpoint completes when the food is in.
 
 ```text
 Arrumando a malinha
@@ -217,7 +217,11 @@ Se quiser, pode trazer
 🐶 Bacon: Ração é o mais importante. Sério. Não esquece a ração.
 
 Caminha, mantinha e brinquedos favoritos deixam a estadia ainda mais
-aconchegante. Mas fique tranquilo: caminhas, potes e brinquedos nós já temos!
+aconchegante. Mas fique tranquilo: caminhas e brinquedos nós já temos!
+
+Não precisa trazer
+Potes de comida e água: usamos os nossos, que são todos esterilizáveis e
+adequados para o uso aqui.
 
 Alimentação
 Informe por escrito a quantidade e os horários de cada refeição: num bilhete na
