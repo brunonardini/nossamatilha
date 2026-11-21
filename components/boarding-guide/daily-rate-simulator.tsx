@@ -1,6 +1,6 @@
 'use client';
 
-import { useId, useState, type ReactNode } from 'react';
+import { useEffect, useId, useState, type ReactNode } from 'react';
 import { CheckIcon } from '@/components/ui/icons';
 import {
   WEEKDAYS,
@@ -12,6 +12,7 @@ import {
   DAILY_RATE_BRL,
   formatBRL,
 } from '@/lib/boarding-guide/pricing';
+import { setStayDays } from '@/lib/boarding-guide/stay-store';
 
 /** Longest stay offered by the simulator, in days after check-in. */
 const MAX_DAYS_LATER = 14;
@@ -55,6 +56,12 @@ export function DailyRateSimulator(): ReactNode {
   const [touched, setTouched] = useState(false);
 
   const result = calculateStay({ checkInHour, daysLater, checkOutHour });
+  const resultDays = result.valid ? result.days : null;
+
+  // Share the simulated stay with the cancellation simulator.
+  useEffect(() => {
+    if (resultDays !== null) setStayDays(resultDays);
+  }, [resultDays]);
 
   function update<T>(setter: (value: T) => void, value: T): void {
     setter(value);

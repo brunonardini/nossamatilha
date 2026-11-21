@@ -248,7 +248,7 @@ tenha as informações certas.
 
 ### 8 · E se os planos mudarem? (dark · checkpoint 4)
 
-**Interaction:** cancellation simulator. The visitor picks the notice ("48h ou mais" / "menos de 48h ou não comparecimento") and sees both options side by side, with values computed from the diárias of chapter 6 (or 1 diária by default). The checkpoint completes after trying both notices.
+**Interaction:** cancellation simulator. The visitor picks the notice ("48h ou mais" / "menos de 48h ou não comparecimento") and sees both options side by side, with values computed from the diárias of chapter 6 (or 1 diária by default). The checkpoint completes after trying both notices. The visitor can also adjust the number of daily rates with − / +.
 
 ```text
 E se os planos mudarem?

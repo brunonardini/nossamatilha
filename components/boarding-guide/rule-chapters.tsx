@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { BaconSays } from '@/components/boarding-guide/bacon-says';
 import { BagPacker } from '@/components/boarding-guide/bag-packer';
+import { CancellationSimulator } from '@/components/boarding-guide/cancellation-simulator';
 import { ChapterSection } from '@/components/boarding-guide/chapter-section';
 import { DailyRateSimulator } from '@/components/boarding-guide/daily-rate-simulator';
 import { GuidePhoto } from '@/components/boarding-guide/guide-photo';
@@ -202,8 +203,6 @@ export function BagChapter(): ReactNode {
 
 /** Chapter 8 (checkpoint 4): cancellation and extension. */
 export function CancellationChapter(): ReactNode {
-  const days = 3;
-  const total = days * DAILY_RATE_BRL;
   const { withNotice, late, creditValidityMonths } = CANCELLATION;
   const percent = (value: number): string => `${Math.round(value * 100)}%`;
   const rows = [
@@ -235,13 +234,11 @@ export function CancellationChapter(): ReactNode {
                 uma próxima hospedagem
               </li>
             </ul>
-            <p className="mt-4 text-caption text-fg-muted">
-              Exemplo com {days} diárias ({formatBRL(total)}):{' '}
-              {formatBRL(total * row.policy.refund)} de devolução ou{' '}
-              {formatBRL(total * row.policy.credit)} em crédito.
-            </p>
           </Card>
         ))}
+      </div>
+      <div className="mt-8">
+        <CancellationSimulator />
       </div>
       <p className="mt-6 max-w-reading text-fg-muted">
         As opções são alternativas e as retenções não se somam. O crédito vale
