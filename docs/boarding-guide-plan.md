@@ -80,5 +80,5 @@ Avoid unless a specific need appears:
 
 1. ~~**Font licensing.**~~ Resolved: Google Fonts alternatives chosen (Grandstander, Outfit, Figtree), see [brand.md](brand.md#typography).
 2. ~~**Design system.**~~ Done: tokens, fonts and base components, see [design-system.md](design-system.md).
-3. **Photos.** Consent is covered (signed image-use authorizations). Pending: select one or more photos per chapter, convert HEIC, strip metadata and optimize. Bacon illustrations are done ([illustration-guide-output.md](illustration-guide-output.md)).
+3. ~~**Photos.**~~ Done: selected and processed, see [photo-selection.md](photo-selection.md) (aerial view pending its source). Bacon illustrations: [illustration-guide-output.md](illustration-guide-output.md).
 4. ~~**Script.**~~ Done and reviewed by the owner, see [boarding-guide-script.md](boarding-guide-script.md).
