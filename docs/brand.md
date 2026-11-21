@@ -19,17 +19,23 @@ Some photos are `.HEIC`; convert them before use. Photos may show identifiable p
 
 Silhouettes of a dog, a cat and a small dog inside a green leash-shaped circle, above the wordmark "NOSSA" (green) / "Matilha" (brown).
 
-## Colors (from the brochure palette)
+## Colors
 
-| Role (tentative) | Hex       | RGB           |
-| ---------------- | --------- | ------------- |
-| Dark green       | `#384E20` | 56, 78, 32    |
-| Olive green      | `#4A5B32` | 74, 91, 50    |
-| Lime green       | `#A8CF45` | 168, 207, 69  |
-| Brown            | `#693922` | 105, 57, 34   |
-| Cream            | `#F3EEE2` | 243, 238, 226 |
+The brand palette, sampled from the brochure artwork, is defined as design tokens. See [design-system.md](design-system.md#colors) for values, usage and contrast rules.
 
-The brochure also uses a yellow accent for highlighted text. The logo's green and brown are close to the lime/brown above; sample the logo file for exact values when defining tokens.
+## Typography
+
+The brochure fonts (Kanesty, Amithen) are not licensed for the web, so the site uses Google Fonts (SIL Open Font License) chosen to match them. Load them with `next/font/google`, which self-hosts the files at build time (no request to Google at runtime). Latin subset only.
+
+| Role     | Font                                                           | Weights                          | Matches                                                                                  | Use                                                                                                                                                                       |
+| -------- | -------------------------------------------------------------- | -------------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Display  | [Grandstander](https://fonts.google.com/specimen/Grandstander) | 900 (Black)                      | Logo wordmark: heavy, rounded, playful hand-drawn letters with the same single-story `a` | Large text only: hero titles, chapter openers, big numbers (e.g. "R$ 120,00"), short exclamations ("Segue a gente lá!"). Never below ~24px or for more than a short line. |
+| Headings | [Outfit](https://fonts.google.com/specimen/Outfit)             | 600–800 (variable)               | Brochure headings (Kanesty ExtraBold): rounded geometric, tight                          | Section titles, card titles, buttons, labels.                                                                                                                             |
+| Body     | [Figtree](https://fonts.google.com/specimen/Figtree)           | 400–600 (variable, with italics) | Friendly geometric with open shapes; very legible at small sizes on mobile               | All running text, lists, captions, form fields. Minimum 16px.                                                                                                             |
+
+Approximate latin `woff2` sizes: Grandstander Black ~22 KB, Outfit ~32 KB, Figtree ~21 KB (roman). Preload only the display and body fonts used above the fold.
+
+Rejected during the comparison: Chewy (first pick, replaced by the owner's choice), Londrina Solid (more angular than the logo), Boogaloo, Spicy Rice, DynaPuff; Kanit and Lexend for headings; Lexend, Outfit and Atkinson Hyperlegible Next for body (too wide, too tight, or too plain).
 
 ## Voice
 

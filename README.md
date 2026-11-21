@@ -28,19 +28,21 @@ Run the development server:
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:4630](http://localhost:4630) in your browser.
+
+The app always runs on port **4630** (fixed in `package.json`) to avoid clashing with other local services. If the port is busy, the command fails instead of silently switching ports — stop the other process or free the port.
 
 ## Scripts
 
-| Command                | Description                                                          |
-| ---------------------- | -------------------------------------------------------------------- |
-| `npm run dev`          | Starts the development server with hot reload.                       |
-| `npm run build`        | Creates an optimized production build.                               |
-| `npm run start`        | Serves the production build (run `npm run build` first).             |
-| `npm run lint`         | Lints the code with ESLint (fails on any warning).                   |
-| `npm run typecheck`    | Generates Next.js route types and checks types with the TS compiler. |
-| `npm run format:check` | Checks formatting with Prettier.                                     |
-| `npm run format:write` | Formats all files with Prettier.                                     |
+| Command                | Description                                                           |
+| ---------------------- | --------------------------------------------------------------------- |
+| `npm run dev`          | Starts the development server with hot reload on port 4630.           |
+| `npm run build`        | Creates an optimized production build.                                |
+| `npm run start`        | Serves the production build on port 4630 (run `npm run build` first). |
+| `npm run lint`         | Lints the code with ESLint (fails on any warning).                    |
+| `npm run typecheck`    | Generates Next.js route types and checks types with the TS compiler.  |
+| `npm run format:check` | Checks formatting with Prettier.                                      |
+| `npm run format:write` | Formats all files with Prettier.                                      |
 
 ## Documentation
 
