@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { BaconSays } from '@/components/boarding-guide/bacon-says';
 import { ChapterSection } from '@/components/boarding-guide/chapter-section';
+import { DailyRateSimulator } from '@/components/boarding-guide/daily-rate-simulator';
 import { GuidePhoto } from '@/components/boarding-guide/guide-photo';
 import { VaccineChecklist } from '@/components/boarding-guide/vaccine-checklist';
 import { Card } from '@/components/ui/card';
@@ -71,7 +72,6 @@ export function VaccinesChapter(): ReactNode {
 
 /** Chapter 6 (checkpoint 2): how the daily rate works. */
 export function DailyRateChapter(): ReactNode {
-  const example = { days: 3, checkIn: 'sex, 10h', checkOut: 'dom, 16h' };
   return (
     <ChapterSection
       id="diaria"
@@ -117,21 +117,11 @@ export function DailyRateChapter(): ReactNode {
         </div>
         <div>
           <BaconSays pose="clock">
-            Eu não sei ler relógio, mas a Silvia sabe. Olha esse exemplo!
+            Eu não sei ler relógio, mas a Silvia sabe. Testa aí embaixo!
           </BaconSays>
-          <Card accent={false} className="mt-8">
-            <p className="text-caption text-fg-muted">Exemplo</p>
-            <p className="mt-1 font-heading text-lead font-semibold">
-              Entrada {example.checkIn} · Saída {example.checkOut}
-            </p>
-            <p className="mt-2 font-display text-h1 text-accent">
-              {example.days} diárias ·{' '}
-              {formatBRL(example.days * DAILY_RATE_BRL)}
-            </p>
-            <p className="mt-3 text-highlight">
-              Dica: saindo até as 10h de domingo, ficaria em 2 diárias.
-            </p>
-          </Card>
+          <div className="mt-8">
+            <DailyRateSimulator />
+          </div>
           <p className="mt-6 text-caption text-fg-muted">
             Valor de referência. O orçamento oficial é feito pelo WhatsApp —
             reservas com mais antecedência podem ter condições especiais.

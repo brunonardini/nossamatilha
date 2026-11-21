@@ -175,7 +175,7 @@ antecedência.
 
 ### 6 · Como funciona a diária (dark · checkpoint 2)
 
-**Interaction:** daily-rate clock. The visitor picks check-in and check-out (day and time, limited to 7h–18h); a clock ring fills in 24-hour laps and shows the number of diárias and the reference total. The checkpoint completes after one simulation.
+**Interaction:** daily-rate simulator. The visitor picks check-in and check-out (day and time, limited to 7h–18h); one bar per diária fills with the hours used, with the number of diárias and the reference total. The checkpoint completes after the first change.
 
 ```text
 Como funciona a diária?

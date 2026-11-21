@@ -96,7 +96,7 @@ Avoid unless a specific need appears:
 **Phase 2 — in progress.** One interactive checkpoint at a time:
 
 - [x] Vaccine checklist (checkpoint 1): native checkboxes with CSS-only feedback (`:has()`), zero JavaScript. States: nothing ticked → hint; a required item missing → friendly warning; all required ticked → "Parada 1 de 4 concluída".
-- [ ] Daily-rate clock (checkpoint 2).
+- [x] Daily-rate simulator (checkpoint 2): the first client component (`daily-rate-simulator.tsx`, about 2 KB gzipped on top of the framework). Native selects for check-in/check-out day and hour (7h–18h only), result with the number of daily rates and total, one bar per daily rate filled with the hours used, the "no half day" note for stays under 24h, a tip when leaving up to 6h earlier would save a daily rate, and a warning when check-out is before check-in. Logic in `lib/boarding-guide/daily-rate.ts`. The server renders the Friday 10h → Sunday 16h example, so it reads fine without JavaScript. Completes after the first change.
 - [ ] Pack the bag (checkpoint 3).
 - [ ] Cancellation simulator (checkpoint 4).
 - [ ] Checkpoint counter and final summary (possibly CSS-only too, with `:has()` across the page).
