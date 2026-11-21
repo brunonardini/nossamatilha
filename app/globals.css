@@ -309,6 +309,34 @@
   }
 }
 
+/*
+ * Checklist feedback without JavaScript (CSS `:has()`).
+ * Inside `.checklist`, children with `data-checklist-state` show only in their
+ * state: `empty` (nothing ticked), `missing` (some ticked, a required item
+ * still unticked) or `done` (every `[data-required]` input ticked).
+ */
+@layer components {
+  .checklist [data-checklist-state] {
+    display: none;
+  }
+
+  .checklist:not(:has(input:checked)) [data-checklist-state='empty'],
+  .checklist:has(input:checked):has(input[data-required]:not(:checked))
+    [data-checklist-state='missing'],
+  .checklist:not(:has(input[data-required]:not(:checked)))
+    [data-checklist-state='done'] {
+    display: block;
+    animation: scroll-reveal 400ms var(--ease-out-soft) both;
+  }
+
+  /* Browsers without :has(): show the final message so nothing is lost. */
+  @supports not selector(:has(*)) {
+    .checklist [data-checklist-state='done'] {
+      display: block;
+    }
+  }
+}
+
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;

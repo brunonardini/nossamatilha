@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { BaconSays } from '@/components/boarding-guide/bacon-says';
 import { ChapterSection } from '@/components/boarding-guide/chapter-section';
 import { GuidePhoto } from '@/components/boarding-guide/guide-photo';
+import { VaccineChecklist } from '@/components/boarding-guide/vaccine-checklist';
 import { Card } from '@/components/ui/card';
 import { CheckIcon, CrossIcon } from '@/components/ui/icons';
 import { guidePhotos } from '@/lib/boarding-guide/photos';
@@ -18,13 +19,6 @@ import {
  * rules as static content; each checkpoint gets its interaction later, on top
  * of this text (which stays as the no-JS fallback).
  */
-
-const vaccines = [
-  { name: 'V10 (vacina polivalente múltipla)', status: 'Obrigatória' },
-  { name: 'Raiva', status: 'Obrigatória' },
-  { name: 'Antiparasitário e vermífugo em dia', status: 'Obrigatório' },
-  { name: 'Gripe', status: 'Aconselhável' },
-];
 
 const notAccepted = [
   'Cães com sintomas de vermes',
@@ -46,27 +40,7 @@ export function VaccinesChapter(): ReactNode {
     >
       <div className="grid items-start gap-10 md:grid-cols-2">
         <div>
-          <ul className="grid gap-3">
-            {vaccines.map((vaccine) => (
-              <li
-                key={vaccine.name}
-                className="scroll-reveal flex min-h-12 items-center gap-4 rounded-md bg-surface-raised px-4 py-3"
-              >
-                <CheckIcon className="size-6 shrink-0 text-lime" />
-                <span className="font-heading font-semibold">
-                  {vaccine.name}
-                </span>
-                <span className="ml-auto text-caption text-accent">
-                  {vaccine.status}
-                </span>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-6 max-w-reading">
-            Na hora de reservar, é só enviar uma{' '}
-            <strong>foto do cartão de vacinação atualizado</strong> junto com a
-            ficha cadastral.
-          </p>
+          <VaccineChecklist />
         </div>
         <div>
           <BaconSays pose="vaccine">

@@ -93,6 +93,12 @@ Avoid unless a specific need appears:
 - The 4 checkpoints show their full rules as static content (also their future no-JS fallback).
 - WhatsApp links built from environment variables; a floating WhatsApp button on mobile.
 
-**Next phases:** one interactive checkpoint at a time — vaccine checklist, daily-rate clock, pack the bag, cancellation simulator — then the checkpoint counter and final summary.
+**Phase 2 — in progress.** One interactive checkpoint at a time:
+
+- [x] Vaccine checklist (checkpoint 1): native checkboxes with CSS-only feedback (`:has()`), zero JavaScript. States: nothing ticked → hint; a required item missing → friendly warning; all required ticked → "Parada 1 de 4 concluída".
+- [ ] Daily-rate clock (checkpoint 2).
+- [ ] Pack the bag (checkpoint 3).
+- [ ] Cancellation simulator (checkpoint 4).
+- [ ] Checkpoint counter and final summary (possibly CSS-only too, with `:has()` across the page).
 
 **Performance note:** the page ships no JavaScript of its own, but the Next.js/React framework baseline is about 180 KB gzipped, above the 100 KB budget above. Investigate whether the experimental flags in `next.config.ts` (`cacheComponents`, `partialPrefetching`, `agentFeedback`) add to it before adding client components.

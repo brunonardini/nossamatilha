@@ -121,6 +121,10 @@ Sizes are fluid (`clamp()`), so no breakpoint overrides are needed. Headings get
 - `ButtonLink` / `Button` (`components/ui/button.tsx`): variants `primary` (lime), `secondary` (brown), `outline` (follows the tone). Minimum height 48px for touch.
 - `Card` (`components/ui/card.tsx`): rounded raised surface with the optional lime accent bar from the brochure.
 
+## Patterns
+
+- **Checklist without JavaScript** (`.checklist` in `app/globals.css`): wrap native checkboxes in an element with the `checklist` class, mark required inputs with `data-required`, and add feedback blocks with `data-checklist-state="empty" | "missing" | "done"`. CSS `:has()` shows only the block that matches the current state. Put the feedback blocks in an `aria-live="polite"` region. Browsers without `:has()` show the `done` block. Used by the vaccine checkpoint of the boarding guide.
+
 ## Accessibility
 
 - Focus ring: 3px `sun` outline on every focusable element (`:focus-visible`).
