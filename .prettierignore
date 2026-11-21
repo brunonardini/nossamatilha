@@ -1,0 +1,28 @@
+# dependencies
+node_modules
+
+# testing
+coverage
+
+# next.js
+.next
+out
+
+# production
+build
+
+# misc
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# lockfiles
+package-lock.json
+
+# IA
+AGENTS.md
+
+# Temporary files
+old-website/
