@@ -3,41 +3,18 @@
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import { CheckIcon } from '@/components/ui/icons';
 import {
+  BUSINESS_HOUR_OPTIONS,
+  DAYS_LATER_OPTIONS,
   WEEKDAYS,
   calculateStay,
+  dailyRateFractions,
+  daysLaterLabel,
   weekdayAfter,
 } from '@/lib/boarding-guide/daily-rate';
-import {
-  BUSINESS_HOURS,
-  DAILY_RATE_BRL,
-  formatBRL,
-} from '@/lib/boarding-guide/pricing';
+import { BUSINESS_HOURS, formatBRL } from '@/lib/boarding-guide/pricing';
 import { setStayDays } from '@/lib/boarding-guide/stay-store';
+import { plural } from '@/lib/format';
 import { MOTION_OK, gsap, useGSAP } from '@/lib/gsap';
-
-/** Longest stay offered by the simulator, in days after check-in. */
-const MAX_DAYS_LATER = 14;
-
-const hours = Array.from(
-  { length: BUSINESS_HOURS.closes - BUSINESS_HOURS.opens + 1 },
-  (_, index) => BUSINESS_HOURS.opens + index,
-);
-
-const daysLaterOptions = Array.from(
-  { length: MAX_DAYS_LATER + 1 },
-  (_, index) => index,
-);
-
-function daysLaterLabel(weekday: number, daysLater: number): string {
-  const name = weekdayAfter(weekday, daysLater);
-  if (daysLater === 0) return `${name} (mesmo dia)`;
-  if (daysLater === 1) return `${name} (dia seguinte)`;
-  return `${name} (${daysLater} dias depois)`;
-}
-
-function plural(count: number, one: string, many: string): string {
-  return `${count} ${count === 1 ? one : many}`;
-}
 
 const selectClass =
   'mt-1 block min-h-12 w-full rounded-md border-2 border-cream/30 bg-surface-raised px-3 font-heading font-semibold text-fg focus-visible:border-lime';
@@ -156,7 +133,7 @@ export function DailyRateSimulator(): ReactNode {
             }
             className={selectClass}
           >
-            {hours.map((hour) => (
+            {BUSINESS_HOUR_OPTIONS.map((hour) => (
               <option key={hour} value={hour}>
                 {hour}h
               </option>
@@ -176,7 +153,7 @@ export function DailyRateSimulator(): ReactNode {
             }
             className={selectClass}
           >
-            {daysLaterOptions.map((option) => (
+            {DAYS_LATER_OPTIONS.map((option) => (
               <option key={option} value={option}>
                 {daysLaterLabel(weekday, option)}
               </option>
@@ -193,7 +170,7 @@ export function DailyRateSimulator(): ReactNode {
             }
             className={selectClass}
           >
-            {hours.map((hour) => (
+            {BUSINESS_HOUR_OPTIONS.map((hour) => (
               <option key={hour} value={hour}>
                 {hour}h
               </option>
@@ -223,10 +200,8 @@ export function DailyRateSimulator(): ReactNode {
             </p>
 
             <ol className="mt-5 grid gap-2" aria-label="Diárias da estadia">
-              {Array.from({ length: result.days }, (_, index) => {
-                const isLast = index === result.days - 1;
-                const fraction = isLast ? result.lastDayHours / 24 : 1;
-                return (
+              {dailyRateFractions(result.days, result.lastDayHours).map(
+                (fraction, index) => (
                   <li key={index}>
                     <p className="flex justify-between text-caption">
                       <span className="font-semibold">{index + 1}ª diária</span>
@@ -244,8 +219,8 @@ export function DailyRateSimulator(): ReactNode {
                       />
                     </div>
                   </li>
-                );
-              })}
+                ),
+              )}
             </ol>
 
             {result.hours < 24 ? (
@@ -253,14 +228,14 @@ export function DailyRateSimulator(): ReactNode {
                 Estadias de menos de 24 horas custam uma diária inteira.
               </p>
             ) : null}
-            {result.savableHours !== null ? (
+            {result.savableHours !== null && result.earlierTotal !== null ? (
               <p className="mt-4 text-highlight">
                 Neste exemplo, a última diária cobre{' '}
                 {plural(result.savableHours, 'hora', 'horas')} da estadia. Se
                 você buscar seu cão até as {checkInHour}h de{' '}
                 {weekdayAfter(weekday, result.days - 1)}, o total cai para{' '}
                 {plural(result.days - 1, 'diária', 'diárias')} (
-                {formatBRL((result.days - 1) * DAILY_RATE_BRL)}).
+                {formatBRL(result.earlierTotal)}).
               </p>
             ) : null}
           </>

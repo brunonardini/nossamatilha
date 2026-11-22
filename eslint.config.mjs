@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     'out/**',
     'build/**',
     'next-env.d.ts',
+    // Generated unit test reports (coverage HTML, JUnit).
+    'coverage/**',
+    'reports/**',
   ]),
 ]);
 

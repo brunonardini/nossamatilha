@@ -40,15 +40,18 @@ The app always runs on port **4630** (fixed in `package.json`) to avoid clashing
 
 ## Scripts
 
-| Command                | Description                                                           |
-| ---------------------- | --------------------------------------------------------------------- |
-| `npm run dev`          | Starts the development server with hot reload on port 4630.           |
-| `npm run build`        | Creates an optimized production build.                                |
-| `npm run start`        | Serves the production build on port 4630 (run `npm run build` first). |
-| `npm run lint`         | Lints the code with ESLint (fails on any warning).                    |
-| `npm run typecheck`    | Generates Next.js route types and checks types with the TS compiler.  |
-| `npm run format:check` | Checks formatting with Prettier.                                      |
-| `npm run format:write` | Formats all files with Prettier.                                      |
+| Command                 | Description                                                           |
+| ----------------------- | --------------------------------------------------------------------- |
+| `npm run dev`           | Starts the development server with hot reload on port 4630.           |
+| `npm run build`         | Creates an optimized production build.                                |
+| `npm run start`         | Serves the production build on port 4630 (run `npm run build` first). |
+| `npm run lint`          | Lints the code with ESLint (fails on any warning).                    |
+| `npm run typecheck`     | Generates Next.js route types and checks types with the TS compiler.  |
+| `npm run test`          | Runs the unit tests once with Vitest.                                 |
+| `npm run test:watch`    | Runs the unit tests in watch mode.                                    |
+| `npm run test:coverage` | Runs the unit tests and checks coverage of `lib/`.                    |
+| `npm run format:check`  | Checks formatting with Prettier.                                      |
+| `npm run format:write`  | Formats all files with Prettier.                                      |
 
 ## Documentation
 

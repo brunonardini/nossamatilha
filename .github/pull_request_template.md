@@ -29,6 +29,7 @@ Closes #
 - [ ] `npm run lint` passes with no warnings
 - [ ] `npm run typecheck` passes
 - [ ] `npm run format:check` passes
+- [ ] `npm run test:coverage` passes (logic in `lib/` covered; interactive behavior tested)
 - [ ] `npm run build` passes
 - [ ] Code, comments, TSDoc and docs in English; site content in pt-BR
 - [ ] Exported functions, components, hooks and types have TSDoc

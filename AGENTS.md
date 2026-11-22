@@ -111,6 +111,7 @@ Run all checks and make sure they pass — they mirror the CI pipeline:
 npm run lint
 npm run typecheck
 npm run format:check
+npm run test:coverage
 npm run build
 ```
 
@@ -132,6 +133,15 @@ A task is not done while any check fails or reports warnings. Fix the root cause
 - Motion: animate `transform`/`opacity` only and keep the page fully usable with `prefers-reduced-motion`.
 - Animation library is GSAP (`gsap`, `@gsap/react`); do not add another one (Motion, Lenis, Lottie…) without the owner's approval. Rules: animate only in small `'use client'` components (pages stay server components); use `useGSAP` with a `scope` ref, never raw `useEffect`; import GSAP, plugins and `useGSAP` only from `lib/gsap.ts` (registers them once; exports `MOTION_OK`); wrap every animation in `gsap.matchMedia()` with a `(prefers-reduced-motion: no-preference)` condition; content must be visible and final without JavaScript (hidden states are set by GSAP; for above-the-fold entrances, add `motion-pending` to the animated wrapper and show it with `gsap.set` once the timeline exists). `GuidePhoto`/`BaconSays` inside a GSAP-animated block need `reveal={false}` (CSS animations override GSAP's inline transforms). Keep simple hover/focus transitions in CSS.
 - Reuse `components/ui/` primitives before creating new ones; new primitives go there with TSDoc.
+
+## Unit tests
+
+- Vitest + Testing Library (jsdom). Config in `vitest.config.mts`, setup in `vitest.setup.ts`. Tests sit next to the code as `*.test.ts(x)`.
+- Test behavior and logic, never styles, class names, markup snapshots or animations. Every test must fail if a rule or interaction breaks.
+- Business logic (prices, dates, policies, parsing, formatting, stores) lives in `lib/` as pure functions, never inside components. Components only call `lib/` and render the result.
+- Coverage is enforced only on `lib/**/*.ts`: 90% lines, branches, functions and statements. Exclude a `lib/` file from coverage only when it holds no logic (static data, asset maps, GSAP registration), listed with a reason in `vitest.config.mts`. Never lower thresholds.
+- Components have no coverage target: test interactive ones (simulators, forms) through what the visitor does and sees (roles, labels, text). Do not test static or server components, or GSAP motion.
+- Test data must be fictitious (see [Privacy and LGPD](#privacy-and-lgpd)); stub env vars with `vi.stubEnv`.
 
 ## TypeScript
 
@@ -180,7 +190,7 @@ Templates live in `.github/ISSUE_TEMPLATE/` (bug report and feature request) and
 
 ## CI
 
-CircleCI config is in `.circleci/config.yml`. A `setup` job installs dependencies and shares the workspace with the `lint`, `format-check`, `type-check` and `build` jobs. The Docker image tag must match `.nvmrc` — update both together (the `setup` job fails if they differ).
+CircleCI config is in `.circleci/config.yml`. A `setup` job installs dependencies and shares the workspace with the `lint`, `format-check`, `type-check`, `unit-test` and `build` jobs. `unit-test` stores JUnit results and the coverage report as artifacts. The Docker image tag must match `.nvmrc` — update both together (the `setup` job fails if they differ).
 
 ## Documentation
 

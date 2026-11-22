@@ -69,6 +69,19 @@ jobs:
           name: Type check
           command: npm run typecheck
 
+  unit-test:
+    executor: node
+    steps:
+      - attach-project
+      - run:
+          name: Unit tests with coverage
+          command: npm run test:coverage -- --reporter=default --reporter=junit --outputFile.junit=reports/junit.xml
+      - store_test_results:
+          path: reports
+      - store_artifacts:
+          path: coverage
+          destination: coverage
+
   build:
     executor: node
     steps:
@@ -99,6 +112,9 @@ workflows:
           requires:
             - setup
       - type-check:
+          requires:
+            - setup
+      - unit-test:
           requires:
             - setup
       - build:

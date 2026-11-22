@@ -47,3 +47,6 @@ tmp/
 
 # graphify (local knowledge graph, rebuilt by hooks)
 graphify-out/
+
+# unit test reports
+/reports

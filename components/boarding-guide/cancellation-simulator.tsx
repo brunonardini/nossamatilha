@@ -3,26 +3,20 @@
 import { useId, useRef, useState, type ReactNode } from 'react';
 import { CheckIcon } from '@/components/ui/icons';
 import {
-  CANCELLATION,
-  DAILY_RATE_BRL,
-  formatBRL,
-} from '@/lib/boarding-guide/pricing';
+  MAX_STAY_DAYS,
+  cancellationQuote,
+  clampStayDays,
+  type Notice,
+} from '@/lib/boarding-guide/cancellation';
+import { CANCELLATION, formatBRL } from '@/lib/boarding-guide/pricing';
 import { useStayDays } from '@/lib/boarding-guide/stay-store';
+import { percent } from '@/lib/format';
 import { MOTION_OK, gsap, useGSAP } from '@/lib/gsap';
-
-/** Notice given before the scheduled check-in. */
-type Notice = 'withNotice' | 'late';
 
 const notices: { value: Notice; label: string }[] = [
   { value: 'withNotice', label: '48 horas ou mais de antecedência' },
   { value: 'late', label: 'Menos de 48 horas ou não comparecimento' },
 ];
-
-const MAX_DAYS = 30;
-
-function percent(value: number): string {
-  return `${Math.round(value * 100)}%`;
-}
 
 /**
  * Checkpoint 4: the visitor picks how early they cancel and sees both
@@ -40,10 +34,7 @@ export function CancellationSimulator(): ReactNode {
   );
 
   const days = ownDays ?? sharedDays;
-  const paid = days * DAILY_RATE_BRL;
-  const policy = CANCELLATION[notice];
-  const refund = paid * policy.refund;
-  const credit = paid * policy.credit;
+  const quote = cancellationQuote(days, notice);
   const done = seen.size === notices.length;
 
   // Motion on changes (not on mount): the day count bumps in the direction
@@ -105,7 +96,7 @@ export function CancellationSimulator(): ReactNode {
   }
 
   function changeDays(delta: number): void {
-    setOwnDays(Math.min(MAX_DAYS, Math.max(1, days + delta)));
+    setOwnDays(clampStayDays(days + delta));
   }
 
   const stepButton =
@@ -151,13 +142,13 @@ export function CancellationSimulator(): ReactNode {
               {days} {days === 1 ? 'diária' : 'diárias'}
             </span>
             <span className="text-caption text-fg-muted">
-              {formatBRL(paid)} pagos
+              {formatBRL(quote.paid)} pagos
             </span>
           </p>
           <button
             type="button"
             onClick={() => changeDays(1)}
-            disabled={days >= MAX_DAYS}
+            disabled={days >= MAX_STAY_DAYS}
             aria-label="Mais uma diária"
             className={stepButton}
           >
@@ -197,29 +188,29 @@ export function CancellationSimulator(): ReactNode {
         <div className="mt-2 grid gap-3 sm:grid-cols-2">
           <div className="rounded-md bg-olive p-4">
             <p className="text-caption text-fg-muted">
-              Devolução de {percent(policy.refund)}
+              Devolução de {percent(quote.refundRate)}
             </p>
             <p
               data-cancel-amount
               className="w-fit font-display text-h1 text-accent"
             >
-              {formatBRL(refund)}
+              {formatBRL(quote.refund)}
             </p>
             <p className="text-caption text-fg-muted">
-              {policy.refund < 1
-                ? `Retenção de ${formatBRL(paid - refund)}`
+              {quote.retained > 0
+                ? `Retenção de ${formatBRL(quote.retained)}`
                 : 'Sem retenção'}
             </p>
           </div>
           <div className="rounded-md bg-olive p-4">
             <p className="text-caption text-fg-muted">
-              Crédito de {percent(policy.credit)}
+              Crédito de {percent(quote.creditRate)}
             </p>
             <p
               data-cancel-amount
               className="w-fit font-display text-h1 text-accent"
             >
-              {formatBRL(credit)}
+              {formatBRL(quote.credit)}
             </p>
             <p className="text-caption text-fg-muted">
               Para usar em até {CANCELLATION.creditValidityMonths} meses
