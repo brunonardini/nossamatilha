@@ -5,6 +5,7 @@ import { BaconSays } from '@/components/boarding-guide/bacon-says';
 import { ChapterSection } from '@/components/boarding-guide/chapter-section';
 import { GuidePhoto } from '@/components/boarding-guide/guide-photo';
 import { AboutMotion } from '@/components/boarding-guide/motion/about-motion';
+import { BookingMotion } from '@/components/boarding-guide/motion/booking-motion';
 import { DayMotion } from '@/components/boarding-guide/motion/day-motion';
 import { HeroMotion } from '@/components/boarding-guide/motion/hero-motion';
 import { TeamMotion } from '@/components/boarding-guide/motion/team-motion';
@@ -427,59 +428,77 @@ const bookingSteps = [
 /** Chapter 5: how to book. */
 export function BookingChapter(): ReactNode {
   return (
-    <ChapterSection
-      id="como-reservar"
-      tone="light"
-      number={5}
-      title="Como reservar"
-    >
-      <div className="grid items-start gap-10 md:grid-cols-2">
-        <div>
-          <p className="scroll-reveal font-display text-display-xl text-brown">
-            {BOOKING_NOTICE_HOURS}h
-          </p>
-          <p className="mt-2 max-w-reading text-lead">
-            Peça a reserva pelo{' '}
-            <strong>WhatsApp oficial da Nossa Matilha</strong> com pelo menos{' '}
-            <strong>{BOOKING_NOTICE_HOURS} horas de antecedência</strong> em
-            relação ao horário de entrada. A hospedagem funciona com reserva e
-            depende de vaga.
-          </p>
-          <BaconSays pose="phone" className="mt-8">
-            Eu ainda tô aprendendo a digitar com a pata.
-          </BaconSays>
-        </div>
-        <div>
-          <h3 className="text-h3 font-bold">O que enviar pelo WhatsApp</h3>
-          <ol className="mt-4 space-y-3">
-            {bookingSteps.map((step, index) => (
-              <li key={step} className="scroll-reveal flex items-center gap-4">
-                <span
-                  aria-hidden="true"
-                  className="grid size-11 shrink-0 place-items-center rounded-full bg-lime font-heading text-h3 font-extrabold text-forest"
+    <BookingMotion>
+      <ChapterSection
+        id="como-reservar"
+        tone="light"
+        number={5}
+        title="Como reservar"
+      >
+        <div className="grid items-start gap-10 md:grid-cols-2">
+          <div>
+            <p
+              data-booking-notice
+              className="w-fit font-display text-display-xl text-brown"
+            >
+              <span data-count-to={BOOKING_NOTICE_HOURS}>
+                {BOOKING_NOTICE_HOURS}
+              </span>
+              h
+            </p>
+            <p data-booking-text className="mt-2 max-w-reading text-lead">
+              Peça a reserva pelo{' '}
+              <strong>WhatsApp oficial da Nossa Matilha</strong> com pelo menos{' '}
+              <strong>{BOOKING_NOTICE_HOURS} horas de antecedência</strong> em
+              relação ao horário de entrada. A hospedagem funciona com reserva e
+              depende de vaga.
+            </p>
+            <div data-booking-bacon className="mt-8">
+              <BaconSays pose="phone" reveal={false}>
+                Eu ainda tô aprendendo a digitar com a pata.
+              </BaconSays>
+            </div>
+          </div>
+          <div>
+            <h3 className="text-h3 font-bold">O que enviar pelo WhatsApp</h3>
+            <ol className="mt-4 space-y-3">
+              {bookingSteps.map((step, index) => (
+                <li
+                  key={step}
+                  data-booking-step
+                  className="flex items-center gap-4"
                 >
-                  {index + 1}
-                </span>
-                <span className="font-heading text-lead font-semibold">
-                  {step}
-                </span>
-              </li>
-            ))}
-          </ol>
-          <Card accent={false} className="mt-8">
-            <p>
-              A equipe confirma a reserva depois de conferir os documentos e a
-              vaga, receber o pagamento e confirmar que você aceitou as regras.
-            </p>
-            <p className="mt-3 font-semibold">Orçamento não é reserva.</p>
-            <p className="mt-1">
-              Pacotes também precisam ser reservados com {BOOKING_NOTICE_HOURS}h
-              de antecedência.
-            </p>
-          </Card>
+                  <span
+                    aria-hidden="true"
+                    data-booking-number
+                    className="grid size-11 shrink-0 place-items-center rounded-full bg-lime font-heading text-h3 font-extrabold text-forest"
+                  >
+                    {index + 1}
+                  </span>
+                  <span className="font-heading text-lead font-semibold">
+                    {step}
+                  </span>
+                </li>
+              ))}
+            </ol>
+            <Card data-booking-card accent={false} className="mt-8">
+              <p>
+                A equipe confirma a reserva depois de conferir os documentos e a
+                vaga, receber o pagamento e confirmar que você aceitou as
+                regras.
+              </p>
+              <p data-booking-warning className="mt-3 font-semibold">
+                Orçamento não é reserva.
+              </p>
+              <p className="mt-1">
+                Pacotes também precisam ser reservados com{' '}
+                {BOOKING_NOTICE_HOURS}h de antecedência.
+              </p>
+            </Card>
+          </div>
         </div>
-      </div>
-    </ChapterSection>
+      </ChapterSection>
+    </BookingMotion>
   );
 }
 

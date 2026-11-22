@@ -5,6 +5,7 @@ import { CancellationSimulator } from '@/components/boarding-guide/cancellation-
 import { ChapterSection } from '@/components/boarding-guide/chapter-section';
 import { DailyRateSimulator } from '@/components/boarding-guide/daily-rate-simulator';
 import { GuidePhoto } from '@/components/boarding-guide/guide-photo';
+import { VaccinesMotion } from '@/components/boarding-guide/motion/vaccines-motion';
 import { VaccineChecklist } from '@/components/boarding-guide/vaccine-checklist';
 import { Card } from '@/components/ui/card';
 import { CrossIcon } from '@/components/ui/icons';
@@ -32,42 +33,50 @@ const notAccepted = [
 /** Chapter 4 (checkpoint 1): vaccines and health requirements. */
 export function VaccinesChapter(): ReactNode {
   return (
-    <ChapterSection
-      id="vacinas"
-      tone="dark"
-      number={4}
-      eyebrow="Parada 1 de 4"
-      titleStyle="heading"
-      title="Vacinas e cuidados de saúde"
-      intro="Confira o que seu cão precisa ter em dia antes da hospedagem."
-    >
-      <div className="grid items-start gap-10 md:grid-cols-2">
-        <div>
-          <VaccineChecklist />
+    <VaccinesMotion>
+      <ChapterSection
+        id="vacinas"
+        tone="dark"
+        number={4}
+        eyebrow="Parada 1 de 4"
+        titleStyle="heading"
+        title="Vacinas e cuidados de saúde"
+        intro="Confira o que seu cão precisa ter em dia antes da hospedagem."
+      >
+        <div className="grid items-start gap-10 md:grid-cols-2">
+          <div>
+            <VaccineChecklist />
+          </div>
+          <div>
+            <div data-vaccine-bacon>
+              <BaconSays pose="vaccine" reveal={false}>
+                Eu prefiro a parte depois da picadinha, quando ganho carinho.
+              </BaconSays>
+            </div>
+            <h3 className="mt-10 text-h3 font-bold">
+              Quando seu cão não pode se hospedar
+            </h3>
+            <ul className="mt-4 grid gap-3">
+              {notAccepted.map((item) => (
+                <li
+                  key={item}
+                  data-not-accepted
+                  className="flex items-center gap-3 font-semibold"
+                >
+                  <span
+                    data-not-accepted-icon
+                    className="grid size-8 shrink-0 place-items-center rounded-full bg-brown text-cream"
+                  >
+                    <CrossIcon className="size-4" />
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-        <div>
-          <BaconSays pose="vaccine">
-            Eu prefiro a parte depois da picadinha, quando ganho carinho.
-          </BaconSays>
-          <h3 className="mt-10 text-h3 font-bold">
-            Quando seu cão não pode se hospedar
-          </h3>
-          <ul className="mt-4 grid gap-3">
-            {notAccepted.map((item) => (
-              <li
-                key={item}
-                className="scroll-reveal flex items-center gap-3 font-semibold"
-              >
-                <span className="grid size-8 shrink-0 place-items-center rounded-full bg-brown text-cream">
-                  <CrossIcon className="size-4" />
-                </span>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </ChapterSection>
+      </ChapterSection>
+    </VaccinesMotion>
   );
 }
 

@@ -2,6 +2,10 @@
 
 import { useRef, type ReactNode } from 'react';
 import { animateChapterHeading } from '@/components/boarding-guide/motion/chapter-heading';
+import {
+  countUp,
+  restoreCounts,
+} from '@/components/boarding-guide/motion/count-up';
 import { MOTION_OK, gsap, useGSAP } from '@/lib/gsap';
 
 /** Props for {@link AboutMotion}. */
@@ -58,26 +62,8 @@ export function AboutMotion({ children }: AboutMotionProps): ReactNode {
             at,
           );
           const number = stat.querySelector<HTMLElement>('[data-count-to]');
-          const target = Number(number?.dataset.countTo);
-          if (number && Number.isFinite(target)) {
-            const counter = { value: 0 };
-            const render = (): void => {
-              number.textContent = Math.round(counter.value).toLocaleString(
-                'pt-BR',
-              );
-            };
-            render();
-            stl.to(
-              counter,
-              {
-                value: target,
-                duration: 1.4,
-                ease: 'power2.out',
-                onUpdate: render,
-              },
-              at,
-            );
-          }
+          const count = number ? countUp(number) : null;
+          if (count) stl.add(count, at);
         });
 
         // Space photos: rise in a fanned sequence. One trigger per photo so
@@ -123,10 +109,7 @@ export function AboutMotion({ children }: AboutMotionProps): ReactNode {
 
         return () => {
           revertHeading?.();
-          // Leave the real numbers in place if the animation is torn down.
-          root.querySelectorAll<HTMLElement>('[data-count-to]').forEach((n) => {
-            n.textContent = Number(n.dataset.countTo).toLocaleString('pt-BR');
-          });
+          restoreCounts(root);
         };
       });
     },

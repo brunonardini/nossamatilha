@@ -50,7 +50,7 @@ export function VaccineChecklist(): ReactNode {
         </legend>
         <ul className="mt-4 grid gap-3">
           {items.map((item) => (
-            <li key={item.id}>
+            <li key={item.id} data-vaccine-item>
               <label
                 htmlFor={`vacina-${item.id}`}
                 className="flex min-h-14 cursor-pointer items-center gap-4 rounded-md bg-surface-raised px-4 py-3 transition-[background-color,box-shadow] duration-(--duration-fast) hover:bg-forest/70 has-checked:ring-2 has-checked:ring-lime has-focus-visible:outline-3 has-focus-visible:outline-sun"
