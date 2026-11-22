@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import type { ReactNode } from 'react';
 import logoMark from '@/assets/brand/logo-mark.svg';
 import { ChapterMenu } from '@/components/boarding-guide/chapter-menu';
@@ -12,13 +11,14 @@ export function GuideHeader(): ReactNode {
   return (
     <header className="sticky top-0 z-20 border-b border-forest/10 bg-cream/95 backdrop-blur-sm">
       <div className="mx-auto flex h-14 max-w-page items-center justify-between gap-4 px-4 sm:px-8">
-        <Link
+        {/* Native anchor: next/link skips the scroll when the hash is unchanged. */}
+        <a
           href="#boas-vindas"
           className="flex items-center gap-2 font-heading font-bold text-forest"
         >
           <Image src={logoMark} alt="" className="size-9" unoptimized />
           <span>Guia da hospedagem</span>
-        </Link>
+        </a>
         <ChapterMenu />
       </div>
       <div
