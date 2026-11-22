@@ -12,18 +12,28 @@ type VaccineItem = {
 const items: VaccineItem[] = [
   {
     id: 'v10',
-    name: 'V10 (vacina polivalente múltipla)',
+    name: 'Vacina V10 (polivalente)',
     status: 'Obrigatória',
     required: true,
   },
-  { id: 'raiva', name: 'Raiva', status: 'Obrigatória', required: true },
+  {
+    id: 'raiva',
+    name: 'Vacina contra a raiva',
+    status: 'Obrigatória',
+    required: true,
+  },
   {
     id: 'antiparasitario',
     name: 'Antiparasitário e vermífugo em dia',
     status: 'Obrigatório',
     required: true,
   },
-  { id: 'gripe', name: 'Gripe', status: 'Aconselhável', required: false },
+  {
+    id: 'gripe',
+    name: 'Vacina contra a gripe',
+    status: 'Recomendada',
+    required: false,
+  },
 ];
 
 /**
@@ -36,7 +46,7 @@ export function VaccineChecklist(): ReactNode {
     <div className="checklist">
       <fieldset aria-describedby="vacinas-feedback">
         <legend className="font-heading text-lead font-semibold">
-          Marque o que o seu cão já tem:
+          Marque as vacinas e os cuidados que estão em dia.
         </legend>
         <ul className="mt-4 grid gap-3">
           {items.map((item) => (
@@ -70,15 +80,16 @@ export function VaccineChecklist(): ReactNode {
 
       <div id="vacinas-feedback" aria-live="polite" className="mt-6">
         <p data-checklist-state="empty" className="text-fg-muted">
-          V10, raiva e antiparasitário em dia são obrigatórios. A gripe é
-          aconselhável.
+          Para a hospedagem, as vacinas V10 e contra a raiva, o antiparasitário
+          e o vermífugo precisam estar em dia. Recomendamos a vacina contra a
+          gripe.
         </p>
         <p
           data-checklist-state="missing"
           className="rounded-md border-2 border-sun/60 px-4 py-3"
         >
-          Sem a V10, a raiva e o antiparasitário em dia, não conseguimos receber
-          o seu cão. Fale com o seu veterinário antes de reservar.
+          Se faltar algum item obrigatório, fale com o veterinário do seu cão
+          antes de reservar.
         </p>
         <div
           data-checklist-state="done"
@@ -88,11 +99,13 @@ export function VaccineChecklist(): ReactNode {
             <CheckIcon className="size-5" />
             Parada 1 de 4 concluída
           </p>
-          <p className="mt-2 font-heading text-h3 font-bold">Tudo certo!</p>
+          <p className="mt-2 font-heading text-h3 font-bold">
+            Itens obrigatórios marcados
+          </p>
           <p className="mt-1">
-            Na hora de reservar, é só enviar uma{' '}
-            <strong>foto do cartão de vacinação atualizado</strong> junto com a
-            ficha cadastral.
+            Na hora de reservar, envie uma{' '}
+            <strong>foto do cartão de vacinação atualizado</strong> e a ficha
+            cadastral pelo WhatsApp oficial.
           </p>
         </div>
       </div>

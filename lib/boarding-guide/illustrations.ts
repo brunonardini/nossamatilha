@@ -31,7 +31,7 @@ export const baconPoses: Record<
   { src: StaticImageData; alt: string }
 > = {
   hello: { src: bacon00, alt: 'Bacon sentado, acenando com a pata.' },
-  playing: { src: bacon01, alt: 'Bacon correndo, chamando para brincar.' },
+  playing: { src: bacon01, alt: 'Bacon correndo.' },
   proud: { src: bacon02, alt: 'Bacon sentado, orgulhoso, de bandana verde.' },
   eating: { src: bacon03, alt: 'Bacon sentado diante do pote de ração.' },
   vaccine: {
@@ -46,7 +46,7 @@ export const baconPoses: Record<
   bag: { src: bacon07, alt: 'Bacon carregando a malinha na boca.' },
   thinking: {
     src: bacon08,
-    alt: 'Bacon deitado, pensativo, ao lado de um calendário.',
+    alt: 'Bacon deitado ao lado de um calendário.',
   },
   bath: {
     src: bacon09,

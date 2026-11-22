@@ -190,23 +190,23 @@ export function DailyRateSimulator(): ReactNode {
 
             {result.hours < 24 ? (
               <p className="mt-4">
-                Mesmo com menos de 24 horas, conta como 1 diária completa: não
-                fazemos meia diária.
+                Estadias de menos de 24 horas custam uma diária inteira.
               </p>
             ) : null}
             {result.savableHours !== null ? (
               <p className="mt-4 text-highlight">
-                Dica: a última diária foi usada só por{' '}
-                {plural(result.savableHours, 'hora', 'horas')}. Saindo até as{' '}
-                {checkInHour}h de {weekdayAfter(weekday, result.days - 1)}, a
-                estadia fica em {plural(result.days - 1, 'diária', 'diárias')} (
+                Neste exemplo, a última diária cobre{' '}
+                {plural(result.savableHours, 'hora', 'horas')} da estadia. Se
+                você buscar seu cão até as {checkInHour}h de{' '}
+                {weekdayAfter(weekday, result.days - 1)}, o total cai para{' '}
+                {plural(result.days - 1, 'diária', 'diárias')} (
                 {formatBRL((result.days - 1) * DAILY_RATE_BRL)}).
               </p>
             ) : null}
           </>
         ) : (
           <p className="rounded-md border-2 border-sun/60 px-4 py-3">
-            A saída precisa ser depois da entrada. Ajuste o dia ou o horário.
+            Escolha um dia ou horário de saída posterior à entrada.
           </p>
         )}
 
@@ -217,7 +217,7 @@ export function DailyRateSimulator(): ReactNode {
           </p>
         ) : (
           <p className="mt-6 text-caption text-fg-muted">
-            Mude a entrada ou a saída para ver o cálculo da sua estadia.
+            Ajuste os dias ou horários para calcular o valor da sua estadia.
           </p>
         )}
       </div>

@@ -7,12 +7,7 @@ import { GuidePhoto } from '@/components/boarding-guide/guide-photo';
 import { WhatsAppButton } from '@/components/boarding-guide/whatsapp-cta';
 import { Card } from '@/components/ui/card';
 import { buttonClasses } from '@/components/ui/button';
-import {
-  CameraIcon,
-  ChatIcon,
-  CheckIcon,
-  PawIcon,
-} from '@/components/ui/icons';
+import { CameraIcon, ChatIcon, CheckIcon } from '@/components/ui/icons';
 import { guidePhotos } from '@/lib/boarding-guide/photos';
 import { BOOKING_NOTICE_HOURS } from '@/lib/boarding-guide/pricing';
 import {
@@ -45,10 +40,8 @@ export function WelcomeChapter(): ReactNode {
             Bem-vindo à <span className="text-brown">Matilha!</span>
           </h1>
           <p className="mt-4 max-w-reading text-lead">
-            Que bom ter você e o seu cão aqui. Preparamos este guia para você
-            conhecer a nossa casa, a nossa rotina e tudo o que precisa saber
-            antes da primeira hospedagem. Leva só alguns minutos — e tem algumas
-            paradas pelo caminho.
+            Vai hospedar seu cão pela primeira vez? Veja como é o dia dele na
+            Nossa Matilha e o que você precisa preparar antes da chegada.
           </p>
           <a href="#quem-somos" className={buttonClasses('primary', 'mt-8')}>
             Começar
@@ -62,8 +55,8 @@ export function WelcomeChapter(): ReactNode {
             className="mx-auto max-w-md"
           />
           <BaconSays pose="hello" eager className="-mt-16 sm:-mt-20">
-            Oi! Eu sou o Bacon, e esta é a minha casa. Vem comigo que eu te
-            mostro tudo — até as regras, mas prometo que é rapidinho.
+            Oi, eu sou o Bacon! Essa é a minha casa. Vem comigo conhecer o
+            quintal.
           </BaconSays>
         </div>
       </div>
@@ -116,8 +109,8 @@ export function AboutChapter(): ReactNode {
       id="quem-somos"
       tone="light"
       number={1}
-      title="Quem somos"
-      intro="Um espaço completo de lazer, cuidado e descanso para o seu cão."
+      title="Quem somos e como é o espaço"
+      intro="Em Resende (RJ), os cães brincam nas áreas da creche e dormem nos quartos de descanso."
     >
       <ul className="grid gap-8 sm:grid-cols-3">
         <Stat
@@ -125,17 +118,13 @@ export function AboutChapter(): ReactNode {
           animate={false}
           prefix="+ de "
           suffix=" m²"
-          label="para brincar, explorar e descansar"
+          label="de espaço para os cães"
         />
-        <Stat
-          value={32}
-          prefix="até "
-          label="cães, com conforto, segurança e cuidado individual"
-        />
+        <Stat value={32} prefix="até " label="cães, com atenção a cada um" />
         <Stat
           value={24}
           suffix="h"
-          label="de monitoramento, com profissionais qualificados em tempo integral"
+          label="de acompanhamento por uma equipe treinada"
         />
       </ul>
 
@@ -143,12 +132,12 @@ export function AboutChapter(): ReactNode {
         <GuidePhoto
           photo={guidePhotos.spaceDaycareLawn}
           sizes="(min-width: 640px) 33vw, 100vw"
-          caption="Creche: área externa e gramado"
+          caption="Gramado da creche"
         />
         <GuidePhoto
           photo={guidePhotos.spaceDaycareCovered}
           sizes="(min-width: 640px) 33vw, 100vw"
-          caption="Creche: área coberta"
+          caption="Área coberta da creche"
         />
         <GuidePhoto
           photo={guidePhotos.spaceKennelCorridor}
@@ -164,15 +153,13 @@ export function AboutChapter(): ReactNode {
           className="mx-auto w-full max-w-md"
         />
         <div>
-          <h3 className="text-h2 font-bold">Socialização natural</h3>
+          <h3 className="text-h2 font-bold">Como os cães brincam em grupo</h3>
           <p className="mt-3 max-w-reading text-lead">
-            Aqui os cães não são separados por tamanho, e sim por nível de
-            energia. Conviver com cães de tamanhos diferentes também faz parte
-            da socialização.
+            A equipe reúne cães com níveis de energia parecidos. Assim, cães
+            grandes e pequenos podem brincar no mesmo grupo.
           </p>
           <BaconSays pose="playing" className="mt-8">
-            Eu sou grandão, mas brinco com todo mundo. O que importa é a
-            energia!
+            Eu sou grandão. Tem cachorro pequeno que corre mais que eu!
           </BaconSays>
         </div>
       </div>
@@ -183,15 +170,15 @@ export function AboutChapter(): ReactNode {
 const teamFacts = [
   {
     title: 'Auxiliar veterinário',
-    text: 'Todos os profissionais que cuidam dos cães hospedados têm formação em auxiliar veterinário.',
+    text: 'Quem cuida dos cães hospedados tem formação de auxiliar veterinário.',
   },
   {
     title: 'Monitor de creche',
-    text: 'Formação específica para atuar como monitores de creche canina.',
+    text: 'A equipe tem formação para acompanhar os cães na creche.',
   },
   {
     title: 'Treinamento contínuo',
-    text: 'A equipe passa por treinamentos de aperfeiçoamento.',
+    text: 'Todos na equipe continuam fazendo treinamentos.',
   },
 ];
 
@@ -202,7 +189,7 @@ export function TeamChapter(): ReactNode {
       id="equipe"
       tone="light"
       number={2}
-      title="Gente que entende de cachorro"
+      title="Quem cuida do seu cão"
     >
       <div className="grid items-center gap-8 md:grid-cols-2">
         <GuidePhoto
@@ -212,13 +199,12 @@ export function TeamChapter(): ReactNode {
         />
         <div>
           <p className="max-w-reading text-lead">
-            <strong>Silvia Matrumoto</strong>, CEO da Nossa Matilha e
-            adestradora certificada pela FBAA (Federação Brasileira dos
-            Adestradores de Animais), lidera uma equipe preparada para cuidar do
-            seu cão como se fosse da família.
+            <strong>Silvia Matrumoto</strong> lidera a equipe da Nossa Matilha.
+            Ela é CEO e adestradora certificada pela FBAA (Federação Brasileira
+            dos Adestradores de Animais).
           </p>
           <BaconSays pose="proud" className="mt-8">
-            Essa é a Silvia, a minha humana. Ela que me ensinou a sentar — e a
+            Essa é a Silvia, minha humana. Foi ela que me ensinou a sentar e
             esperar a minha vez na hora da comida.
           </BaconSays>
         </div>
@@ -257,22 +243,22 @@ const moments: Moment[] = [
     title: 'Manhã',
     text: (
       <>
-        O dia começa com a saída para o quintal. Depois vem a alimentação,
-        oferecida individualmente, um cão por vez, com a equipe acompanhando. Em
-        seguida, a turma vai para os espaços da creche brincar e socializar.
-        Quem precisa ou está acostumado ganha também um almoço no meio do dia.
+        Primeiro, os cães vão para o quintal. A equipe serve o café da manhã
+        para um cão de cada vez e acompanha a refeição. Depois, a turma vai
+        brincar na creche. Quem precisa almoçar ou já tem esse hábito recebe
+        outra refeição no meio do dia.
       </>
     ),
     photos: ['dayMorningYard', 'dayMorningFeeding'],
   },
   {
     title: 'Tarde',
-    text: 'Mais brincadeira ou descanso, respeitando o perfil e as necessidades de cada cão.',
+    text: 'À tarde, os cães brincam ou descansam, conforme o ritmo de cada um.',
     photos: ['dayAfternoonPlay', 'dayAfternoonRest'],
   },
   {
     title: 'Noite',
-    text: 'O jantar também é individual. Depois de mais um pouco de diversão, cada um vai para o quarto de descanso, onde passa a noite tranquilo, com um vigia noturno acompanhando.',
+    text: 'A equipe serve o jantar para um cão de cada vez. Depois de brincar mais um pouco, os cães vão para os quartos. Um vigia acompanha a turma durante a noite.',
     photos: ['dayNightSharedBed', 'dayNightOwnBeds'],
   },
 ];
@@ -337,8 +323,8 @@ export function DayChapter(): ReactNode {
           </ol>
 
           <BaconSays pose="eating" className="mt-20">
-            Minha parte favorita? A hora de comer. Cada um no seu tempo, sem
-            briga!
+            Minha parte favorita é comer. Aqui eu posso acabar de lamber o pote
+            no meu tempo.
           </BaconSays>
         </div>
       </div>
@@ -368,17 +354,18 @@ export function BookingChapter(): ReactNode {
             {BOOKING_NOTICE_HOURS}h
           </p>
           <p className="mt-2 max-w-reading text-lead">
-            Trabalhamos somente com reserva, feita pelo{' '}
-            <strong>WhatsApp oficial da Nossa Matilha</strong>, com pelo menos{' '}
-            <strong>{BOOKING_NOTICE_HOURS}h de antecedência</strong> do horário
-            de entrada, conforme disponibilidade de vaga.
+            Peça a reserva pelo{' '}
+            <strong>WhatsApp oficial da Nossa Matilha</strong> com pelo menos{' '}
+            <strong>{BOOKING_NOTICE_HOURS} horas de antecedência</strong> em
+            relação ao horário de entrada. A hospedagem funciona com reserva e
+            depende de vaga.
           </p>
           <BaconSays pose="phone" className="mt-8">
-            É tudo pelo WhatsApp. Até eu consigo!
+            Eu ainda tô aprendendo a digitar com a pata.
           </BaconSays>
         </div>
         <div>
-          <h3 className="text-h3 font-bold">Para reservar, envie:</h3>
+          <h3 className="text-h3 font-bold">O que enviar pelo WhatsApp</h3>
           <ol className="mt-4 space-y-3">
             {bookingSteps.map((step, index) => (
               <li key={step} className="scroll-reveal flex items-center gap-4">
@@ -396,8 +383,8 @@ export function BookingChapter(): ReactNode {
           </ol>
           <Card accent={false} className="mt-8">
             <p>
-              A reserva é confirmada depois que conferimos a documentação e a
-              vaga, você aceita as regras e o pagamento é feito.
+              A equipe confirma a reserva depois de conferir os documentos e a
+              vaga, receber o pagamento e confirmar que você aceitou as regras.
             </p>
             <p className="mt-3 font-semibold">Orçamento não é reserva.</p>
             <p className="mt-1">
@@ -411,18 +398,6 @@ export function BookingChapter(): ReactNode {
   );
 }
 
-const groomingPerks = [
-  {
-    title: 'Sem correria',
-    text: 'o banho é feito aqui, junto com a hospedagem.',
-  },
-  {
-    title: 'Cuidado de quem conhece o seu cão',
-    text: 'ele é atendido pela equipe que já está com ele.',
-  },
-  { title: 'Chega em casa pronto', text: 'é só abraçar.' },
-];
-
 /** Chapter 9: bath and grooming with the partner Encantacão. */
 export function GroomingChapter(): ReactNode {
   const grooming = getGroomingWhatsApp();
@@ -431,11 +406,12 @@ export function GroomingChapter(): ReactNode {
       id="banho-e-tosa"
       tone="light"
       number={9}
-      title="Volta para casa cheiroso"
+      title="Banho e tosa durante a hospedagem"
       intro={
         <>
-          Além da hospedagem, tem banho e tosa aqui mesmo na Nossa Matilha, com
-          a <strong>Encantacão</strong>, nossa parceira. É só pedir na reserva.
+          A <strong>Encantacão</strong>, nossa parceira, atende aqui mesmo na
+          Nossa Matilha. Se quiser incluir banho ou tosa na hospedagem, avise na
+          hora da reserva.
         </>
       }
     >
@@ -451,18 +427,10 @@ export function GroomingChapter(): ReactNode {
           />
         </div>
         <div>
-          <ul className="space-y-4">
-            {groomingPerks.map((perk) => (
-              <li key={perk.title} className="scroll-reveal flex gap-3">
-                <PawIcon className="mt-1 size-6 shrink-0 text-lime" />
-                <p className="text-lead">
-                  <strong className="font-heading">{perk.title}:</strong>{' '}
-                  {perk.text}
-                </p>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-8">Agende direto com a Encantacão pelo WhatsApp:</p>
+          <p className="text-lead">
+            Agende pelo WhatsApp da Encantacão para buscar seu cão já de banho
+            tomado.
+          </p>
           <a
             href={whatsAppLink(grooming)}
             target="_blank"
@@ -482,9 +450,15 @@ export function GroomingChapter(): ReactNode {
 }
 
 const summary = [
-  { id: 'vacinas', text: 'Carteirinha em dia' },
-  { id: 'diaria', text: 'Diária de 24 horas, das 7h às 18h' },
-  { id: 'malinha', text: 'Malinha com ração (e remédio, com receita)' },
+  { id: 'vacinas', text: 'Vacinas e cuidados em dia' },
+  {
+    id: 'diaria',
+    text: 'Diária de 24 horas. Entrada e retirada das 7h às 18h.',
+  },
+  {
+    id: 'malinha',
+    text: 'Ração para a estadia e remédio com receita, se usar',
+  },
   { id: 'cancelamento', text: 'Cancelamento pelo WhatsApp' },
 ] as const;
 
@@ -495,7 +469,7 @@ export function ReadyChapter(): ReactNode {
       id="tudo-pronto"
       tone="light"
       number={10}
-      title="Tudo pronto para a primeira estadia!"
+      title="Antes da primeira estadia"
     >
       <div className="grid items-center gap-10 md:grid-cols-2">
         <div>
@@ -523,23 +497,23 @@ export function ReadyChapter(): ReactNode {
             data-all-checkpoints="pending"
             className="mt-4 text-caption text-fg-muted"
           >
-            Faltou alguma? Toque nela para voltar à parada.
+            Se quiser rever alguma parada, selecione o assunto na lista.
           </p>
           <div
             data-all-checkpoints="done"
             className="mt-6 rounded-card bg-lime p-5 text-forest shadow-card"
           >
-            <p className="font-display text-h2">Você é da Matilha!</p>
+            <p className="font-display text-h2">Guia concluído</p>
             <p className="mt-1">
-              Passou por todas as paradas. Agora é só pedir o orçamento e
-              reservar com {BOOKING_NOTICE_HOURS}h de antecedência.
+              Já tem as datas? Peça um orçamento e faça a reserva com pelo menos{' '}
+              {BOOKING_NOTICE_HOURS} horas de antecedência.
             </p>
           </div>
           <WhatsAppButton className="mt-10">
             Pedir orçamento no WhatsApp
           </WhatsAppButton>
           <BaconSays pose="party" className="mt-10">
-            Agora você já sabe tudo. Te espero aqui!
+            Quando chegar, procura o labrador de coleira azul. Sou eu!
           </BaconSays>
         </div>
         <div className="grid grid-cols-2 gap-3">
@@ -556,11 +530,7 @@ export function ReadyChapter(): ReactNode {
 
       <div className="mt-16 rounded-card bg-surface-raised p-6 text-center shadow-card sm:p-10">
         <p className="mx-auto max-w-reading">
-          As promoções de hospedagem, quando houver, são divulgadas no nosso
-          Instagram.
-        </p>
-        <p className="mt-3 font-display text-display text-leaf">
-          Segue a gente lá!
+          Quando temos promoção de hospedagem, avisamos no Instagram.
         </p>
         <a
           href={INSTAGRAM_URL}

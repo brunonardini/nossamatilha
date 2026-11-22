@@ -13,8 +13,8 @@ import { useStayDays } from '@/lib/boarding-guide/stay-store';
 type Notice = 'withNotice' | 'late';
 
 const notices: { value: Notice; label: string }[] = [
-  { value: 'withNotice', label: '48h ou mais antes' },
-  { value: 'late', label: 'Menos de 48h ou não compareceu' },
+  { value: 'withNotice', label: '48 horas ou mais de antecedência' },
+  { value: 'late', label: 'Menos de 48 horas ou não comparecimento' },
 ];
 
 const MAX_DAYS = 30;
@@ -110,7 +110,7 @@ export function CancellationSimulator(): ReactNode {
 
       <fieldset className="mt-6">
         <legend className="font-heading font-bold">
-          Quando você avisou do cancelamento?
+          Com quanto tempo de antecedência você cancelou?
         </legend>
         <div className="mt-3 grid gap-2 sm:grid-cols-2">
           {notices.map((option) => (
@@ -134,7 +134,7 @@ export function CancellationSimulator(): ReactNode {
 
       <div aria-live="polite">
         <p className="mt-6 text-caption text-fg-muted">
-          Você escolhe uma das opções:
+          Escolha entre devolução e crédito.
         </p>
         <div className="mt-2 grid gap-3 sm:grid-cols-2">
           <div className="rounded-md bg-olive p-4">
@@ -170,7 +170,7 @@ export function CancellationSimulator(): ReactNode {
           </p>
         ) : (
           <p className="mt-6 text-caption text-highlight">
-            Agora veja como fica com menos de 48h de antecedência.
+            Selecione o outro prazo para comparar os valores.
           </p>
         )}
       </div>

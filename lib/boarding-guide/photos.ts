@@ -32,7 +32,7 @@ export type GuidePhoto = {
 export const guidePhotos = {
   heroDogsOfAllSizes: {
     src: heroDogsOfAllSizes,
-    alt: 'Quatro cães de tamanhos bem diferentes sentados juntos no gramado, olhando para a câmera.',
+    alt: 'Quatro cães de tamanhos diferentes sentados no gramado, de frente para a câmera.',
   },
   spaceDaycareLawn: {
     src: spaceDaycareLawn,
@@ -48,7 +48,7 @@ export const guidePhotos = {
   },
   socializationSizes: {
     src: socializationSizes,
-    alt: 'Um cão grande branco convivendo com cães pequenos na área coberta.',
+    alt: 'Um cão branco de porte grande junto de cães pequenos na área coberta.',
   },
   teamSilviaAndBacon: {
     src: teamSilviaAndBacon,
@@ -64,7 +64,7 @@ export const guidePhotos = {
   },
   dayMorningFeeding: {
     src: dayMorningFeeding,
-    alt: 'Profissional da equipe servindo a ração para um cão, individualmente.',
+    alt: 'Uma pessoa da equipe serve ração para um cão.',
   },
   dayAfternoonPlay: {
     src: dayAfternoonPlay,
@@ -88,7 +88,7 @@ export const guidePhotos = {
   },
   groomingBath: {
     src: groomingBath,
-    alt: 'Cão tomando banho com cuidado na sala de banho e tosa.',
+    alt: 'Cão tomando banho na sala de banho e tosa.',
   },
   groomingRoom: {
     src: groomingRoom,

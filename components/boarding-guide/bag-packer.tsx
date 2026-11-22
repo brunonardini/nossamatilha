@@ -37,7 +37,7 @@ const items: BagItem[] = [
     id: 'racao',
     category: 'essential',
     name: 'Ração para toda a estadia',
-    note: 'Isso! E a quantidade e os horários das refeições vão por escrito.',
+    note: 'Anote a quantidade e os horários das refeições.',
     required: true,
     icon: (
       <ItemIcon>
@@ -69,7 +69,7 @@ const items: BagItem[] = [
     id: 'caminha',
     category: 'optional',
     name: 'Caminha',
-    note: 'Pode trazer, mas aqui já temos caminhas prontas para ele!',
+    note: 'Temos caminhas. Se preferir, traga a que ele usa em casa.',
     icon: (
       <ItemIcon>
         <path d="M3 17v-5a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v5" />
@@ -81,7 +81,7 @@ const items: BagItem[] = [
     id: 'mantinha',
     category: 'optional',
     name: 'Mantinha',
-    note: 'Pode trazer: o cheirinho de casa deixa a estadia mais aconchegante.',
+    note: 'Se ele costuma dormir com uma manta, pode trazer a dele.',
     icon: (
       <ItemIcon>
         <path d="M4 5h16v11l-3 3H4V5Z" />
@@ -93,7 +93,7 @@ const items: BagItem[] = [
     id: 'brinquedo',
     category: 'optional',
     name: 'Brinquedo favorito',
-    note: 'Pode trazer, mas aqui também tem brinquedo de sobra!',
+    note: 'Temos brinquedos aqui. O favorito de casa também pode vir.',
     icon: (
       <ItemIcon>
         <circle cx="12" cy="12" r="8" />
@@ -108,7 +108,7 @@ const notToBring = [
   {
     id: 'potes',
     name: 'Potes de comida e água',
-    note: 'Usamos os nossos: são todos esterilizáveis e adequados para o uso aqui.',
+    note: 'Aqui usamos nossos próprios potes, que podem ser esterilizados.',
     icon: (
       <ItemIcon>
         <path d="M4 12h16l-2 6H6l-2-6Z" />
@@ -122,12 +122,12 @@ const groups = [
   {
     category: 'essential',
     title: 'Não pode faltar',
-    hint: 'A ração é indispensável; os remédios, se o seu cão usar.',
+    hint: 'Traga ração para toda a estadia e os remédios que seu cão usa.',
   },
   {
     category: 'optional',
-    title: 'Se quiser, pode trazer',
-    hint: 'Deixam a estadia mais aconchegante, mas aqui já temos.',
+    title: 'Itens opcionais',
+    hint: 'Seu cão pode trazer os itens que costuma usar em casa.',
   },
 ] as const;
 
@@ -171,7 +171,7 @@ export function BagPacker(): ReactNode {
                         </span>
                         {item.required ? (
                           <span className="ml-auto text-caption text-accent">
-                            Indispensável
+                            Obrigatória
                           </span>
                         ) : null}
                       </span>
@@ -232,22 +232,20 @@ export function BagPacker(): ReactNode {
               </li>
             ))}
             <li className="text-caption text-cream/80 group-has-[input:checked]:hidden">
-              Ainda vazia…
+              Vazia
             </li>
           </ul>
         </div>
 
         <div id="malinha-feedback" aria-live="polite">
           <p data-checklist-state="empty" className="text-fg-muted">
-            O único item indispensável é a ração (e os remédios, se o seu cão
-            usar).
+            Comece pela ração. Se o seu cão toma remédio, inclua também.
           </p>
           <p
             data-checklist-state="missing"
             className="rounded-md border-2 border-sun/60 px-4 py-3"
           >
-            Falta o mais importante: a ração, em quantidade suficiente para toda
-            a estadia!
+            Falta marcar a ração para toda a estadia.
           </p>
           <div
             data-checklist-state="done"
@@ -261,8 +259,7 @@ export function BagPacker(): ReactNode {
               Malinha pronta!
             </p>
             <p className="mt-1">
-              Lembre: as orientações de alimentação e de remédios vão sempre por
-              escrito.
+              Deixe por escrito as orientações sobre refeições e remédios.
             </p>
           </div>
         </div>

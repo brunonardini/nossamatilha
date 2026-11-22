@@ -21,7 +21,7 @@ import { WhatsAppFloatingButton } from '@/components/boarding-guide/whatsapp-cta
 export const metadata: Metadata = {
   title: 'Guia da hospedagem | Nossa Matilha',
   description:
-    'Conheça a hospedagem da Nossa Matilha em Resende/RJ: o espaço, a equipe, a rotina dos cães, as vacinas, como reservar, a diária e o cancelamento.',
+    'Saiba como é a rotina dos cães na Nossa Matilha, em Resende (RJ). Confira as vacinas exigidas, o valor da diária e como reservar ou cancelar a hospedagem.',
 };
 
 /** Interactive boarding guide (replaces the PDF sent to new customers). */
