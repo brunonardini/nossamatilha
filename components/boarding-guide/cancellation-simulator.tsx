@@ -1,6 +1,6 @@
 'use client';
 
-import { useId, useState, type ReactNode } from 'react';
+import { useId, useRef, useState, type ReactNode } from 'react';
 import { CheckIcon } from '@/components/ui/icons';
 import {
   CANCELLATION,
@@ -8,6 +8,7 @@ import {
   formatBRL,
 } from '@/lib/boarding-guide/pricing';
 import { useStayDays } from '@/lib/boarding-guide/stay-store';
+import { MOTION_OK, gsap, useGSAP } from '@/lib/gsap';
 
 /** Notice given before the scheduled check-in. */
 type Notice = 'withNotice' | 'late';
@@ -45,6 +46,59 @@ export function CancellationSimulator(): ReactNode {
   const credit = paid * policy.credit;
   const done = seen.size === notices.length;
 
+  // Motion on changes (not on mount): the day count bumps in the direction
+  // of the change, the amounts pop and, once, the done badge pops in.
+  const scope = useRef<HTMLDivElement>(null);
+  const shown = useRef({ days, notice, done });
+  useGSAP(
+    () => {
+      const root = scope.current;
+      const previous = shown.current;
+      shown.current = { days, notice, done };
+      if (!root) return;
+      if (
+        previous.days === days &&
+        previous.notice === notice &&
+        previous.done === done
+      ) {
+        return;
+      }
+      gsap.matchMedia().add(MOTION_OK, () => {
+        if (previous.days !== days) {
+          gsap.fromTo(
+            root.querySelector('[data-cancel-days]'),
+            { y: days > previous.days ? 14 : -14, autoAlpha: 0.2 },
+            { y: 0, autoAlpha: 1, duration: 0.35, ease: 'back.out(2)' },
+          );
+        }
+        if (previous.days !== days || previous.notice !== notice) {
+          gsap.fromTo(
+            root.querySelectorAll('[data-cancel-amount]'),
+            { scale: 0.85, autoAlpha: 0.3 },
+            {
+              scale: 1,
+              autoAlpha: 1,
+              duration: 0.45,
+              ease: 'back.out(2.2)',
+              stagger: 0.08,
+            },
+          );
+        }
+        if (done && !previous.done) {
+          gsap.from(root.querySelector('[data-cancel-done]'), {
+            autoAlpha: 0,
+            y: 16,
+            scale: 0.92,
+            duration: 0.6,
+            delay: 0.15,
+            ease: 'back.out(1.8)',
+          });
+        }
+      });
+    },
+    { scope, dependencies: [days, notice, done] },
+  );
+
   function chooseNotice(value: Notice): void {
     setNotice(value);
     setSeen((previous) => new Set(previous).add(value));
@@ -59,6 +113,7 @@ export function CancellationSimulator(): ReactNode {
 
   return (
     <div
+      ref={scope}
       data-checkpoint="cancelamento"
       data-done={done || undefined}
       className="rounded-card bg-surface-raised p-5 shadow-card sm:p-6"
@@ -89,7 +144,10 @@ export function CancellationSimulator(): ReactNode {
             −
           </button>
           <p aria-live="polite" className="min-w-28 text-center">
-            <span className="block font-display text-h2 text-accent">
+            <span
+              data-cancel-days
+              className="block font-display text-h2 text-accent"
+            >
               {days} {days === 1 ? 'diária' : 'diárias'}
             </span>
             <span className="text-caption text-fg-muted">
@@ -141,7 +199,10 @@ export function CancellationSimulator(): ReactNode {
             <p className="text-caption text-fg-muted">
               Devolução de {percent(policy.refund)}
             </p>
-            <p className="font-display text-h1 text-accent">
+            <p
+              data-cancel-amount
+              className="w-fit font-display text-h1 text-accent"
+            >
               {formatBRL(refund)}
             </p>
             <p className="text-caption text-fg-muted">
@@ -154,7 +215,10 @@ export function CancellationSimulator(): ReactNode {
             <p className="text-caption text-fg-muted">
               Crédito de {percent(policy.credit)}
             </p>
-            <p className="font-display text-h1 text-accent">
+            <p
+              data-cancel-amount
+              className="w-fit font-display text-h1 text-accent"
+            >
               {formatBRL(credit)}
             </p>
             <p className="text-caption text-fg-muted">
@@ -164,7 +228,10 @@ export function CancellationSimulator(): ReactNode {
         </div>
 
         {done ? (
-          <p className="checkpoint-complete mt-6 flex items-center gap-2 rounded-card bg-lime p-4 font-heading font-bold text-forest">
+          <p
+            data-cancel-done
+            className="checkpoint-complete mt-6 flex items-center gap-2 rounded-card bg-lime p-4 font-heading font-bold text-forest"
+          >
             <CheckIcon className="size-5" />
             Parada 4 de 4 concluída
           </p>

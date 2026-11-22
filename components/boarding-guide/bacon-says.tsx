@@ -12,6 +12,12 @@ export type BaconSaysProps = {
   reverse?: boolean;
   /** Loads the illustration eagerly (only for the first screen). */
   eager?: boolean;
+  /**
+   * `large` makes the illustration bigger on mobile (same size from `sm`):
+   * it reaches the left gutter and the bubble overlaps its right edge, so
+   * the text keeps a readable width.
+   */
+  size?: 'default' | 'large';
   /** Fades in with the CSS `scroll-reveal` (turn off when GSAP animates it). */
   reveal?: boolean;
   className?: string;
@@ -23,6 +29,7 @@ export function BaconSays({
   children,
   reverse = false,
   eager = false,
+  size = 'default',
   reveal = true,
   className = '',
 }: BaconSaysProps): ReactNode {
@@ -34,12 +41,16 @@ export function BaconSays({
       <Image
         src={src}
         alt={alt}
-        sizes="(min-width: 640px) 176px, 128px"
+        sizes={
+          size === 'large'
+            ? '(min-width: 640px) 176px, 224px'
+            : '(min-width: 640px) 176px, 128px'
+        }
         loading={eager ? 'eager' : 'lazy'}
-        className="h-auto w-32 shrink-0 sm:w-44"
+        className={`h-auto shrink-0 sm:ml-0 sm:w-44 ${size === 'large' ? '-ml-3 w-56' : 'w-32'}`}
       />
       <figcaption
-        className={`relative mb-6 max-w-sm rounded-card bg-surface-raised px-5 py-4 text-fg shadow-card ${reverse ? 'sm:mr-1' : ''}`}
+        className={`relative mb-6 max-w-sm rounded-card ${size === 'large' ? 'z-10 -ml-20 sm:ml-0' : ''} bg-surface-raised px-5 py-4 text-fg shadow-card ${reverse ? 'sm:mr-1' : ''}`}
       >
         <span className="sr-only">Bacon diz: </span>
         <span className="font-heading text-lead font-semibold">{children}</span>

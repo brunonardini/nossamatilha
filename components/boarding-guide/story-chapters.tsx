@@ -7,7 +7,9 @@ import { GuidePhoto } from '@/components/boarding-guide/guide-photo';
 import { AboutMotion } from '@/components/boarding-guide/motion/about-motion';
 import { BookingMotion } from '@/components/boarding-guide/motion/booking-motion';
 import { DayMotion } from '@/components/boarding-guide/motion/day-motion';
+import { GroomingMotion } from '@/components/boarding-guide/motion/grooming-motion';
 import { HeroMotion } from '@/components/boarding-guide/motion/hero-motion';
+import { ReadyMotion } from '@/components/boarding-guide/motion/ready-motion';
 import { TeamMotion } from '@/components/boarding-guide/motion/team-motion';
 import { WhatsAppButton } from '@/components/boarding-guide/whatsapp-cta';
 import { Card } from '@/components/ui/card';
@@ -502,54 +504,85 @@ export function BookingChapter(): ReactNode {
   );
 }
 
+/** Position and size of each decorative soap bubble (chapter 9). */
+const bubbles = [
+  'bottom-8 left-1/12 size-8',
+  'bottom-16 left-1/3 size-5',
+  'bottom-6 left-1/2 size-10',
+  'bottom-20 left-2/3 size-6',
+  'bottom-10 left-4/5 size-9',
+  'bottom-24 left-1/6 size-4',
+];
+
 /** Chapter 9: bath and grooming with the partner Encantacão. */
 export function GroomingChapter(): ReactNode {
   const grooming = getGroomingWhatsApp();
   return (
-    <ChapterSection
-      id="banho-e-tosa"
-      tone="light"
-      number={9}
-      title="Banho e tosa durante a hospedagem"
-      intro={
-        <>
-          A <strong>Encantacão</strong>, nossa parceira, atende aqui mesmo na
-          Nossa Matilha. Se quiser incluir banho ou tosa na hospedagem, avise na
-          hora da reserva.
-        </>
-      }
-    >
-      <div className="grid items-start gap-10 md:grid-cols-2">
-        <div className="grid grid-cols-2 gap-3">
-          <GuidePhoto
-            photo={guidePhotos.groomingBath}
-            sizes="(min-width: 768px) 25vw, 50vw"
-          />
-          <GuidePhoto
-            photo={guidePhotos.groomingRoom}
-            sizes="(min-width: 768px) 25vw, 50vw"
-          />
+    <GroomingMotion>
+      <ChapterSection
+        id="banho-e-tosa"
+        tone="light"
+        number={9}
+        title="Banho e tosa durante a hospedagem"
+        intro={
+          <>
+            A <strong>Encantacão</strong>, nossa parceira, atende aqui mesmo na
+            Nossa Matilha. Se quiser incluir banho ou tosa na hospedagem, avise
+            na hora da reserva.
+          </>
+        }
+      >
+        <div className="grid items-start gap-10 md:grid-cols-2">
+          <div className="relative grid grid-cols-2 gap-3">
+            <div data-grooming-photo>
+              <GuidePhoto
+                photo={guidePhotos.groomingBath}
+                sizes="(min-width: 768px) 25vw, 50vw"
+                reveal={false}
+              />
+            </div>
+            <div data-grooming-photo>
+              <GuidePhoto
+                photo={guidePhotos.groomingRoom}
+                sizes="(min-width: 768px) 25vw, 50vw"
+                reveal={false}
+              />
+            </div>
+            {/* Soap bubbles: decoration, shown only while GSAP animates them. */}
+            <div aria-hidden="true" className="pointer-events-none">
+              {bubbles.map((bubble) => (
+                <span
+                  key={bubble}
+                  data-grooming-bubble
+                  className={`invisible absolute rounded-full border-2 border-white/80 bg-white/30 shadow-card ${bubble}`}
+                />
+              ))}
+            </div>
+          </div>
+          <div>
+            <p data-grooming-text className="text-lead">
+              Agende pelo WhatsApp da Encantacão para buscar seu cão já de banho
+              tomado.
+            </p>
+            <a
+              href={whatsAppLink(grooming)}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-grooming-cta
+              className={buttonClasses('secondary', 'mt-3')}
+            >
+              <ChatIcon className="size-5" />
+              {grooming.display}
+            </a>
+            <div data-grooming-bacon className="mt-10">
+              <BaconSays pose="bath" reveal={false}>
+                Banho? Só se tiver toalha quentinha depois.
+              </BaconSays>
+            </div>
+          </div>
         </div>
-        <div>
-          <p className="text-lead">
-            Agende pelo WhatsApp da Encantacão para buscar seu cão já de banho
-            tomado.
-          </p>
-          <a
-            href={whatsAppLink(grooming)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={buttonClasses('secondary', 'mt-3')}
-          >
-            <ChatIcon className="size-5" />
-            {grooming.display}
-          </a>
-          <BaconSays pose="bath" className="mt-10">
-            Banho? Só se tiver toalha quentinha depois.
-          </BaconSays>
-        </div>
-      </div>
-    </ChapterSection>
+      </ChapterSection>
+    </GroomingMotion>
   );
 }
 
@@ -566,86 +599,135 @@ const summary = [
   { id: 'cancelamento', text: 'Cancelamento pelo WhatsApp' },
 ] as const;
 
+/** Shape and color of each confetti piece (chapter 10, all checkpoints). */
+const confetti = [
+  'size-2.5 rounded-sm bg-sun',
+  'size-2 rounded-full bg-brown',
+  'h-3 w-1.5 rounded-sm bg-forest',
+  'size-2.5 rounded-full bg-white',
+  'size-2 rounded-sm bg-leaf',
+  'h-3 w-1.5 rounded-sm bg-sun',
+  'size-2.5 rounded-full bg-forest',
+  'size-2 rounded-sm bg-brown',
+  'h-3 w-1.5 rounded-sm bg-white',
+  'size-2.5 rounded-sm bg-leaf',
+  'size-2 rounded-full bg-sun',
+  'h-3 w-1.5 rounded-sm bg-brown',
+  'size-2.5 rounded-full bg-leaf',
+  'size-2 rounded-sm bg-white',
+  'h-3 w-1.5 rounded-sm bg-forest',
+  'size-2.5 rounded-sm bg-sun',
+];
+
 /** Chapter 10: summary and calls to action. */
 export function ReadyChapter(): ReactNode {
   return (
-    <ChapterSection
-      id="tudo-pronto"
-      tone="light"
-      number={10}
-      title="Antes da primeira estadia"
-    >
-      <div className="grid items-center gap-10 md:grid-cols-2">
-        <div>
-          <p className="font-heading text-lead font-semibold">
-            Você concluiu{' '}
-            <span className="checkpoint-count font-display text-h2 text-leaf" />{' '}
-            de {summary.length} paradas.
-          </p>
-          <ul className="mt-4 space-y-2">
-            {summary.map((item) => (
-              <li key={item.id} data-checkpoint-item={item.id}>
-                <a
-                  href={`#${item.id}`}
-                  className="flex min-h-12 items-center gap-3 rounded-md font-heading text-lead font-semibold hover:text-leaf-ink"
-                >
-                  <span className="checkpoint-mark grid size-8 shrink-0 place-items-center rounded-full text-forest">
-                    <CheckIcon className="size-5" />
-                  </span>
-                  {item.text}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <p
-            data-all-checkpoints="pending"
-            className="mt-4 text-caption text-fg-muted"
-          >
-            Se quiser rever alguma parada, selecione o assunto na lista.
-          </p>
-          <div
-            data-all-checkpoints="done"
-            className="mt-6 rounded-card bg-lime p-5 text-forest shadow-card"
-          >
-            <p className="font-display text-h2">Guia concluído</p>
-            <p className="mt-1">
-              Já tem as datas? Peça um orçamento e faça a reserva com pelo menos{' '}
-              {BOOKING_NOTICE_HOURS} horas de antecedência.
+    <ReadyMotion>
+      <ChapterSection
+        id="tudo-pronto"
+        tone="light"
+        number={10}
+        title="Antes da primeira estadia"
+      >
+        <div className="grid items-center gap-10 md:grid-cols-2">
+          <div>
+            <p
+              data-ready-score
+              className="font-heading text-lead font-semibold"
+            >
+              Você concluiu{' '}
+              <span className="checkpoint-count font-display text-h2 text-leaf" />{' '}
+              de {summary.length} paradas.
             </p>
+            <ul className="mt-4 space-y-2">
+              {summary.map((item) => (
+                <li key={item.id} data-checkpoint-item={item.id}>
+                  <a
+                    href={`#${item.id}`}
+                    className="flex min-h-12 items-center gap-3 rounded-md font-heading text-lead font-semibold hover:text-leaf-ink"
+                  >
+                    <span className="checkpoint-mark grid size-8 shrink-0 place-items-center rounded-full text-forest">
+                      <CheckIcon className="size-5" />
+                    </span>
+                    {item.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <p
+              data-all-checkpoints="pending"
+              className="mt-4 text-caption text-fg-muted"
+            >
+              Se quiser rever alguma parada, selecione o assunto na lista.
+            </p>
+            <div
+              data-all-checkpoints="done"
+              className="relative mt-6 rounded-card bg-lime p-5 text-forest shadow-card"
+            >
+              {/* Confetti: decoration, shown only while GSAP animates it. */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 grid place-items-center"
+              >
+                {confetti.map((piece, index) => (
+                  <span
+                    key={index}
+                    data-ready-confetti
+                    className={`invisible col-start-1 row-start-1 ${piece}`}
+                  />
+                ))}
+              </div>
+              <p className="font-display text-h2">Guia concluído</p>
+              <p className="mt-1">
+                Já tem as datas? Peça um orçamento e faça a reserva com pelo
+                menos {BOOKING_NOTICE_HOURS} horas de antecedência.
+              </p>
+            </div>
+            <div data-ready-cta className="mt-10 w-fit">
+              <WhatsAppButton>Pedir orçamento no WhatsApp</WhatsAppButton>
+            </div>
+            <div data-ready-bacon className="mt-10">
+              <BaconSays pose="party" size="large" reveal={false}>
+                Quando chegar, procura o labrador de coleira azul. Sou eu!
+              </BaconSays>
+            </div>
           </div>
-          <WhatsAppButton className="mt-10">
-            Pedir orçamento no WhatsApp
-          </WhatsAppButton>
-          <BaconSays pose="party" className="mt-10">
-            Quando chegar, procura o labrador de coleira azul. Sou eu!
-          </BaconSays>
+          <div className="grid grid-cols-2 gap-3">
+            <div data-ready-photo>
+              <GuidePhoto
+                photo={guidePhotos.goodbyeSilviaAndBacon}
+                sizes="(min-width: 768px) 25vw, 50vw"
+                reveal={false}
+              />
+            </div>
+            <div data-ready-photo>
+              <GuidePhoto
+                photo={guidePhotos.goodbyeHappyDog}
+                sizes="(min-width: 768px) 25vw, 50vw"
+                reveal={false}
+              />
+            </div>
+          </div>
         </div>
-        <div className="grid grid-cols-2 gap-3">
-          <GuidePhoto
-            photo={guidePhotos.goodbyeSilviaAndBacon}
-            sizes="(min-width: 768px) 25vw, 50vw"
-          />
-          <GuidePhoto
-            photo={guidePhotos.goodbyeHappyDog}
-            sizes="(min-width: 768px) 25vw, 50vw"
-          />
-        </div>
-      </div>
 
-      <div className="mt-16 rounded-card bg-surface-raised p-6 text-center shadow-card sm:p-10">
-        <p className="mx-auto max-w-reading">
-          Quando temos promoção de hospedagem, avisamos no Instagram.
-        </p>
-        <a
-          href={INSTAGRAM_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={buttonClasses('outline', 'mt-6')}
+        <div
+          data-ready-instagram
+          className="mt-16 rounded-card bg-surface-raised p-6 text-center shadow-card sm:p-10"
         >
-          <CameraIcon className="size-5" />
-          @nossamatilha.resende
-        </a>
-      </div>
-    </ChapterSection>
+          <p className="mx-auto max-w-reading">
+            Quando temos promoção de hospedagem, avisamos no Instagram.
+          </p>
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={buttonClasses('outline', 'mt-6')}
+          >
+            <CameraIcon className="size-5" />
+            @nossamatilha.resende
+          </a>
+        </div>
+      </ChapterSection>
+    </ReadyMotion>
   );
 }

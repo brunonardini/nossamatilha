@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useId, useState, type ReactNode } from 'react';
+import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import { CheckIcon } from '@/components/ui/icons';
 import {
   WEEKDAYS,
@@ -13,6 +13,7 @@ import {
   formatBRL,
 } from '@/lib/boarding-guide/pricing';
 import { setStayDays } from '@/lib/boarding-guide/stay-store';
+import { MOTION_OK, gsap, useGSAP } from '@/lib/gsap';
 
 /** Longest stay offered by the simulator, in days after check-in. */
 const MAX_DAYS_LATER = 14;
@@ -62,6 +63,60 @@ export function DailyRateSimulator(): ReactNode {
   useEffect(() => {
     if (resultDays !== null) setStayDays(resultDays);
   }, [resultDays]);
+
+  // Motion on every change (not on first render): bars refill, the total
+  // pops and, the first time, the "concluída" badge pops in.
+  const resultRef = useRef<HTMLDivElement>(null);
+  const stayKey = `${weekday}-${checkInHour}-${daysLater}-${checkOutHour}`;
+  const animatedKey = useRef(stayKey);
+  useGSAP(
+    () => {
+      // Compare values (not a first-render flag) so Strict Mode's double
+      // effect run does not animate on mount.
+      if (animatedKey.current === stayKey) return;
+      animatedKey.current = stayKey;
+      const root = resultRef.current;
+      if (!root) return;
+      gsap.matchMedia().add(MOTION_OK, () => {
+        gsap.fromTo(
+          root.querySelectorAll('[data-rate-bar]'),
+          { scaleX: 0 },
+          {
+            scaleX: (_index: number, bar: Element) =>
+              bar instanceof HTMLElement ? Number(bar.dataset.fraction) : 1,
+            duration: 0.6,
+            ease: 'power2.out',
+            stagger: 0.08,
+          },
+        );
+        gsap.fromTo(
+          root.querySelector('[data-rate-total]'),
+          { scale: 0.9, autoAlpha: 0.3 },
+          { scale: 1, autoAlpha: 1, duration: 0.5, ease: 'back.out(2)' },
+        );
+      });
+    },
+    {
+      scope: resultRef,
+      dependencies: [stayKey],
+    },
+  );
+  useGSAP(
+    () => {
+      const badge = resultRef.current?.querySelector('[data-rate-done]');
+      if (!touched || !badge) return;
+      gsap.matchMedia().add(MOTION_OK, () => {
+        gsap.from(badge, {
+          autoAlpha: 0,
+          y: 16,
+          scale: 0.92,
+          duration: 0.6,
+          ease: 'back.out(1.8)',
+        });
+      });
+    },
+    { scope: resultRef, dependencies: [touched] },
+  );
 
   function update<T>(setter: (value: T) => void, value: T): void {
     setter(value);
@@ -151,10 +206,13 @@ export function DailyRateSimulator(): ReactNode {
         </p>
       </div>
 
-      <div aria-live="polite" className="mt-6">
+      <div ref={resultRef} aria-live="polite" className="mt-6">
         {result.valid ? (
           <>
-            <p className="font-display text-h1 text-accent">
+            <p
+              data-rate-total
+              className="w-fit font-display text-h1 text-accent"
+            >
               {plural(result.days, 'diária', 'diárias')} ·{' '}
               {formatBRL(result.total)}
             </p>
@@ -179,7 +237,9 @@ export function DailyRateSimulator(): ReactNode {
                     </p>
                     <div className="mt-1 h-3 overflow-hidden rounded-full bg-forest">
                       <div
-                        className="h-full origin-left rounded-full bg-lime transition-transform duration-(--duration-slow) ease-out-soft"
+                        data-rate-bar
+                        data-fraction={fraction}
+                        className="h-full origin-left rounded-full bg-lime"
                         style={{ transform: `scaleX(${fraction})` }}
                       />
                     </div>
@@ -211,7 +271,10 @@ export function DailyRateSimulator(): ReactNode {
         )}
 
         {touched ? (
-          <p className="checkpoint-complete mt-6 flex items-center gap-2 rounded-card bg-lime p-4 font-heading font-bold text-forest">
+          <p
+            data-rate-done
+            className="checkpoint-complete mt-6 flex items-center gap-2 rounded-card bg-lime p-4 font-heading font-bold text-forest"
+          >
             <CheckIcon className="size-5" />
             Parada 2 de 4 concluída
           </p>

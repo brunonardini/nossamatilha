@@ -151,7 +151,7 @@ export function BagPacker(): ReactNode {
               {items
                 .filter((item) => item.category === group.category)
                 .map((item) => (
-                  <li key={item.id}>
+                  <li key={item.id} data-bag-item>
                     <label
                       htmlFor={`malinha-${item.id}`}
                       className="flex h-full min-h-16 cursor-pointer flex-col justify-center rounded-md bg-surface-raised px-4 py-3 transition-[background-color,box-shadow] duration-(--duration-fast) hover:bg-forest/70 has-checked:ring-2 has-checked:ring-lime has-focus-visible:outline-3 has-focus-visible:outline-sun"
@@ -163,7 +163,10 @@ export function BagPacker(): ReactNode {
                           data-required={item.required ? '' : undefined}
                           className="peer sr-only"
                         />
-                        <span className="text-lime transition-transform duration-(--duration-base) ease-playful peer-checked:scale-110">
+                        <span
+                          data-bag-icon
+                          className="text-lime transition-transform duration-(--duration-base) ease-playful peer-checked:scale-110"
+                        >
                           {item.icon}
                         </span>
                         <span className="font-heading font-semibold">
@@ -176,6 +179,7 @@ export function BagPacker(): ReactNode {
                         ) : null}
                       </span>
                       <span
+                        data-bag-note
                         className={`mt-2 text-caption text-highlight ${noteVisibility[item.id]}`}
                       >
                         {item.note}
@@ -194,12 +198,16 @@ export function BagPacker(): ReactNode {
           {notToBring.map((item) => (
             <li
               key={item.id}
+              data-bag-skip
               className="flex flex-col justify-center rounded-md border-2 border-dashed border-cream/30 px-4 py-3"
             >
               <span className="flex items-center gap-3">
                 <span className="text-fg-muted">{item.icon}</span>
                 <span className="font-heading font-semibold">{item.name}</span>
-                <span className="ml-auto grid size-7 shrink-0 place-items-center rounded-full bg-brown text-cream">
+                <span
+                  data-bag-skip-icon
+                  className="ml-auto grid size-7 shrink-0 place-items-center rounded-full bg-brown text-cream"
+                >
                   <CrossIcon className="size-4" />
                   <span className="sr-only">Não trazer</span>
                 </span>
@@ -215,6 +223,7 @@ export function BagPacker(): ReactNode {
       <div className="mt-8 grid items-start gap-6 sm:grid-cols-2">
         <div
           aria-hidden="true"
+          data-bag
           className="relative rounded-blob bg-brown px-5 pt-10 pb-6 text-cream shadow-lift"
         >
           <span className="absolute -top-5 left-1/2 h-10 w-24 -translate-x-1/2 rounded-t-full border-8 border-b-0 border-brown" />
@@ -225,6 +234,7 @@ export function BagPacker(): ReactNode {
             {items.map((item) => (
               <li
                 key={item.id}
+                data-bag-chip={item.id}
                 className={`items-center gap-2 rounded-full bg-cream px-3 py-1 font-heading text-caption font-semibold text-brown ${bagVisibility[item.id]}`}
               >
                 <span className="[&_svg]:size-5">{item.icon}</span>
