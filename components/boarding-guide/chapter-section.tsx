@@ -47,12 +47,16 @@ export function ChapterSection({
       className={`${tone === 'dark' ? 'tone-dark' : 'tone-light'} scroll-mt-2 px-4 py-16 sm:-scroll-mt-6 sm:px-8 sm:py-24 ${className}`}
     >
       <div className="mx-auto max-w-page">
-        <p className="font-heading text-caption font-semibold tracking-widest text-accent uppercase">
+        <p
+          data-chapter-eyebrow
+          className="font-heading text-caption font-semibold tracking-widest text-accent uppercase"
+        >
           {String(number).padStart(2, '0')}
           {eyebrow ? ` · ${eyebrow}` : null}
         </p>
         <h2
           id={headingId}
+          data-chapter-title
           className={
             titleStyle === 'display'
               ? 'mt-2 font-display text-display'
@@ -62,7 +66,9 @@ export function ChapterSection({
           {title}
         </h2>
         {intro ? (
-          <div className="mt-4 max-w-reading text-lead">{intro}</div>
+          <div data-chapter-intro className="mt-4 max-w-reading text-lead">
+            {intro}
+          </div>
         ) : null}
         <div className="mt-10">{children}</div>
       </div>

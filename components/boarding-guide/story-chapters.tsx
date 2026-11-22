@@ -4,6 +4,7 @@ import logo from '@/assets/brand/logo.svg';
 import { BaconSays } from '@/components/boarding-guide/bacon-says';
 import { ChapterSection } from '@/components/boarding-guide/chapter-section';
 import { GuidePhoto } from '@/components/boarding-guide/guide-photo';
+import { AboutMotion } from '@/components/boarding-guide/motion/about-motion';
 import { DayMotion } from '@/components/boarding-guide/motion/day-motion';
 import { HeroMotion } from '@/components/boarding-guide/motion/hero-motion';
 import { WhatsAppButton } from '@/components/boarding-guide/whatsapp-cta';
@@ -99,7 +100,7 @@ export function WelcomeChapter(): ReactNode {
   );
 }
 
-/** A big number shown as a fixed value. */
+/** A big number; {@link AboutMotion} counts it up from zero on scroll. */
 function Stat({
   value,
   prefix,
@@ -113,10 +114,10 @@ function Stat({
 }): ReactNode {
   const display = value.toLocaleString('pt-BR');
   return (
-    <li className="scroll-reveal">
+    <li data-stat>
       <p className="font-display text-display text-leaf">
         {prefix}
-        {display}
+        <span data-count-to={value}>{display}</span>
         {suffix}
       </p>
       <p className="mt-1 max-w-xs text-fg">{label}</p>
@@ -127,64 +128,80 @@ function Stat({
 /** Chapter 1: who we are and the space. */
 export function AboutChapter(): ReactNode {
   return (
-    <ChapterSection
-      id="quem-somos"
-      tone="light"
-      number={1}
-      title="Quem somos e como é o espaço"
-      intro="Em Resende (RJ), os cães brincam nas áreas da creche e dormem nos quartos de descanso."
-    >
-      <ul className="grid gap-8 sm:grid-cols-3">
-        <Stat
-          value={1100}
-          prefix="+ de "
-          suffix=" m²"
-          label="de espaço para os cães"
-        />
-        <Stat value={32} prefix="até " label="cães, com atenção a cada um" />
-        <Stat
-          value={24}
-          suffix="h"
-          label="de acompanhamento por uma equipe treinada"
-        />
-      </ul>
+    <AboutMotion>
+      <ChapterSection
+        id="quem-somos"
+        tone="light"
+        number={1}
+        title="Quem somos e como é o espaço"
+        intro="Em Resende (RJ), os cães brincam nas áreas da creche e dormem nos quartos de descanso."
+      >
+        <ul className="grid gap-8 sm:grid-cols-3">
+          <Stat
+            value={1100}
+            prefix="+ de "
+            suffix=" m²"
+            label="de espaço para os cães"
+          />
+          <Stat value={32} prefix="até " label="cães, com atenção a cada um" />
+          <Stat
+            value={24}
+            suffix="h"
+            label="de acompanhamento por uma equipe treinada"
+          />
+        </ul>
 
-      <div className="mt-14 grid gap-4 sm:grid-cols-3">
-        <GuidePhoto
-          photo={guidePhotos.spaceDaycareLawn}
-          sizes="(min-width: 640px) 33vw, 100vw"
-          caption="Gramado da creche"
-        />
-        <GuidePhoto
-          photo={guidePhotos.spaceDaycareCovered}
-          sizes="(min-width: 640px) 33vw, 100vw"
-          caption="Área coberta da creche"
-        />
-        <GuidePhoto
-          photo={guidePhotos.spaceKennelCorridor}
-          sizes="(min-width: 640px) 33vw, 100vw"
-          caption="Quartos de descanso"
-        />
-      </div>
-
-      <div className="mt-16 grid items-center gap-8 md:grid-cols-2">
-        <GuidePhoto
-          photo={guidePhotos.socializationSizes}
-          sizes="(min-width: 768px) 45vw, 100vw"
-          className="mx-auto w-full max-w-md"
-        />
-        <div>
-          <h3 className="text-h2 font-bold">Como os cães brincam em grupo</h3>
-          <p className="mt-3 max-w-reading text-lead">
-            A equipe reúne cães com níveis de energia parecidos. Assim, cães
-            grandes e pequenos podem brincar no mesmo grupo.
-          </p>
-          <BaconSays pose="playing" className="mt-8">
-            Eu sou grandão. Tem cachorro pequeno que corre mais que eu!
-          </BaconSays>
+        <div className="mt-14 grid gap-4 sm:grid-cols-3">
+          <div data-space-photo>
+            <GuidePhoto
+              photo={guidePhotos.spaceDaycareLawn}
+              sizes="(min-width: 640px) 33vw, 100vw"
+              reveal={false}
+              caption="Gramado da creche"
+            />
+          </div>
+          <div data-space-photo>
+            <GuidePhoto
+              photo={guidePhotos.spaceDaycareCovered}
+              sizes="(min-width: 640px) 33vw, 100vw"
+              reveal={false}
+              caption="Área coberta da creche"
+            />
+          </div>
+          <div data-space-photo>
+            <GuidePhoto
+              photo={guidePhotos.spaceKennelCorridor}
+              sizes="(min-width: 640px) 33vw, 100vw"
+              reveal={false}
+              caption="Quartos de descanso"
+            />
+          </div>
         </div>
-      </div>
-    </ChapterSection>
+
+        <div className="mt-16 grid items-center gap-8 md:grid-cols-2">
+          <div data-play-photo className="mx-auto w-full max-w-md">
+            <GuidePhoto
+              photo={guidePhotos.socializationSizes}
+              sizes="(min-width: 768px) 45vw, 100vw"
+              reveal={false}
+              className="mx-auto w-full max-w-md"
+            />
+          </div>
+          <div data-play-text>
+            <h3 className="text-h2 font-bold">Como os cães brincam em grupo</h3>
+            <p className="mt-3 max-w-reading text-lead">
+              A equipe reúne cães com níveis de energia parecidos. Assim, cães
+              grandes e pequenos podem brincar no mesmo grupo.
+            </p>
+            <div data-play-bacon className="mt-8">
+              <BaconSays pose="playing" reveal={false}>
+                Eu sou grandão. Tem cachorro pequeno que corre mais que eu!
+              </BaconSays>
+            </div>
+          </div>
+        </div>
+      </ChapterSection>
+    </AboutMotion>
   );
 }
 
