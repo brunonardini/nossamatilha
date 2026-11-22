@@ -23,6 +23,10 @@ export type ChapterSectionProps = {
 /**
  * A chapter of the boarding guide: a full-width section with the tone that
  * tells the visitor what kind of content it holds.
+ *
+ * Its scroll margin places the eyebrow ("01", "02"…) just below the 56px
+ * sticky header when jumping to the chapter: header + 16px gap − top padding
+ * (64px on mobile, 96px from `sm`).
  */
 export function ChapterSection({
   id,
@@ -40,7 +44,7 @@ export function ChapterSection({
     <section
       id={id}
       aria-labelledby={headingId}
-      className={`${tone === 'dark' ? 'tone-dark' : 'tone-light'} scroll-mt-16 px-4 py-16 sm:px-8 sm:py-24 ${className}`}
+      className={`${tone === 'dark' ? 'tone-dark' : 'tone-light'} scroll-mt-2 px-4 py-16 sm:-scroll-mt-6 sm:px-8 sm:py-24 ${className}`}
     >
       <div className="mx-auto max-w-page">
         <p className="font-heading text-caption font-semibold tracking-widest text-accent uppercase">

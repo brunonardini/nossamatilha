@@ -7,7 +7,12 @@ import { GuidePhoto } from '@/components/boarding-guide/guide-photo';
 import { WhatsAppButton } from '@/components/boarding-guide/whatsapp-cta';
 import { Card } from '@/components/ui/card';
 import { buttonClasses } from '@/components/ui/button';
-import { CameraIcon, ChatIcon, CheckIcon } from '@/components/ui/icons';
+import {
+  ArrowDownIcon,
+  CameraIcon,
+  ChatIcon,
+  CheckIcon,
+} from '@/components/ui/icons';
 import { guidePhotos } from '@/lib/boarding-guide/photos';
 import { BOOKING_NOTICE_HOURS } from '@/lib/boarding-guide/pricing';
 import {
@@ -25,27 +30,37 @@ export function WelcomeChapter(): ReactNode {
       className="tone-light scroll-mt-16 overflow-hidden px-4 pt-10 pb-16 sm:px-8 sm:pt-16 sm:pb-24"
     >
       <div className="mx-auto grid max-w-page items-center gap-10 md:grid-cols-2">
-        <div>
-          <Image
-            src={logo}
-            alt="Nossa Matilha"
-            className="h-auto w-32 sm:w-40"
-            unoptimized
-            loading="eager"
-          />
-          <h1
-            id="boas-vindas-titulo"
-            className="mt-6 font-display text-display-xl text-leaf"
-          >
-            Bem-vindo à <span className="text-brown">Matilha!</span>
+        <div className="flex flex-col items-center text-center">
+          {/* The logo is the page heading; the title text is for assistive tech. */}
+          <h1 id="boas-vindas-titulo">
+            <Image
+              src={logo}
+              alt="Nossa Matilha"
+              className="h-auto w-44 sm:w-56"
+              unoptimized
+              loading="eager"
+            />
+            <span className="sr-only"> — Guia da hospedagem</span>
           </h1>
-          <p className="mt-4 max-w-reading text-lead">
+          <p className="mt-8 max-w-reading text-intro">
             Vai hospedar seu cão pela primeira vez? Veja como é o dia dele na
             Nossa Matilha e o que você precisa preparar antes da chegada.
           </p>
-          <a href="#quem-somos" className={buttonClasses('primary', 'mt-8')}>
-            Começar
-          </a>
+          {/* Desktop: the photo is beside the text, so a jump is useful. */}
+          <div className="mt-8 hidden md:block">
+            <a href="#quem-somos" className={buttonClasses('primary')}>
+              Começar
+              <ArrowDownIcon className="size-5" />
+            </a>
+          </div>
+          {/* Mobile: the photo comes next, so only invite to scroll. */}
+          <p className="mt-8 flex flex-col items-center gap-1 font-heading font-semibold text-leaf-ink md:hidden">
+            Role a página para começar
+            <ArrowDownIcon
+              aria-hidden="true"
+              className="size-6 animate-nudge-down"
+            />
+          </p>
         </div>
         <div className="relative">
           <GuidePhoto
@@ -64,16 +79,14 @@ export function WelcomeChapter(): ReactNode {
   );
 }
 
-/** A big number that counts up as it enters the viewport. */
+/** A big number shown as a fixed value. */
 function Stat({
   value,
-  animate = true,
   prefix,
   suffix,
   label,
 }: {
   value: number;
-  animate?: boolean;
   prefix?: string;
   suffix?: string;
   label: string;
@@ -82,20 +95,9 @@ function Stat({
   return (
     <li className="scroll-reveal">
       <p className="font-display text-display text-leaf">
-        <span className="sr-only">
-          {prefix}
-          {display}
-          {suffix}
-        </span>
-        <span aria-hidden="true">
-          {prefix}
-          {animate ? (
-            <span className="count-up" style={{ '--count-to': value }} />
-          ) : (
-            display
-          )}
-          {suffix}
-        </span>
+        {prefix}
+        {display}
+        {suffix}
       </p>
       <p className="mt-1 max-w-xs text-fg">{label}</p>
     </li>
@@ -115,7 +117,6 @@ export function AboutChapter(): ReactNode {
       <ul className="grid gap-8 sm:grid-cols-3">
         <Stat
           value={1100}
-          animate={false}
           prefix="+ de "
           suffix=" m²"
           label="de espaço para os cães"
@@ -273,7 +274,7 @@ export function DayChapter(): ReactNode {
     <section
       id="um-dia"
       aria-labelledby="um-dia-titulo"
-      className="tone-light day-timeline relative scroll-mt-16"
+      className="tone-light day-timeline relative -scroll-mt-4 sm:-scroll-mt-12"
     >
       {/* The sky fills the section; its sticky child stays inside it. */}
       <div aria-hidden="true" className="absolute inset-0">

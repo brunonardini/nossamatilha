@@ -54,6 +54,15 @@ export function CrossIcon(props: IconProps): ReactNode {
   );
 }
 
+/** Arrow pointing down, for "scroll down" cues. */
+export function ArrowDownIcon(props: IconProps): ReactNode {
+  return (
+    <Svg {...props}>
+      <path d="M12 5v14M6 13l6 6 6-6" />
+    </Svg>
+  );
+}
+
 /** List icon, used by the chapter index button. */
 export function ListIcon(props: IconProps): ReactNode {
   return (

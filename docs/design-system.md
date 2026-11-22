@@ -84,16 +84,17 @@ In custom CSS, read `var(--tone-*)` directly, not `var(--color-surface)` and fri
 
 ## Typography
 
-| Utility                        | Font               | Size (mobile → desktop) | Use                              |
-| ------------------------------ | ------------------ | ----------------------- | -------------------------------- |
-| `font-display text-display-xl` | Grandstander Black | 40 → 80px               | Hero title                       |
-| `font-display text-display`    | Grandstander Black | 32 → 56px               | Chapter openers, big numbers     |
-| `text-h1`                      | Outfit             | 28 → 44px               | Section title (`font-extrabold`) |
-| `text-h2`                      | Outfit             | 22 → 32px               | Subsection title (`font-bold`)   |
-| `text-h3`                      | Outfit             | 18 → 22px               | Card title (`font-bold`)         |
-| `text-lead`                    | Figtree            | 18 → 21px               | Intro paragraphs                 |
-| `text-body`                    | Figtree            | 16px                    | Running text (default)           |
-| `text-caption`                 | Figtree            | 14px                    | Captions and metadata only       |
+| Utility                        | Font               | Size (mobile → desktop) | Use                                           |
+| ------------------------------ | ------------------ | ----------------------- | --------------------------------------------- |
+| `font-display text-display-xl` | Grandstander Black | 40 → 80px               | Hero title                                    |
+| `font-display text-display`    | Grandstander Black | 32 → 56px               | Chapter openers, big numbers                  |
+| `text-h1`                      | Outfit             | 28 → 44px               | Section title (`font-extrabold`)              |
+| `text-h2`                      | Outfit             | 22 → 32px               | Subsection title (`font-bold`)                |
+| `text-h3`                      | Outfit             | 18 → 22px               | Card title (`font-bold`)                      |
+| `text-intro`                   | Figtree            | 20 → 24px               | The single opening paragraph of a page (hero) |
+| `text-lead`                    | Figtree            | 18 → 21px               | Intro paragraphs                              |
+| `text-body`                    | Figtree            | 16px                    | Running text (default)                        |
+| `text-caption`                 | Figtree            | 14px                    | Captions and metadata only                    |
 
 Sizes are fluid (`clamp()`), so no breakpoint overrides are needed. Headings get `text-wrap: balance`, paragraphs `pretty`. Grandstander is only for short, large text (24px+). Body text is never below 16px.
 
@@ -107,11 +108,10 @@ Sizes are fluid (`clamp()`), so no breakpoint overrides are needed. Headings get
 
 - Easings: `ease-out-soft` (default for entrances), `ease-playful` (slight overshoot, for buttons and playful details), `ease-in-out-soft` (loops).
 - Durations: `duration-(--duration-fast)` 150ms, `duration-(--duration-base)` 300ms, `duration-(--duration-slow)` 600ms.
-- Animations: `animate-reveal` (fade and rise on entry) and `animate-wag` (tail-wag rotation loop).
+- Animations: `animate-reveal` (fade and rise on entry) and `animate-wag` (tail-wag rotation loop) and `animate-nudge-down` (gentle down-and-up loop for "scroll down" cues).
 - Scroll-driven utilities (CSS only, progressive enhancement: they run where `animation-timeline` is supported and motion is not reduced; otherwise content is shown as is):
   - `scroll-reveal`: fades and rises an element as it enters the viewport.
   - `scroll-progress`: a bar that grows with the page scroll (reading progress).
-  - `count-up` with `style={{ '--count-to': n }}`: counts an integer up on entry; keep the real number in `sr-only` text and mark the animated one `aria-hidden`.
   - `day-timeline` on a section plus `day-afternoon`, `day-night` and `day-sun` on layers inside it: the morning → night sky of the boarding guide.
 - `prefers-reduced-motion: reduce` disables all animations and transitions globally. Content must be fully understandable without motion.
 - Animate only `transform` and `opacity` (plus colors and shadows on hover) to stay on the compositor.
