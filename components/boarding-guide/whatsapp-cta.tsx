@@ -32,21 +32,3 @@ export function WhatsAppButton({
     </a>
   );
 }
-
-/**
- * Floating WhatsApp button, always reachable on mobile. The page reserves
- * bottom space so it never covers content.
- */
-export function WhatsAppFloatingButton(): ReactNode {
-  return (
-    <a
-      href={whatsAppLink(getWhatsApp(), QUOTE_MESSAGE)}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Pedir orçamento no WhatsApp"
-      className="fixed right-4 bottom-4 z-20 grid size-14 md:hidden place-items-center rounded-full bg-lime text-forest shadow-lift transition-transform duration-(--duration-base) ease-playful hover:-translate-y-1"
-    >
-      <ChatIcon className="size-7" />
-    </a>
-  );
-}

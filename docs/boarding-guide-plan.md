@@ -91,7 +91,7 @@ Avoid unless a specific need appears:
 - All 11 chapters with the script copy, Bacon's lines, the photos and the tones.
 - Scroll effects in pure CSS: reveals, counting numbers and the morning → night sky of "Um dia na Matilha". No client JavaScript in the page itself.
 - The 4 checkpoints show their full rules as static content (also their future no-JS fallback).
-- WhatsApp links built from environment variables; a floating WhatsApp button on mobile.
+- WhatsApp links built from environment variables, placed inside the chapters (no floating button).
 
 **Phase 2.** One interactive checkpoint at a time:
 

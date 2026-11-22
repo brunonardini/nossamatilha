@@ -16,7 +16,6 @@ import {
   TeamChapter,
   WelcomeChapter,
 } from '@/components/boarding-guide/story-chapters';
-import { WhatsAppFloatingButton } from '@/components/boarding-guide/whatsapp-cta';
 
 export const metadata: Metadata = {
   title: 'Guia da hospedagem | Nossa Matilha',
@@ -29,7 +28,7 @@ export default function BoardingGuidePage(): ReactNode {
   return (
     <div className="guide">
       <GuideHeader />
-      <main className="pb-24">
+      <main>
         <WelcomeChapter />
         <AboutChapter />
         <TeamChapter />
@@ -42,7 +41,6 @@ export default function BoardingGuidePage(): ReactNode {
         <GroomingChapter />
         <ReadyChapter />
       </main>
-      <WhatsAppFloatingButton />
     </div>
   );
 }

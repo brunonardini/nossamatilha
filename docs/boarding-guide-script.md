@@ -28,7 +28,7 @@ The visitor follows a first stay in order: first they fall in love with the plac
 
 - **Progress bar** at the top and a **chapter index** (opened from a button), so returning visitors can jump straight to a rule.
 - **Checkpoint progress**: each checkpoint shows "Parada N de 4 concluída"; the chapter index ticks finished checkpoints; the final chapter shows "Você concluiu N de 4 paradas", ticks each item and, with all four done, "Você é da Matilha!". The call to action is never locked. State lives only in memory for the visit (no storage, no personal data).
-- **WhatsApp call to action** stays reachable (floating button on mobile after chapter 3, never covering content).
+- **WhatsApp call to action** appears inside the chapters (no floating button).
 - Every interaction has a static fallback: the full rule text is always in the HTML, readable without JavaScript and with reduced motion.
 
 ## Narrator: Bacon, and Silvia
