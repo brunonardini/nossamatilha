@@ -208,24 +208,6 @@
   }
 }
 
-@keyframes scroll-fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes scroll-fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
 /* Fades and rises an element as it enters the viewport. */
 @utility scroll-reveal {
   @supports (animation-timeline: view()) {
@@ -247,43 +229,27 @@
   }
 }
 
-/* Day scene: layers that fade in/out along a named view timeline. */
-@utility day-timeline {
-  view-timeline-name: --day;
+/* At least the screen height below the 56px (+1px border) sticky header. */
+@utility min-h-below-header {
+  min-height: calc(100svh - 3.5rem - 1px);
 }
 
-/* Afternoon sky: fades in around the middle of the day scene. */
-@utility day-afternoon {
-  opacity: 0;
-  @supports (animation-timeline: view()) {
-    @media (prefers-reduced-motion: no-preference) {
-      animation: scroll-fade-in linear both;
-      animation-timeline: --day;
-      animation-range: contain 25% contain 40%;
-    }
+/*
+ * Hides a GSAP-animated block until its client component sets the starting
+ * state (only with JavaScript and without reduced motion), so server-rendered
+ * content does not flash before the entrance. If the script never runs, a
+ * delayed animation shows the block anyway.
+ */
+@keyframes motion-fallback {
+  to {
+    visibility: visible;
   }
 }
 
-/* Night sky: fades in for the last part of the day scene. */
-@utility day-night {
-  opacity: 0;
-  @supports (animation-timeline: view()) {
-    @media (prefers-reduced-motion: no-preference) {
-      animation: scroll-fade-in linear both;
-      animation-timeline: --day;
-      animation-range: contain 58% contain 72%;
-    }
-  }
-}
-
-/* Sun: sets (fades out) as the night arrives. */
-@utility day-sun {
-  @supports (animation-timeline: view()) {
-    @media (prefers-reduced-motion: no-preference) {
-      animation: scroll-fade-out linear both;
-      animation-timeline: --day;
-      animation-range: contain 55% contain 68%;
-    }
+@utility motion-pending {
+  @media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+    visibility: hidden;
+    animation: motion-fallback 0s 3s forwards;
   }
 }
 

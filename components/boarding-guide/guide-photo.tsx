@@ -11,6 +11,8 @@ export type GuidePhotoProps = {
   caption?: ReactNode;
   /** Loads eagerly with high priority (only for the hero). */
   priority?: boolean;
+  /** Fades in with the CSS `scroll-reveal` (turn off when GSAP animates it). */
+  reveal?: boolean;
   className?: string;
 };
 
@@ -20,10 +22,11 @@ export function GuidePhoto({
   sizes,
   caption,
   priority = false,
+  reveal = true,
   className = '',
 }: GuidePhotoProps): ReactNode {
   return (
-    <figure className={`scroll-reveal ${className}`}>
+    <figure className={`${reveal ? 'scroll-reveal' : ''} ${className}`}>
       <Image
         src={photo.src}
         alt={photo.alt}

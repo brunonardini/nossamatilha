@@ -102,6 +102,7 @@ Sizes are fluid (`clamp()`), so no breakpoint overrides are needed. Headings get
 
 - Radii: `rounded-sm` (8px), `rounded-md` (14px), `rounded-card` (24px, cards and swatches), `rounded-blob` (40px, big illustrative shapes), `rounded-full` (buttons, pills).
 - Shadows: `shadow-card` (resting) and `shadow-lift` (hover), both warm and tinted with forest green.
+- `min-h-below-header`: at least one screen tall below the sticky 56px header (first screen of a page on mobile).
 - Widths: `max-w-reading` (38rem, text columns) and `max-w-page` (72rem, page content). Page gutters are `px-4` on mobile and `sm:px-8` above.
 
 ## Motion
@@ -112,8 +113,9 @@ Sizes are fluid (`clamp()`), so no breakpoint overrides are needed. Headings get
 - Scroll-driven utilities (CSS only, progressive enhancement: they run where `animation-timeline` is supported and motion is not reduced; otherwise content is shown as is):
   - `scroll-reveal`: fades and rises an element as it enters the viewport.
   - `scroll-progress`: a bar that grows with the page scroll (reading progress).
-  - `day-timeline` on a section plus `day-afternoon`, `day-night` and `day-sun` on layers inside it: the morning → night sky of the boarding guide.
 - **GSAP** (`gsap` + `@gsap/react`, with ScrollTrigger and SplitText) drives choreographed and scroll-linked animation: sequences, pinned sections, scrubbed timelines and split-text titles. It runs only in client components on pages that need it, through `useGSAP` and `gsap.matchMedia()` so reduced motion turns it off. CSS stays in charge of hover, focus and simple state transitions; the CSS scroll-driven utilities below remain as lightweight progressive enhancement.
+- GSAP patterns in the boarding guide (`components/boarding-guide/motion/`): `HeroMotion` (entrance timeline: logo, word-by-word intro, photo, Bacon; photo parallax) and `DayMotion` (scrubbed morning → night sky with a moving sun and moon; moments slide and rise in on entry). Targets are marked with `data-*` attributes in the server markup.
+- `motion-pending` hides a block that GSAP animates on load (hero) until the client sets the starting state; only with JavaScript and without reduced motion, with a 3s CSS fallback that shows it anyway. Not needed below the fold, where GSAP sets hidden states before the visitor gets there.
 - `prefers-reduced-motion: reduce` disables all animations and transitions globally. Content must be fully understandable without motion.
 - Animate only `transform` and `opacity` (plus colors and shadows on hover) to stay on the compositor.
 

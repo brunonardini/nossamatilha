@@ -12,6 +12,8 @@ export type BaconSaysProps = {
   reverse?: boolean;
   /** Loads the illustration eagerly (only for the first screen). */
   eager?: boolean;
+  /** Fades in with the CSS `scroll-reveal` (turn off when GSAP animates it). */
+  reveal?: boolean;
   className?: string;
 };
 
@@ -21,12 +23,13 @@ export function BaconSays({
   children,
   reverse = false,
   eager = false,
+  reveal = true,
   className = '',
 }: BaconSaysProps): ReactNode {
   const { src, alt } = baconPoses[pose];
   return (
     <figure
-      className={`scroll-reveal flex items-end gap-3 sm:gap-5 ${reverse ? 'sm:flex-row-reverse' : ''} ${className}`}
+      className={`${reveal ? 'scroll-reveal' : ''} flex items-end gap-3 sm:gap-5 ${reverse ? 'sm:flex-row-reverse' : ''} ${className}`}
     >
       <Image
         src={src}

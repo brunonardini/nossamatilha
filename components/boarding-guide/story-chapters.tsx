@@ -4,6 +4,8 @@ import logo from '@/assets/brand/logo.svg';
 import { BaconSays } from '@/components/boarding-guide/bacon-says';
 import { ChapterSection } from '@/components/boarding-guide/chapter-section';
 import { GuidePhoto } from '@/components/boarding-guide/guide-photo';
+import { DayMotion } from '@/components/boarding-guide/motion/day-motion';
+import { HeroMotion } from '@/components/boarding-guide/motion/hero-motion';
 import { WhatsAppButton } from '@/components/boarding-guide/whatsapp-cta';
 import { Card } from '@/components/ui/card';
 import { buttonClasses } from '@/components/ui/button';
@@ -27,12 +29,17 @@ export function WelcomeChapter(): ReactNode {
     <section
       id="boas-vindas"
       aria-labelledby="boas-vindas-titulo"
-      className="tone-light scroll-mt-16 overflow-hidden px-4 pt-10 pb-16 sm:px-8 sm:pt-16 sm:pb-24"
+      className="tone-light scroll-mt-16 overflow-hidden px-4 pb-6 sm:px-8 sm:pb-24 md:pt-16"
     >
-      <div className="mx-auto grid max-w-page items-center gap-10 md:grid-cols-2">
-        <div className="flex flex-col items-center text-center">
+      <HeroMotion className="mx-auto grid max-w-page items-center gap-10 md:grid-cols-2">
+        {/* Mobile: fills the first screen; the photo comes on scroll. */}
+        <div className="flex flex-col items-center text-center max-md:min-h-below-header max-md:py-8">
           {/* The logo is the page heading; the title text is for assistive tech. */}
-          <h1 id="boas-vindas-titulo">
+          <h1
+            id="boas-vindas-titulo"
+            data-hero="logo"
+            className="max-md:mt-auto"
+          >
             <Image
               src={logo}
               alt="Nossa Matilha"
@@ -42,19 +49,22 @@ export function WelcomeChapter(): ReactNode {
             />
             <span className="sr-only"> — Guia da hospedagem</span>
           </h1>
-          <p className="mt-8 max-w-reading text-intro">
+          <p data-hero="intro" className="mt-8 max-w-reading text-intro">
             Vai hospedar seu cão pela primeira vez? Veja como é o dia dele na
             Nossa Matilha e o que você precisa preparar antes da chegada.
           </p>
           {/* Desktop: the photo is beside the text, so a jump is useful. */}
-          <div className="mt-8 hidden md:block">
+          <div data-hero="cta" className="mt-8 hidden md:block">
             <a href="#quem-somos" className={buttonClasses('primary')}>
               Começar
               <ArrowDownIcon className="size-5" />
             </a>
           </div>
           {/* Mobile: the photo comes next, so only invite to scroll. */}
-          <p className="mt-8 flex flex-col items-center gap-1 font-heading font-semibold text-leaf-ink md:hidden">
+          <p
+            data-hero="cta"
+            className="mt-8 flex flex-col items-center gap-1 font-heading font-semibold text-leaf-ink max-md:mt-auto md:hidden"
+          >
             Role a página para começar
             <ArrowDownIcon
               aria-hidden="true"
@@ -63,18 +73,28 @@ export function WelcomeChapter(): ReactNode {
           </p>
         </div>
         <div className="relative">
-          <GuidePhoto
-            photo={guidePhotos.heroDogsOfAllSizes}
-            sizes="(min-width: 768px) 560px, 100vw"
-            priority
-            className="mx-auto max-w-md"
-          />
-          <BaconSays pose="hello" eager className="-mt-16 sm:-mt-20">
-            Oi, eu sou o Bacon! Essa é a minha casa. Vem comigo conhecer o
-            quintal.
-          </BaconSays>
+          <div data-hero="photo">
+            <GuidePhoto
+              photo={guidePhotos.heroDogsOfAllSizes}
+              sizes="(min-width: 768px) 560px, 100vw"
+              priority
+              reveal={false}
+              className="mx-auto max-w-md"
+            />
+          </div>
+          <div data-hero="bacon" className="relative">
+            <BaconSays
+              pose="hello"
+              eager
+              reveal={false}
+              className="-mt-16 sm:-mt-20"
+            >
+              Oi, eu sou o Bacon! Essa é a minha casa. Vem comigo conhecer o
+              quintal.
+            </BaconSays>
+          </div>
         </div>
-      </div>
+      </HeroMotion>
     </section>
   );
 }
@@ -266,69 +286,99 @@ const moments: Moment[] = [
 
 /**
  * Chapter 3: a day at Nossa Matilha. A sticky sky behind the content goes
- * from morning to night as the visitor scrolls (CSS scroll-driven; static
- * cream sky where unsupported or with reduced motion).
+ * from morning to night as the visitor scrolls; the sun starts beside the
+ * title, sets and turns into the moon ({@link DayMotion}; static
+ * morning sky without JavaScript or with reduced motion).
  */
 export function DayChapter(): ReactNode {
   return (
     <section
       id="um-dia"
       aria-labelledby="um-dia-titulo"
-      className="tone-light day-timeline relative -scroll-mt-4 sm:-scroll-mt-12"
+      className="tone-light relative -scroll-mt-4 sm:-scroll-mt-12"
     >
-      {/* The sky fills the section; its sticky child stays inside it. */}
-      <div aria-hidden="true" className="absolute inset-0">
-        <div className="sticky top-0 h-svh overflow-hidden">
-          <div className="absolute inset-0 bg-cream" />
-          <div className="day-afternoon absolute inset-0 bg-lime/35" />
-          <div className="day-night absolute inset-0 bg-forest" />
-          <div className="day-sun absolute top-24 right-8 size-24 rounded-full bg-sun/80 sm:right-24 sm:size-32" />
-          <div className="day-night absolute top-24 right-8 size-20 rounded-full bg-cream shadow-lift sm:right-24 sm:size-28" />
-        </div>
-      </div>
-
-      <div className="relative px-4 py-16 sm:px-8 sm:py-24">
-        <div className="mx-auto max-w-page">
-          <div className="max-w-reading rounded-card bg-cream/90 p-6 shadow-card backdrop-blur-sm">
-            <p className="font-heading text-caption font-semibold tracking-widest text-accent uppercase">
-              03
-            </p>
-            <h2 id="um-dia-titulo" className="mt-2 font-display text-display">
-              Um dia na Matilha
-            </h2>
+      <DayMotion>
+        {/* The sky fills the section; its sticky child stays inside it. */}
+        <div aria-hidden="true" className="absolute inset-0">
+          <div className="sticky top-0 h-svh overflow-hidden">
+            <div className="absolute inset-0 bg-cream" />
+            <div
+              data-sky="afternoon"
+              className="absolute inset-0 bg-lime/35 opacity-0"
+            />
+            <div
+              data-sky="night"
+              className="absolute inset-0 bg-forest opacity-0"
+            />
+            {/* Sun by day, moon by night: one orb that moves across the sky. */}
+            <div
+              data-sky="orb"
+              className="absolute top-24 right-8 size-24 sm:right-24 sm:size-32"
+            >
+              <div
+                data-sky="sun"
+                className="absolute inset-0 rounded-full bg-sun/80"
+              />
+              <div
+                data-sky="moon"
+                className="invisible absolute inset-2 rounded-full bg-cream shadow-lift"
+              />
+            </div>
           </div>
-
-          <ol className="mt-16 space-y-24">
-            {moments.map((moment) => (
-              <li
-                key={moment.title}
-                className="grid items-center gap-6 md:grid-cols-2"
-              >
-                <Card className="scroll-reveal">
-                  <h3 className="font-display text-h1 text-leaf-ink">
-                    {moment.title}
-                  </h3>
-                  <p className="mt-3 text-lead">{moment.text}</p>
-                </Card>
-                <div className="grid grid-cols-2 gap-3">
-                  {moment.photos.map((key) => (
-                    <GuidePhoto
-                      key={key}
-                      photo={guidePhotos[key]}
-                      sizes="(min-width: 768px) 25vw, 50vw"
-                    />
-                  ))}
-                </div>
-              </li>
-            ))}
-          </ol>
-
-          <BaconSays pose="eating" className="mt-20">
-            Minha parte favorita é comer. Aqui eu posso acabar de lamber o pote
-            no meu tempo.
-          </BaconSays>
         </div>
-      </div>
+
+        <div className="relative px-4 py-16 sm:px-8 sm:py-24">
+          <div className="mx-auto max-w-page">
+            <div
+              data-day-title
+              className="w-fit max-w-reading rounded-card bg-cream/90 p-6 shadow-card backdrop-blur-sm"
+            >
+              <p className="font-heading text-caption font-semibold tracking-widest text-accent uppercase">
+                03
+              </p>
+              <h2 id="um-dia-titulo" className="mt-2 font-display text-display">
+                Um dia na
+                <br className="sm:hidden" /> Matilha
+              </h2>
+            </div>
+
+            <ol className="mt-16 space-y-24">
+              {moments.map((moment) => (
+                <li
+                  key={moment.title}
+                  data-moment
+                  className="grid items-center gap-6 md:grid-cols-2"
+                >
+                  <Card data-moment-card>
+                    <h3 className="font-display text-h1 text-leaf-ink">
+                      {moment.title}
+                    </h3>
+                    <p className="mt-3 text-lead">{moment.text}</p>
+                  </Card>
+                  <div className="grid grid-cols-2 gap-3">
+                    {moment.photos.map((key) => (
+                      <div key={key} data-moment-photo>
+                        <GuidePhoto
+                          photo={guidePhotos[key]}
+                          sizes="(min-width: 768px) 25vw, 50vw"
+                          reveal={false}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            <div data-day-bacon className="mt-20">
+              <BaconSays pose="eating" reveal={false}>
+                Minha parte favorita é comer. Aqui eu posso acabar de lamber o
+                pote no meu tempo.
+              </BaconSays>
+            </div>
+          </div>
+        </div>
+      </DayMotion>
     </section>
   );
 }
