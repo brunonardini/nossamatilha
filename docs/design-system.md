@@ -113,6 +113,7 @@ Sizes are fluid (`clamp()`), so no breakpoint overrides are needed. Headings get
   - `scroll-reveal`: fades and rises an element as it enters the viewport.
   - `scroll-progress`: a bar that grows with the page scroll (reading progress).
   - `day-timeline` on a section plus `day-afternoon`, `day-night` and `day-sun` on layers inside it: the morning → night sky of the boarding guide.
+- **GSAP** (`gsap` + `@gsap/react`, with ScrollTrigger and SplitText) drives choreographed and scroll-linked animation: sequences, pinned sections, scrubbed timelines and split-text titles. It runs only in client components on pages that need it, through `useGSAP` and `gsap.matchMedia()` so reduced motion turns it off. CSS stays in charge of hover, focus and simple state transitions; the CSS scroll-driven utilities below remain as lightweight progressive enhancement.
 - `prefers-reduced-motion: reduce` disables all animations and transitions globally. Content must be fully understandable without motion.
 - Animate only `transform` and `opacity` (plus colors and shadows on hover) to stay on the compositor.
 

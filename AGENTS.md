@@ -99,6 +99,10 @@ Rules:
 - On a fresh clone, install the git hooks once with `graphify hook install`, then delete the `.gitattributes` file it creates (the graph is not committed, so the merge driver is not needed).
 - `tmp/` is gitignored and therefore excluded from the graph. Do not force it in: it contains personal data (see [Privacy and LGPD](#privacy-and-lgpd)).
 
+### GSAP skills
+
+The official [GSAP skills](https://github.com/greensock/gsap-skills) (MIT) are vendored in `.claude/skills/gsap-*` (core, react, scrolltrigger, timeline, plugins, performance, utils; source commit in `.claude/skills/gsap-core/SOURCE`). Load `gsap-react` plus the relevant topic skill before writing or reviewing animation code. Where a skill conflicts with this file (e.g. installing without exact versions, Vue/Svelte notes), this file wins.
+
 ## Before finishing a task
 
 Run all checks and make sure they pass — they mirror the CI pipeline:
@@ -126,6 +130,7 @@ A task is not done while any check fails or reports warnings. Fix the root cause
 - Every section sets `tone-light` or `tone-dark`; components use semantic utilities (`bg-surface`, `text-fg`, `text-heading`, `text-accent`…) so they work in both tones.
 - Grandstander (`font-display`) only for short text at 24px+; body text never below 16px; respect the contrast table.
 - Motion: animate `transform`/`opacity` only and keep the page fully usable with `prefers-reduced-motion`.
+- Animation library is GSAP (`gsap`, `@gsap/react`); do not add another one (Motion, Lenis, Lottie…) without the owner's approval. Rules: animate only in small `'use client'` components (pages stay server components); use `useGSAP` with a `scope` ref, never raw `useEffect`; import GSAP, plugins and `useGSAP` only from `lib/gsap.ts` (registers them once; exports `MOTION_OK`); wrap every animation in `gsap.matchMedia()` with a `(prefers-reduced-motion: no-preference)` condition; content must be visible and final without JavaScript (animate from a hidden state set by GSAP, not by CSS/markup). Keep simple hover/focus transitions in CSS.
 - Reuse `components/ui/` primitives before creating new ones; new primitives go there with TSDoc.
 
 ## TypeScript
