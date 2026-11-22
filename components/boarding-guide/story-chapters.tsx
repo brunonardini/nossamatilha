@@ -7,6 +7,7 @@ import { GuidePhoto } from '@/components/boarding-guide/guide-photo';
 import { AboutMotion } from '@/components/boarding-guide/motion/about-motion';
 import { DayMotion } from '@/components/boarding-guide/motion/day-motion';
 import { HeroMotion } from '@/components/boarding-guide/motion/hero-motion';
+import { TeamMotion } from '@/components/boarding-guide/motion/team-motion';
 import { WhatsAppButton } from '@/components/boarding-guide/whatsapp-cta';
 import { Card } from '@/components/ui/card';
 import { buttonClasses } from '@/components/ui/button';
@@ -223,50 +224,66 @@ const teamFacts = [
 /** Chapter 2: the team, led by Silvia. */
 export function TeamChapter(): ReactNode {
   return (
-    <ChapterSection
-      id="equipe"
-      tone="light"
-      number={2}
-      title="Quem cuida do seu cão"
-    >
-      <div className="grid items-center gap-8 md:grid-cols-2">
-        <GuidePhoto
-          photo={guidePhotos.teamSilviaAndBacon}
-          sizes="(min-width: 768px) 45vw, 100vw"
-          className="mx-auto w-full max-w-md"
-        />
-        <div>
-          <p className="max-w-reading text-lead">
-            <strong>Silvia Matrumoto</strong> lidera a equipe da Nossa Matilha.
-            Ela é CEO e adestradora certificada pela FBAA (Federação Brasileira
-            dos Adestradores de Animais).
-          </p>
-          <BaconSays pose="proud" className="mt-8">
-            Essa é a Silvia, minha humana. Foi ela que me ensinou a sentar e
-            esperar a minha vez na hora da comida.
-          </BaconSays>
+    <TeamMotion>
+      <ChapterSection
+        id="equipe"
+        tone="light"
+        number={2}
+        title="Quem cuida do seu cão"
+      >
+        <div className="grid items-center gap-8 md:grid-cols-2">
+          <div data-team-photo className="mx-auto w-full max-w-md">
+            <GuidePhoto
+              photo={guidePhotos.teamSilviaAndBacon}
+              sizes="(min-width: 768px) 45vw, 100vw"
+              reveal={false}
+            />
+          </div>
+          <div>
+            <p data-team-intro className="max-w-reading text-lead">
+              <strong className="relative isolate">
+                Silvia Matrumoto
+                <span
+                  aria-hidden="true"
+                  data-team-highlight
+                  className="absolute inset-x-0 bottom-0.5 -z-10 h-2.5 rounded-full bg-lime/50"
+                />
+              </strong>{' '}
+              lidera a equipe da Nossa Matilha. Ela é CEO e adestradora
+              certificada pela FBAA (Federação Brasileira dos Adestradores de
+              Animais).
+            </p>
+            <div data-team-bacon className="mt-8">
+              <BaconSays pose="proud" reveal={false}>
+                Essa é a Silvia, minha humana. Foi ela que me ensinou a sentar e
+                esperar a minha vez na hora da comida.
+              </BaconSays>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div className="mt-16 grid items-start gap-8 md:grid-cols-2">
-        <ul className="grid gap-4">
-          {teamFacts.map((fact) => (
-            <li key={fact.title} className="scroll-reveal">
-              <Card>
-                <h3 className="text-h3 font-bold">{fact.title}</h3>
-                <p className="mt-1">{fact.text}</p>
-              </Card>
-            </li>
-          ))}
-        </ul>
-        <GuidePhoto
-          photo={guidePhotos.teamGroup}
-          sizes="(min-width: 768px) 45vw, 100vw"
-          caption="Nossa equipe"
-          className="mx-auto w-full max-w-md"
-        />
-      </div>
-    </ChapterSection>
+        <div className="mt-16 grid items-start gap-8 md:grid-cols-2">
+          <ul className="grid gap-4">
+            {teamFacts.map((fact) => (
+              <li key={fact.title} data-team-fact>
+                <Card>
+                  <h3 className="text-h3 font-bold">{fact.title}</h3>
+                  <p className="mt-1">{fact.text}</p>
+                </Card>
+              </li>
+            ))}
+          </ul>
+          <div data-team-group className="mx-auto w-full max-w-md">
+            <GuidePhoto
+              photo={guidePhotos.teamGroup}
+              sizes="(min-width: 768px) 45vw, 100vw"
+              caption="Nossa equipe"
+              reveal={false}
+            />
+          </div>
+        </div>
+      </ChapterSection>
+    </TeamMotion>
   );
 }
 
