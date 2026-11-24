@@ -11,8 +11,8 @@ const FADE_DISTANCE = 160;
 const MOBILE = '(max-width: 1023.98px)';
 
 /**
- * Mobile scroll cue of the home hero: a white pill fixed at the bottom of the
- * screen ("Role para conhecer" and a bobbing arrow in a lime chip). It fades
+ * Mobile scroll cue of the home hero: plain text fixed at the bottom of the
+ * screen ("Explore mais" and a bobbing arrow, no box). It fades
  * out over the first {@link FADE_DISTANCE}px of scroll and, once gone, never
  * comes back (scrolling up again does not revive it). With reduced motion the
  * arrow stays still and the cue simply disappears after that distance. It is
@@ -82,22 +82,20 @@ export function ScrollCue(): ReactNode {
       aria-hidden="true"
       className="pointer-events-none fixed inset-x-0 bottom-6 z-20 flex justify-center lg:hidden"
     >
-      <ScrollCuePill />
+      <ScrollCueLabel />
     </div>
   );
 }
 
 /**
- * The visible pill of {@link ScrollCue}, without its fixed position or
+ * The visible label of {@link ScrollCue}, without its fixed position or
  * motion (also shown statically on `/design-system`).
  */
-export function ScrollCuePill(): ReactNode {
+export function ScrollCueLabel(): ReactNode {
   return (
-    <span className="flex items-center gap-2 rounded-full bg-white py-1.5 pr-1.5 pl-5 font-heading text-body font-bold text-forest shadow-lift">
-      Role para conhecer
-      <span className="flex size-8 items-center justify-center rounded-full bg-lime">
-        <ArrowDownIcon data-scroll-cue-arrow className="size-5" />
-      </span>
+    <span className="flex items-center gap-1.5 font-heading text-body font-bold text-forest">
+      Explore mais
+      <ArrowDownIcon data-scroll-cue-arrow className="size-5" />
     </span>
   );
 }

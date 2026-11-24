@@ -39,7 +39,7 @@ Contact channels are not recorded here because this repository is public: phone 
 
 ## Space ("Nosso espaço")
 
-More than 1,100 m² for leisure, recreation and rest. Capacity: up to 32 dogs.
+More than 1,200 m² for leisure, recreation and rest (confirmed by the owner; older brochure material says 1,100 m², which is outdated). Capacity: up to 32 dogs.
 
 ## Team ("Nossa equipe")
 

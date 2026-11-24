@@ -142,7 +142,7 @@ export function AboutChapter(): ReactNode {
       >
         <ul className="grid gap-8 sm:grid-cols-3">
           <Stat
-            value={1100}
+            value={1200}
             prefix="+ de "
             suffix=" m²"
             label="de espaço para os cães"

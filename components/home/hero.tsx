@@ -1,6 +1,5 @@
-import Image from 'next/image';
 import type { ReactNode } from 'react';
-import heroTitle from '@/assets/brand/hero-title.webp';
+import { HeroLettering } from '@/components/home/hero-lettering';
 import { HeroMotion } from '@/components/home/hero-motion';
 import { HeroPortrait } from '@/components/home/hero-portrait';
 import { ScrollCue } from '@/components/home/scroll-cue';
@@ -21,22 +20,17 @@ export function Hero(): ReactNode {
       className="tone-light overflow-x-clip"
     >
       <div className="mx-auto grid max-w-page px-4 pt-4 pb-16 sm:px-8 sm:pb-24 lg:grid-cols-2 lg:items-center lg:gap-x-16 lg:pt-12">
-        {/* Custom lettering (like the logo wordmark); the text is in the alt. */}
+        {/* Lettering in the logo font, drawn as SVG; the real text is for
+            screen readers and search engines. */}
         <h1
           id="hero-titulo"
-          className="lg:col-start-1 lg:row-start-1 lg:max-w-md lg:self-end"
+          className="text-highlight lg:col-start-1 lg:row-start-1 lg:max-w-md lg:self-end"
         >
-          <Image
-            src={heroTitle}
-            alt="A rotina que seu cão merece"
-            sizes="(min-width: 1024px) 28rem, (min-width: 640px) calc(100vw - 4rem), calc(100vw - 2rem)"
-            loading="eager"
-            fetchPriority="high"
-            className="h-auto w-full"
-          />
+          <span className="sr-only">A rotina que seu cão merece</span>
+          <HeroLettering />
         </h1>
 
-        <HeroMotion className="-mt-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:mt-0">
+        <HeroMotion className="-mt-6 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:mt-0">
           <HeroPortrait />
         </HeroMotion>
 

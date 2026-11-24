@@ -4,9 +4,10 @@ import { BaconSays } from '@/components/boarding-guide/bacon-says';
 import { GuidePhoto } from '@/components/boarding-guide/guide-photo';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { HeroLettering } from '@/components/home/hero-lettering';
 import { HeroMotion } from '@/components/home/hero-motion';
 import { HeroPortrait } from '@/components/home/hero-portrait';
-import { ScrollCuePill } from '@/components/home/scroll-cue';
+import { ScrollCueLabel } from '@/components/home/scroll-cue';
 import {
   ArrowDownIcon,
   AwardIcon,
@@ -233,8 +234,7 @@ type TypeSample = { token: string; className: string; text: string };
 
 const typeScale: TypeSample[] = [
   {
-    token:
-      'font-display text-display-xl · títulos grandes em bloco (o título do hero é um lettering em imagem)',
+    token: 'font-display text-display-xl · títulos grandes em bloco',
     className: 'font-display text-display-xl text-leaf-ink',
     text: 'Bem-vindo à Matilha!',
   },
@@ -646,8 +646,9 @@ export default function DesignSystemPage(): ReactNode {
         title="Tipografia"
         intro={
           <p>
-            Três fontes com papéis fixos. Tamanhos fluidos, do celular (390px)
-            ao desktop (1280px), sem ajustes por breakpoint.
+            Três fontes com papéis fixos, e o título do hero desenhado em SVG
+            com a fonte do logo. Tamanhos fluidos, do celular (390px) ao desktop
+            (1280px), sem ajustes por breakpoint.
           </p>
         }
       >
@@ -670,6 +671,15 @@ export default function DesignSystemPage(): ReactNode {
               Texto · 400 a 700 · texto corrido, mínimo 16px
             </p>
           </Card>
+        </div>
+        <div className="mt-12 max-w-md">
+          <code className="text-caption text-fg-muted">
+            HeroLettering · título do hero em SVG, desenhado com a fonte do logo
+            (Little Paws): as duas linhas na largura toda
+          </code>
+          <div className="mt-2 text-highlight">
+            <HeroLettering />
+          </div>
         </div>
         <ul className="mt-12 space-y-10">
           {typeScale.map((sample) => (
@@ -914,13 +924,13 @@ export default function DesignSystemPage(): ReactNode {
 
         <Subhead>Indicador de rolagem (celular)</Subhead>
         <p className="max-w-reading">
-          Pílula branca fixa no pé da tela, com a seta numa bolinha lime que
+          Texto “Explore mais” fixo no pé da tela, sem caixa, com uma seta que
           balança de leve. Some aos poucos nos primeiros 160px de rolagem e não
           volta mais, nem rolando para cima. Com movimento reduzido, a seta fica
           parada e o indicador só desaparece. Só no celular.
         </p>
         <div className="mt-6 flex">
-          <ScrollCuePill />
+          <ScrollCueLabel />
         </div>
 
         <Subhead>Foto do guia</Subhead>

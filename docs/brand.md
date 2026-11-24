@@ -33,6 +33,8 @@ The brochure fonts (Kanesty, Amithen) are not licensed for the web, so the site 
 | Headings | [Outfit](https://fonts.google.com/specimen/Outfit)             | 600–800 (variable)               | Brochure headings (Kanesty ExtraBold): rounded geometric, tight                          | Section titles, card titles, buttons, labels.                                                                                                                             |
 | Body     | [Figtree](https://fonts.google.com/specimen/Figtree)           | 400–700 (variable, with italics) | Friendly geometric with open shapes; very legible at small sizes on mobile               | All running text, lists, captions, form fields. Minimum 16px.                                                                                                             |
 
+The hero lettering is drawn as SVG from the outlines of **Little Paws** (Tigadestd), the font of the logo wordmark. Its license is free for personal use only; Nossa Matilha holds the commercial license (owner's confirmation). The font file itself is never committed or served: only the SVG paths of the title are, in `components/home/hero-lettering.tsx`.
+
 Approximate latin `woff2` sizes: Grandstander Black ~22 KB, Outfit ~32 KB, Figtree ~21 KB (roman). Preload only the display and body fonts used above the fold.
 
 Rejected during the comparison: Chewy (first pick, replaced by the owner's choice), Londrina Solid (more angular than the logo), Boogaloo, Spicy Rice, DynaPuff; Kanit and Lexend for headings; Lexend, Outfit and Atkinson Hyperlegible Next for body (too wide, too tight, or too plain).

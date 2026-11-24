@@ -62,7 +62,7 @@ Numbers count up when they enter the screen. Visual: aerial photo of the space a
 ```text
 Um espaço completo de lazer, cuidado e descanso para o seu cão.
 
-+ de 1.100 m² para brincar, explorar e descansar
++ de 1.200 m² para brincar, explorar e descansar
 até 32 cães, com conforto, segurança e cuidado individual
 24h de monitoramento, com profissionais qualificados em tempo integral
 
