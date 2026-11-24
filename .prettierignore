@@ -25,6 +25,7 @@ package-lock.json
 # AI files (machine-read; left unformatted to save tokens)
 AGENTS.md
 CLAUDE.md
+DESIGN.md
 .claude/
 .rtk/
 

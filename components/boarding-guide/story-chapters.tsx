@@ -119,7 +119,7 @@ function Stat({
   const display = value.toLocaleString('pt-BR');
   return (
     <li data-stat>
-      <p className="font-display text-display text-leaf">
+      <p className="font-display text-display text-leaf-ink">
         {prefix}
         <span data-count-to={value}>{display}</span>
         {suffix}
@@ -636,7 +636,7 @@ export function ReadyChapter(): ReactNode {
               className="font-heading text-lead font-semibold"
             >
               Você concluiu{' '}
-              <span className="checkpoint-count font-display text-h2 text-leaf" />{' '}
+              <span className="checkpoint-count font-display text-h2 text-leaf-ink" />{' '}
               de {summary.length} paradas.
             </p>
             <ul className="mt-4 space-y-2">

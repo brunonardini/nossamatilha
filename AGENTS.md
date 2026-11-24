@@ -115,7 +115,7 @@ Installed from audited commits (each has a `SOURCE` file). `impeccable` and `web
 
 Rules:
 
-- This file, `docs/design-system.md`, `docs/brand.md` and `docs/business.md` win over any skill: tokens, fonts, tones, copy and facts are not up for redesign without the owner's approval.
+- This file, `DESIGN.md`, `docs/brand.md` and `docs/business.md` win over any skill: tokens, fonts, tones, copy and facts are not up for redesign without the owner's approval.
 - Do not install or update a skill or MCP server without auditing the diff and pinning a commit or exact version. Never use `@latest`.
 - Do not send personal data, `tmp/` content or unpublished pages to a third-party service through these tools.
 
@@ -147,8 +147,9 @@ A task is not done while any check fails or reports warnings. Fix the root cause
 
 ## Design system
 
-- Rules and tokens: [`docs/design-system.md`](docs/design-system.md); live preview at `/design-system`. Read it before building UI.
-- Use only design tokens: no hex values, arbitrary colors (`bg-[#...]`), arbitrary font sizes or ad-hoc shadows in components. Missing a token? Add it to `app/globals.css` and the doc in the same change.
+- The design system has two faces that must always match: [`DESIGN.md`](DESIGN.md) at the repo root (source of truth for agents and skills, in the DESIGN.md format read by `impeccable`) and the web version at `/design-system` (`app/design-system/page.tsx`, the brand's design system for people, not indexed). Tokens are implemented in `app/globals.css`. Read `DESIGN.md` before building UI.
+- **Whenever you change the design system** (a token, tone, font role, radius, shadow, motion token, component variant or usage rule), update `DESIGN.md`, `app/globals.css` and `/design-system` in the same change. A change that touches only one of them is incomplete.
+- Use only design tokens: no hex values, arbitrary colors (`bg-[#...]`), arbitrary font sizes or ad-hoc shadows in components. Missing a token? Add it to `app/globals.css`, `DESIGN.md` and `/design-system` in the same change.
 - Every section sets `tone-light` or `tone-dark`; components use semantic utilities (`bg-surface`, `text-fg`, `text-heading`, `text-accent`…) so they work in both tones.
 - Grandstander (`font-display`) only for short text at 24px+; body text never below 16px; respect the contrast table.
 - Motion: animate `transform`/`opacity` only and keep the page fully usable with `prefers-reduced-motion`.
@@ -186,7 +187,7 @@ A task is not done while any check fails or reports warnings. Fix the root cause
 - Prettier (`.prettierrc`) and `.editorconfig` own all formatting. Do not hand-format against them or add per-file overrides.
 - Run `npm run format:write` after editing and before committing; `npm run format:check` must pass.
 - Do not add files to `.prettierignore` to skip formatting, except generated files and AI files.
-- AI files (`AGENTS.md`, `CLAUDE.md`, `.claude/`, `.rtk/`) are read by machines and are intentionally not formatted by Prettier, to save tokens. Keep them compact: no alignment padding in tables, no decorative whitespace.
+- AI files (`AGENTS.md`, `CLAUDE.md`, `DESIGN.md`, `.claude/`, `.rtk/`) are read by machines and are intentionally not formatted by Prettier, to save tokens. Keep them compact: no alignment padding in tables, no decorative whitespace.
 
 ## Commits
 

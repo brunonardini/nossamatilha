@@ -1,7 +1,8 @@
 @import 'tailwindcss';
 
 /*
- * Nossa Matilha design tokens. See docs/design-system.md for usage rules.
+ * Nossa Matilha design tokens. Usage rules: DESIGN.md (repo root); live
+ * preview: /design-system. Change all three together.
  * Brand colors are sampled from the boarding brochure (current artwork).
  */
 
@@ -141,6 +142,8 @@
   --tone-heading: var(--color-forest);
   --tone-accent: var(--color-brown);
   --tone-highlight: var(--color-leaf-ink);
+  /* Sun fails on cream (1.3:1); forest keeps the ring visible (8:1). */
+  --tone-focus: var(--color-forest);
   background-color: var(--tone-surface);
   color: var(--tone-fg);
 }
@@ -155,8 +158,10 @@
     var(--color-olive)
   );
   --tone-heading: var(--color-white);
-  --tone-accent: var(--color-lime);
+  /* Pure lime is 4.1:1 on olive; lifted toward cream it passes 4.5:1 for small text. */
+  --tone-accent: color-mix(in oklab, var(--color-lime) 80%, var(--color-cream));
   --tone-highlight: var(--color-sun);
+  --tone-focus: var(--color-sun);
   background-color: var(--tone-surface);
   color: var(--tone-fg);
 }
@@ -178,6 +183,7 @@
   --tone-heading: var(--color-sun);
   --tone-accent: var(--color-lime);
   --tone-highlight: var(--color-sun);
+  --tone-focus: var(--color-sun);
   background-color: var(--tone-surface);
   color: var(--tone-fg);
 }
@@ -404,8 +410,20 @@
     text-wrap: pretty;
   }
 
+  /* Tailwind v4 resets buttons to the default cursor; every clickable control
+     shows the hand, like links do. */
+  button:not(:disabled),
+  [role='button']:not([aria-disabled='true']),
+  a[href],
+  summary,
+  label[for],
+  select {
+    cursor: pointer;
+  }
+
   :focus-visible {
-    outline: 3px solid var(--color-sun);
+    /* Follows the section tone: forest on light, sun on dark and alert. */
+    outline: 3px solid var(--tone-focus, var(--color-forest));
     outline-offset: 3px;
     border-radius: var(--radius-sm);
   }

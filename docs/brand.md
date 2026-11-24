@@ -1,6 +1,6 @@
 # Brand reference
 
-Raw brand material is in `tmp/marca/` (gitignored, provided by the owner). This file records what is known so far; the design system is not defined yet.
+Raw brand material is in `tmp/marca/` (gitignored, provided by the owner). This file records the brand sources and decisions; the design system built from them is in [DESIGN.md](../DESIGN.md).
 
 ## Assets in `tmp/marca/`
 
@@ -21,7 +21,7 @@ Silhouettes of a dog, a cat and a small dog inside a green leash-shaped circle, 
 
 ## Colors
 
-The brand palette, sampled from the brochure artwork, is defined as design tokens. See [design-system.md](design-system.md#colors) for values, usage and contrast rules.
+The brand palette, sampled from the brochure artwork, is defined as design tokens. See [DESIGN.md](../DESIGN.md#colors) for values, usage and contrast rules.
 
 ## Typography
 
@@ -31,7 +31,7 @@ The brochure fonts (Kanesty, Amithen) are not licensed for the web, so the site 
 | -------- | -------------------------------------------------------------- | -------------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Display  | [Grandstander](https://fonts.google.com/specimen/Grandstander) | 900 (Black)                      | Logo wordmark: heavy, rounded, playful hand-drawn letters with the same single-story `a` | Large text only: hero titles, chapter openers, big numbers (e.g. "R$ 120,00"), short exclamations ("Segue a gente lá!"). Never below ~24px or for more than a short line. |
 | Headings | [Outfit](https://fonts.google.com/specimen/Outfit)             | 600–800 (variable)               | Brochure headings (Kanesty ExtraBold): rounded geometric, tight                          | Section titles, card titles, buttons, labels.                                                                                                                             |
-| Body     | [Figtree](https://fonts.google.com/specimen/Figtree)           | 400–600 (variable, with italics) | Friendly geometric with open shapes; very legible at small sizes on mobile               | All running text, lists, captions, form fields. Minimum 16px.                                                                                                             |
+| Body     | [Figtree](https://fonts.google.com/specimen/Figtree)           | 400–700 (variable, with italics) | Friendly geometric with open shapes; very legible at small sizes on mobile               | All running text, lists, captions, form fields. Minimum 16px.                                                                                                             |
 
 Approximate latin `woff2` sizes: Grandstander Black ~22 KB, Outfit ~32 KB, Figtree ~21 KB (roman). Preload only the display and body fonts used above the fold.
 

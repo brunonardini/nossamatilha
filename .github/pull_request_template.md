@@ -35,6 +35,7 @@ Closes #
 - [ ] Exported functions, components, hooks and types have TSDoc
 - [ ] No `any`, `@ts-ignore`, `@ts-expect-error` or `eslint-disable` without a justified comment
 - [ ] UI uses design tokens only (no raw hex/arbitrary values), works in both section tones and with reduced motion
+- [ ] Design system changes update `DESIGN.md`, `app/globals.css` and the `/design-system` page together
 - [ ] New environment variables documented in `docs/environment.md` with fictitious values in `.env.example`
 - [ ] No personal or confidential data committed; images stripped of EXIF/GPS metadata
 - [ ] Privacy policy / consent updated if data collection, cookies or third-party services changed

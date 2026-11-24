@@ -2,7 +2,7 @@
 
 Chapter-by-chapter script for the interactive boarding guide, live at `/guia-da-hospedagem` (plan: [boarding-guide-plan.md](boarding-guide-plan.md)). Every fact comes from [business.md](business.md). Structure and notes are in English; the copy blocks are the pt-BR text visitors will read (draft for the owner's review).
 
-Tone meaning follows [design-system.md](design-system.md#what-each-tone-means): **light** = story, **dark** = rule or interactive checkpoint, **alert** = critical warning block.
+Tone meaning follows [DESIGN.md](../DESIGN.md#section-tones): **light** = story, **dark** = rule or interactive checkpoint, **alert** = critical warning block.
 
 ## Narrative arc
 
