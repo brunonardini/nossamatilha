@@ -103,6 +103,27 @@ Rules:
 
 The official [GSAP skills](https://github.com/greensock/gsap-skills) (MIT) are vendored in `.claude/skills/gsap-*` (core, react, scrolltrigger, timeline, plugins, performance, utils; source commit in `.claude/skills/gsap-core/SOURCE`). Load `gsap-react` plus the relevant topic skill before writing or reviewing animation code. Where a skill conflicts with this file (e.g. installing without exact versions, Vue/Svelte notes), this file wins.
 
+### Design and quality skills
+
+Installed from audited commits (each has a `SOURCE` file). `impeccable` and `web-design-guidelines` live in `~/.claude/skills/`; the others are vendored in `.claude/skills/`.
+
+- `impeccable`: design direction, critique and polish. User scope, because its minified scripts cannot pass this repo's lint. Skill only: never enable its plugin or hooks (`/impeccable hooks on`), and keep telemetry, update check and hooks off in `.impeccable/config.json`.
+- `web-design-guidelines`: UI and UX review. User scope, because it declares no license and this repo is public.
+- `emil-design-eng`, `review-animations`, `improve-animations`: UI polish and motion review. Implement their advice with GSAP or CSS; never add Motion.
+- `vercel-react-best-practices`: React and Next.js performance.
+- `accessibility`, `best-practices`, `core-web-vitals`, `performance`, `seo`, `web-quality-audit`: web quality.
+
+Rules:
+
+- This file, `docs/design-system.md`, `docs/brand.md` and `docs/business.md` win over any skill: tokens, fonts, tones, copy and facts are not up for redesign without the owner's approval.
+- Do not install or update a skill or MCP server without auditing the diff and pinning a commit or exact version. Never use `@latest`.
+- Do not send personal data, `tmp/` content or unpublished pages to a third-party service through these tools.
+
+### MCP servers
+
+- `next-devtools` (`.mcp.json`): runtime errors, routes and logs from the dev server. Pinned, with telemetry off.
+- `chrome-devtools` (local Claude Code scope, because it holds a machine-specific browser path): Lighthouse, traces and mobile emulation. Keep `--isolated --no-usage-statistics --no-performance-crux`.
+
 ## Before finishing a task
 
 Run all checks and make sure they pass — they mirror the CI pipeline:
