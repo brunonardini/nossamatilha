@@ -50,3 +50,6 @@ graphify-out/
 
 # unit test reports
 /reports
+
+# Claude Code worktrees (local sessions, each a separate git checkout)
+.claude/worktrees/

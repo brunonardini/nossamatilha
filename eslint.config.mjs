@@ -15,6 +15,8 @@ const eslintConfig = defineConfig([
     // Generated unit test reports (coverage HTML, JUnit).
     'coverage/**',
     'reports/**',
+    // Claude Code worktrees: separate checkouts of this repo (gitignored).
+    '.claude/worktrees/**',
   ]),
 ]);
 

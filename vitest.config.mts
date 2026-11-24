@@ -12,7 +12,14 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     include: ['**/*.test.{ts,tsx}'],
-    exclude: ['node_modules/**', '.next/**', 'tmp/**', 'graphify-out/**'],
+    exclude: [
+      'node_modules/**',
+      '.next/**',
+      'tmp/**',
+      'graphify-out/**',
+      // Claude Code worktrees: separate checkouts of this repo (gitignored).
+      '.claude/worktrees/**',
+    ],
     setupFiles: ['./vitest.setup.ts'],
     coverage: {
       provider: 'v8',
