@@ -7,6 +7,7 @@ import { Card } from '@/components/ui/card';
 import { HeroLettering } from '@/components/home/hero-lettering';
 import { HeroMotion } from '@/components/home/hero-motion';
 import { HeroPortrait } from '@/components/home/hero-portrait';
+import { Highlights } from '@/components/home/highlights';
 import { ScrollCueLabel } from '@/components/home/scroll-cue';
 import {
   ArrowDownIcon,
@@ -744,9 +745,10 @@ export default function DesignSystemPage(): ReactNode {
             <p className="font-heading font-bold">Cabeçalho fixo</p>
             <p className="mt-1 text-fg-muted">
               Guia: 56px de altura; <code>min-h-below-header</code> ocupa a
-              primeira tela abaixo dele. Home: 64px (80px no desktop), com o
-              mesmo fundo do hero, sem divisória e o botão “Agendar” no tamanho{' '}
-              <code>sm</code>.
+              primeira tela abaixo dele. Home: 64px (80px no desktop);{' '}
+              <code>min-h-below-home-header</code> faz o hero do celular ocupar
+              a primeira tela, com o mesmo fundo do hero, sem divisória e o
+              botão “Agendar” no tamanho <code>sm</code>.
             </p>
           </Card>
         </div>
@@ -931,6 +933,17 @@ export default function DesignSystemPage(): ReactNode {
         </p>
         <div className="mt-6 flex">
           <ScrollCueLabel />
+        </div>
+
+        <Subhead>Box de destaques (home)</Subhead>
+        <p className="max-w-reading">
+          Logo abaixo do hero, só informativo (sem links). Faixa forest com o
+          destaque (onde e quando), o cartão da área (+1.200 m²) subindo além da
+          faixa com a foto, e os números em lime com uma linha fina entre eles.
+          No celular, tudo empilha dentro da faixa.
+        </p>
+        <div className="-mx-4 mt-6 sm:-mx-8">
+          <Highlights />
         </div>
 
         <Subhead>Foto do guia</Subhead>

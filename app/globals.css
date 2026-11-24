@@ -240,6 +240,11 @@
   min-height: calc(100svh - 3.5rem - 1px);
 }
 
+/* At least the screen height below the 64px home header (mobile hero). */
+@utility min-h-below-home-header {
+  min-height: calc(100svh - 4rem);
+}
+
 /*
  * Hides a GSAP-animated block until its client component sets the starting
  * state (only with JavaScript and without reduced motion), so server-rendered

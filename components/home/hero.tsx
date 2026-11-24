@@ -17,7 +17,7 @@ export function Hero(): ReactNode {
   return (
     <section
       aria-labelledby="hero-titulo"
-      className="tone-light overflow-x-clip"
+      className="tone-light min-h-below-home-header overflow-x-clip lg:min-h-0"
     >
       <div className="mx-auto grid max-w-page px-4 pt-4 pb-16 sm:px-8 sm:pb-24 lg:grid-cols-2 lg:items-center lg:gap-x-16 lg:pt-12">
         {/* Lettering in the logo font, drawn as SVG; the real text is for

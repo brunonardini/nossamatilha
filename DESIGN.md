@@ -118,6 +118,16 @@ components:
     textColor: "{colors.forest}"
     rounded: "{rounded.card}"
     padding: "12px 16px"
+  highlights-band:
+    backgroundColor: "{colors.forest}"
+    textColor: "{colors.cream}"
+    rounded: "{rounded.blob}"
+    padding: "24px"
+  highlights-raised-card:
+    backgroundColor: "{colors.leaf}"
+    textColor: "{colors.white}"
+    rounded: "{rounded.card}"
+    padding: "20px"
   scroll-cue:
     backgroundColor: "{colors.white}"
     textColor: "{colors.forest}"
@@ -265,7 +275,7 @@ Sizes are fluid (`clamp()`, 390px → 1280px), so no breakpoint overrides. Headi
 
 ## Layout
 
-Mobile-first single column that opens into two columns from `md` where content pairs (text + photo, rule + simulator). Sections are full-bleed bands; content sits in `max-w-page` (72rem, centered) with gutters `px-4` (16px) on mobile and `sm:px-8` (32px) above. Section padding is `py-16` (64px) on mobile and `sm:py-24` (96px) above; the stack inside a chapter is title → `mt-4` intro → `mt-10` content. The home hero stacks title → portrait → text and calls to action on mobile, so the title and the photo fill the first screen; from `lg` the text column sits left and the portrait right. The home header is 64px (80px from `lg`); the boarding guide header is 56px high (+1px border); `min-h-below-header` fills the first screen below it, and chapter anchors use scroll margins that land the eyebrow just under it. Grids use `gap-4` (16px) between cards and `gap-10` (40px) between columns.
+Mobile-first single column that opens into two columns from `md` where content pairs (text + photo, rule + simulator). Sections are full-bleed bands; content sits in `max-w-page` (72rem, centered) with gutters `px-4` (16px) on mobile and `sm:px-8` (32px) above. Section padding is `py-16` (64px) on mobile and `sm:py-24` (96px) above; the stack inside a chapter is title → `mt-4` intro → `mt-10` content. The home hero stacks title → portrait → text and calls to action on mobile, so the title and the photo fill the first screen; from `lg` the text column sits left and the portrait right. The home header is 64px (80px from `lg`); the boarding guide header is 56px high (+1px border); `min-h-below-header` fills the first screen below it (`min-h-below-home-header` does the same below the 64px home header, for the mobile hero), and chapter anchors use scroll margins that land the eyebrow just under it. Grids use `gap-4` (16px) between cards and `gap-10` (40px) between columns.
 
 ## Elevation & Depth
 
@@ -318,10 +328,13 @@ Native checkboxes (`accent-lime`, 24px) inside full-row labels of at least 48px:
 ### Hero Portrait (signature, home)
 `HeroPortrait` (`components/home/hero-portrait.tsx`): one composed image (`assets/photos/home/hero-silvia-and-bacon.webp`, transparent) of the leaf frame (a lime → leaf circle with one crisp top-right corner, like the Folha mockup, and a white border) with Silvia and Bacon stepping out of its top edge. The frame fills the bottom of the image; an invisible square box over it places the orbit photos and the seal. On mobile the portrait is pulled 40px up over the hero lettering, so Silvia's head covers part of its last line and she seems to stand in front of the words. Around it: three round photos (80px, 96px from `sm`, 112px from `lg`; 4px white ring, `shadow-card`; top-left, top-right and bottom-right, partly outside the frame) and the **rating seal**: a white `rounded-card` with `shadow-lift`, five `sun` stars spread across the full seal width (no label and no number: the score moves between 4,8 and 5,0, the five stars stay; screen readers get "Avaliação de cinco estrelas no Google") and a divided "Certificação FBAA" line with a brown `AwardIcon`. The orbit photos and the seal pop in with GSAP (`HeroMotion`); the photo itself is never hidden (LCP).
 
-On mobile the home hero shows only the lettering and the portrait (the description and the calls to action appear from `lg`), so the first screen is all image.
+On mobile the home hero shows only the lettering and the portrait (the description and the calls to action appear from `lg`), so the first screen is all image. The mobile hero is at least one screen tall (`min-h-below-home-header`), so the next section always starts below the fold and the fixed scroll cue sits on cream, 24px clear of it.
 
 ### Scroll Cue (home, mobile)
 `ScrollCue` (`components/home/scroll-cue.tsx`): plain text with no box, fixed 24px above the bottom of the screen and centered: "Explore mais" (Outfit bold 16px, `forest`) followed by a 20px `ArrowDownIcon` that bobs gently. It fades out (and drops 16px) over the first 160px of scroll, scrubbed with ScrollTrigger, then retires for good: scrolling back up never brings it back, and a page opened already scrolled never shows it. With reduced motion the arrow stays still and the cue just disappears after those 160px. Decorative (`aria-hidden`, no pointer events), hidden from `lg`. `ScrollCueLabel` is the static label for previews.
+
+### Highlights (home)
+`Highlights` (`components/home/highlights.tsx`, content in `lib/home/highlights.ts`), right below the hero, information only (no links or buttons). A `forest` band (`rounded-blob`, `shadow-lift`, cream text) with four blocks from `lg`: the lead ("Estrutura completa em Resende, RJ" in Outfit bold `text-h3` white with a 24px lime `PawIcon` right after its last word (kept on the same line, tilted 12° to the right), and the check-in window in lime Outfit semibold); the area figure as a raised card that overflows the band 56px up and down (`leaf` → `olive` gradient, `rounded-card`, 1px white/15 border, a soft lime circle in the corner, an 80px `rounded-md` photo with a white ring, the value in Grandstander white); then "24 horas" and "Até 32 cães" in Grandstander lime with cream/85 captions, split by a 1px cream/15 vertical line. On mobile the blocks stack inside the band (the photo beside the value in the card) with one horizontal line, only between "24 horas" and "Até 32 cães". Values never wrap (`whitespace-nowrap`). The area is always "+1.200 m²" (see `docs/business.md`).
 
 ### Bacon Says (signature)
 `BaconSays` (`components/boarding-guide/bacon-says.tsx`): Bacon's illustration beside a speech bubble (`bg-surface-raised`, `rounded-card`, `shadow-card`, Outfit semibold lead). One short, light line per bubble; Bacon never states a rule. The illustrations follow `docs/illustration-guide.md`.
