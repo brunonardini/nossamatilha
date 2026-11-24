@@ -12,6 +12,11 @@ Source of truth for site content. Extracted from the owner's boarding brochure (
 
 Contact channels are not recorded here because this repository is public: phone numbers come from environment variables ([environment.md](environment.md)) and the Instagram URL lives in `lib/contact.ts`. Ask the owner before adding any other contact data (see "Privacy and LGPD" in `AGENTS.md`).
 
+## Reputation
+
+- **Google rating** (Google Maps business profile): varies between 4,8 and 5,0, always shown as five stars. The home hero seal shows only the five stars (no label), never the number (owner's decision).
+- **FBAA certification**: the lead trainer is certified by FBAA (see Team); the seal shows "Certificação FBAA".
+
 ## People
 
 - **Silvia Matrumoto** — CEO, public face of the brand, and the lead trainer certified by FBAA. Usually wears the team uniform (white shirt with green sleeves and brown trim).

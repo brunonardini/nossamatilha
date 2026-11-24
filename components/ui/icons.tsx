@@ -63,6 +63,54 @@ export function ArrowDownIcon(props: IconProps): ReactNode {
   );
 }
 
+/** Chevron pointing right, for "go forward" calls to action. */
+export function ChevronRightIcon(props: IconProps): ReactNode {
+  return (
+    <Svg {...props}>
+      <path d="m9 6 6 6-6 6" />
+    </Svg>
+  );
+}
+
+/** Calendar, used for booking calls to action ("Agendar"). */
+export function CalendarIcon(props: IconProps): ReactNode {
+  return (
+    <Svg {...props}>
+      <rect x="3.5" y="5" width="17" height="15.5" rx="3" />
+      <path d="M8 3v4M16 3v4M3.5 10h17M8 14h.01M12 14h.01M16 14h.01M8 17.5h.01M12 17.5h.01" />
+    </Svg>
+  );
+}
+
+/** Award ribbon, for certifications (e.g. FBAA). */
+export function AwardIcon(props: IconProps): ReactNode {
+  return (
+    <Svg {...props}>
+      <circle cx="12" cy="9" r="6" />
+      <path d="m8.5 13.9-1.5 7.1 5-3 5 3-1.5-7.1" />
+    </Svg>
+  );
+}
+
+/** Five-point star, filled, for ratings (decorative; pair with text). */
+export function StarIcon({
+  className = 'size-6',
+  ...props
+}: IconProps): ReactNode {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      focusable="false"
+      className={className}
+      fill="currentColor"
+      {...props}
+    >
+      <path d="M12 2.8l2.76 5.6 6.18.9-4.47 4.36 1.05 6.15L12 16.9l-5.52 2.9 1.05-6.15L3.06 9.3l6.18-.9L12 2.8Z" />
+    </svg>
+  );
+}
+
 /** List icon, used by the chapter index button. */
 export function ListIcon(props: IconProps): ReactNode {
   return (
