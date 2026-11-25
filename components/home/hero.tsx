@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { HeroLettering } from '@/components/home/hero-lettering';
+import { HeroTitle } from '@/components/home/hero-title';
 import { HeroMotion } from '@/components/home/hero-motion';
 import { HeroPortrait } from '@/components/home/hero-portrait';
 import { ScrollCue } from '@/components/home/scroll-cue';
@@ -20,15 +20,7 @@ export function Hero(): ReactNode {
       className="tone-light min-h-below-home-header overflow-x-clip lg:min-h-0"
     >
       <div className="mx-auto grid max-w-page px-4 pt-4 pb-16 sm:px-8 sm:pb-24 lg:grid-cols-2 lg:items-center lg:gap-x-16 lg:pt-12">
-        {/* Lettering in the logo font, drawn as SVG; the real text is for
-            screen readers and search engines. */}
-        <h1
-          id="hero-titulo"
-          className="text-highlight lg:col-start-1 lg:row-start-1 lg:max-w-md lg:self-end"
-        >
-          <span className="sr-only">A rotina que seu cão merece</span>
-          <HeroLettering />
-        </h1>
+        <HeroTitle className="lg:col-start-1 lg:row-start-1 lg:max-w-md lg:self-end" />
 
         <HeroMotion className="-mt-6 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:mt-0">
           <HeroPortrait />

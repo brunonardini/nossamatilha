@@ -30,6 +30,8 @@
     var(--font-grandstander), 'Arial Rounded MT Bold', system-ui, sans-serif;
   --font-heading: var(--font-outfit), system-ui, sans-serif;
   --font-sans: var(--font-figtree), system-ui, sans-serif;
+  --font-lettering:
+    var(--font-goldplay-alt), var(--font-outfit), system-ui, sans-serif;
 
   /* Fluid type scale (mobile 390px → desktop 1280px) */
   --text-display-xl: clamp(2.5rem, 1.75rem + 3.75vw, 5rem);
@@ -255,6 +257,35 @@
   to {
     visibility: visible;
   }
+}
+
+/*
+ * Hero lettering line: one line of text sized so its ink fills the width of
+ * its container (the parent sets `@container`). The value is the line's ink
+ * width in thousandths of an em, measured in the browser with the font loaded
+ * (e.g. `lettering-fit-6247` for a line 6.247em wide).
+ */
+@utility lettering-fit-* {
+  display: block;
+  white-space: nowrap;
+  font-size: calc(100cqi * 1000 / --value(integer));
+  line-height: 1;
+}
+
+/*
+ * Pulls a lettering line left by its left side bearing (thousandths of an
+ * em), so italic ink starts flush with the column edge.
+ */
+@utility lettering-inset-* {
+  margin-inline-start: calc(--value(integer) * -0.001em);
+}
+
+/*
+ * Extra room above a lettering line (thousandths of an em), for accents that
+ * rise above the capitals (the tilde of "CÃO").
+ */
+@utility lettering-room-* {
+  padding-top: calc(--value(integer) * 0.001em);
 }
 
 @utility motion-pending {

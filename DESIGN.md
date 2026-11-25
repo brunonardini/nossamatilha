@@ -14,6 +14,12 @@ colors:
   ink: "#231F20"
   white: "#FFFFFF"
 typography:
+  lettering:
+    fontFamily: "Goldplay Alt, Outfit, system-ui, sans-serif"
+    fontSize: "fit to column width (lettering-fit-*)"
+    fontWeight: 900
+    fontStyle: italic
+    lineHeight: 1
   display-xl:
     fontFamily: "Grandstander, Arial Rounded MT Bold, system-ui, sans-serif"
     fontSize: "clamp(2.5rem, 1.75rem + 3.75vw, 5rem)"
@@ -252,15 +258,16 @@ Every section sets one tone class; components use semantic utilities that resolv
 
 ## Typography
 
+**Lettering Font:** Goldplay Alt Black Italic 900 (Latinotype, license held by Nossa Matilha; with Outfit, system-ui), hero title only
 **Display Font:** Grandstander Black 900 (with Arial Rounded MT Bold, system-ui)
 **Heading Font:** Outfit 600–800 (with system-ui)
 **Body Font:** Figtree 400–700, with italics (with system-ui)
 
-**Character:** a chunky, hand-drawn rounded display that echoes the logo wordmark, a tight geometric heading face matching the brochure headings, and a friendly, open body face built for phone legibility. Google fonts are self-hosted through `next/font/google` (latin subset);
+**Character:** a chunky, hand-drawn rounded display that echoes the logo wordmark, a tight geometric heading face matching the brochure headings, and a friendly, open body face built for phone legibility. Google fonts are self-hosted through `next/font/google` (latin subset); Goldplay Alt Black Italic is a local woff2 subset (`app/fonts/goldplay-alt-black-italic.woff2`, Latin + Portuguese accents) loaded with `next/font/local`.
 
 ### Hierarchy
 - **Display XL** (`font-display text-display-xl`, 900, 40→80px, 1.05): big single-block titles.
-- **Hero lettering** (`HeroLettering`, `components/home/hero-lettering.tsx`): the home hero title ("A rotina que / seu cão merece") is inline SVG drawn from the outlines of Little Paws, the logo wordmark font (commercial license held by Nossa Matilha; the font file is never shipped). It uses the logo's mix of capitals ("A RotiNa Que / seu cão MeRece"), and both lines fill the column width, the second slightly shorter (letter height 250 vs 300) so it is not overly condensed: glyphs placed by their ink with even gaps, each line scaled horizontally to fit, the tilde enlarged just above the "a", the middle V of "M" lifted (its bottom tip rises well up, opening a tall gap between the legs) so it still reads under Silvia's head, and a round stroke in the fill color to thicken the letters. It takes `currentColor` (`text-highlight`, i.e. `leaf-ink` in the light tone, on the `<h1>`), and the `<h1>` holds the real text in an `sr-only` span. To change the text, regenerate the paths from the font with the same rules.
+- **Hero lettering** (`HeroTitle`, `components/home/hero-title.tsx`; `font-lettering font-black italic uppercase`, `text-highlight`): the home hero title is live text in two lines, "A ROTINA QUE SEU" over "CÃO MERECE". Each line's ink fills the column (`@container` on the title, `lettering-fit-<ink width em×1000>` per line), so the shorter second line comes out bigger and stresses "cão" and "merece"; `lettering-inset-<em×1000>` pulls an italic line flush left and `lettering-room-<em×1000>` makes room for the tilde. The DOM text stays in sentence case (screen readers, search); the capitals come from CSS. When the text changes, re-measure each line in the browser with the font loaded and update those values. Goldplay Alt is for this title only.
 - **Display** (`font-display text-display`, 900, 32→56px, 1.1): story chapter openers, big numbers ("R$ 120,00").
 - **H1** (`text-h1 font-extrabold`, 800, 28→44px, 1.15): section titles, rule chapter titles.
 - **H2** (`text-h2 font-bold`, 700, 22→32px, 1.2): subsection titles.
@@ -331,7 +338,7 @@ Native checkboxes (`accent-lime`, 24px) inside full-row labels of at least 48px:
 **Boarding guide header:** sticky 56px header on translucent cream (`bg-cream/95`, `backdrop-blur-sm`, 1px `border-forest/10`) with the brand mark, a chapter index (native Popover API) and a lime reading-progress bar (`scroll-progress`). Chapter eyebrows number the sections ("01", "02"…).
 
 ### Hero Portrait (signature, home)
-`HeroPortrait` (`components/home/hero-portrait.tsx`): one composed image (`assets/photos/home/hero-silvia-and-bacon.webp`, transparent) of the leaf frame (a lime → leaf circle with one crisp top-right corner, like the Folha mockup, and a white border) with Silvia and Bacon stepping out of its top edge. The frame fills the bottom of the image; an invisible square box over it places the orbit photos and the seal. On mobile the portrait is pulled 40px up over the hero lettering, so Silvia's head covers part of its last line and she seems to stand in front of the words. Around it: three round photos (80px, 96px from `sm`, 112px from `lg`; 4px white ring, `shadow-card`; top-left, top-right and bottom-right, partly outside the frame) and the **rating seal**: a white `rounded-card` with `shadow-lift`, five `sun` stars spread across the full seal width (no label and no number: the score moves between 4,8 and 5,0, the five stars stay; screen readers get "Avaliação de cinco estrelas no Google") and a divided "Certificação FBAA" line with a brown `AwardIcon`. The orbit photos and the seal pop in with GSAP (`HeroMotion`); the photo itself is never hidden (LCP).
+`HeroPortrait` (`components/home/hero-portrait.tsx`): one composed image (`assets/photos/home/hero-silvia-and-bacon.webp`, transparent) of the leaf frame (a lime → leaf circle with one crisp top-right corner, like the Folha mockup, and a white border) with Silvia and Bacon stepping out of its top edge. The frame fills the bottom of the image; an invisible square box over it places the orbit photos and the seal. On mobile the portrait is pulled 24px up over the hero title, so Silvia's head covers part of "MERECE" and she seems to stand in front of the words. Around it: three round photos (80px, 96px from `sm`, 112px from `lg`; 4px white ring, `shadow-card`; top-left, top-right and bottom-right, partly outside the frame) and the **rating seal**: a white `rounded-card` with `shadow-lift`, five `sun` stars spread across the full seal width (no label and no number: the score moves between 4,8 and 5,0, the five stars stay; screen readers get "Avaliação de cinco estrelas no Google") and a divided "Certificação FBAA" line with a brown `AwardIcon`. The orbit photos and the seal pop in with GSAP (`HeroMotion`); the photo itself is never hidden (LCP).
 
 On mobile the home hero shows only the lettering and the portrait (the description and the calls to action appear from `lg`), so the first screen is all image. The mobile hero is at least one screen tall (`min-h-below-home-header`), so the next section always starts below the fold and the fixed scroll cue sits on cream, 24px clear of it.
 

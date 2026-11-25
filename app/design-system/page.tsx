@@ -4,8 +4,8 @@ import { BaconSays } from '@/components/boarding-guide/bacon-says';
 import { GuidePhoto } from '@/components/boarding-guide/guide-photo';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { HeroLettering } from '@/components/home/hero-lettering';
 import { HeroMotion } from '@/components/home/hero-motion';
+import { HeroTitle } from '@/components/home/hero-title';
 import { HeroPortrait } from '@/components/home/hero-portrait';
 import { Highlights } from '@/components/home/highlights';
 import { Services } from '@/components/home/services';
@@ -648,9 +648,9 @@ export default function DesignSystemPage(): ReactNode {
         title="Tipografia"
         intro={
           <p>
-            Três fontes com papéis fixos, e o título do hero desenhado em SVG
-            com a fonte do logo. Tamanhos fluidos, do celular (390px) ao desktop
-            (1280px), sem ajustes por breakpoint.
+            Três fontes com papéis fixos, mais a Goldplay Alt só no título do
+            hero. Tamanhos fluidos, do celular (390px) ao desktop (1280px), sem
+            ajustes por breakpoint.
           </p>
         }
       >
@@ -676,12 +676,11 @@ export default function DesignSystemPage(): ReactNode {
         </div>
         <div className="mt-12 max-w-md">
           <code className="text-caption text-fg-muted">
-            HeroLettering · título do hero em SVG, desenhado com a fonte do logo
-            (Little Paws): as duas linhas na largura toda
+            font-lettering · Goldplay Alt Black Italic, maiúsculas · só o título
+            do hero (HeroTitle): cada linha ocupa a largura toda
+            (lettering-fit-*)
           </code>
-          <div className="mt-2 text-highlight">
-            <HeroLettering />
-          </div>
+          <HeroTitle as="p" className="mt-2" />
         </div>
         <ul className="mt-12 space-y-10">
           {typeScale.map((sample) => (
