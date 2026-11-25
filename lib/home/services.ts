@@ -41,7 +41,7 @@ export const homeServices: readonly HomeService[] = [
     ],
     photo: {
       src: daycare,
-      alt: 'Quatro cães sorridentes sentados no gramado da creche, com a área coberta ao fundo.',
+      alt: 'Quatro cães sorridentes no gramado da creche e, ao fundo, outro cão na área coberta.',
     },
   },
   {
