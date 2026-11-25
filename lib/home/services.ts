@@ -48,7 +48,7 @@ export const homeServices: readonly HomeService[] = [
     id: 'hospedagem',
     number: '02',
     name: 'Hospedagem',
-    meta: 'Diária de 24h · R$ 120 · Reserva com 48h',
+    meta: 'Diária de 24h · Reserva com 48h',
     summary:
       'Brincadeira de dia nas áreas da creche e uma noite tranquila nos quartos de descanso, com plantonista.',
     highlights: [
@@ -81,7 +81,7 @@ export const homeServices: readonly HomeService[] = [
     id: 'adestramento',
     number: '04',
     name: 'Adestramento',
-    meta: 'Adestramento positivo · Certificação FBAA',
+    meta: 'Certificação FBAA',
     summary:
       'Educação com reforço positivo, com a equipe liderada por Silvia Matrumoto, adestradora certificada pela FBAA.',
     highlights: [],
