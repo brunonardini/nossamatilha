@@ -1,9 +1,10 @@
 import type { ReactNode } from 'react';
 import { Hero } from '@/components/home/hero';
 import { Highlights } from '@/components/home/highlights';
+import { Services } from '@/components/home/services';
 import { SiteHeader } from '@/components/home/site-header';
 
-/** Home page. Sections are added one by one (navbar, hero and highlights so far). */
+/** Home page. Sections are added one by one (navbar, hero, highlights and services so far). */
 export default function Home(): ReactNode {
   return (
     <>
@@ -11,6 +12,7 @@ export default function Home(): ReactNode {
       <main>
         <Hero />
         <Highlights />
+        <Services />
       </main>
     </>
   );

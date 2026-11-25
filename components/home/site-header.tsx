@@ -12,7 +12,7 @@ import { CalendarIcon } from '@/components/ui/icons';
  */
 export function SiteHeader(): ReactNode {
   return (
-    <header className="tone-light sticky top-0 z-30">
+    <header className="tone-light">
       <div className="mx-auto flex h-16 max-w-page items-center justify-between gap-4 px-4 sm:px-8 lg:h-20">
         <Link href="/" className="shrink-0">
           <Image

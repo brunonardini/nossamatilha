@@ -128,6 +128,11 @@ components:
     textColor: "{colors.white}"
     rounded: "{rounded.card}"
     padding: "20px"
+  service-card:
+    backgroundColor: "{colors.white}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.card}"
+    padding: "24px"
   scroll-cue:
     backgroundColor: "{colors.white}"
     textColor: "{colors.forest}"
@@ -192,7 +197,7 @@ Earthy greens and browns sampled from the brochure, lit by a lime highlight and 
 
 ### Neutral
 - **Cream** (`cream`): light section background, text on dark sections.
-- **Cream light** (`cream-light`): subtle surface on cream (inset panels). Reserved: not used by any component yet.
+- **Cream light** (`cream-light`): subtle surface on cream: the background of the home services band, so it reads apart from the cream hero.
 - **White** (`white`): cards on light sections, headings on dark sections.
 - **Ink** (`ink`): running text on light sections.
 
@@ -321,7 +326,7 @@ The `tone-alert` block: brown card, cream text, sun heading, `shadow-lift`, `rou
 Native checkboxes (`accent-lime`, 24px) inside full-row labels of at least 48px: `rounded-md bg-surface-raised px-4 py-3`, hover darkens the row, checked rows get a 2px lime ring. Feedback is CSS-only with `.checklist` and `data-checklist-state="empty" | "missing" | "done"` in an `aria-live="polite"` region (see `app/globals.css`). Selects in the simulators are native.
 
 ### Navigation
-**Home header** (`components/home/site-header.tsx`): sticky, 64px (80px from `lg`), `tone-light` with the same cream as the hero and no border or shadow, so header and hero read as one block. Logo PNG (`assets/brand/logo-nossa-matilha.webp`, 48px tall, 56px from `lg`, sized to balance the 40px button) on the left, the brown (secondary) "Agendar" button (`size="sm"`) on the right. The section menu comes once the page sections exist.
+**Home header** (`components/home/site-header.tsx`): not sticky (it scrolls away with the page), 64px (80px from `lg`), `tone-light` with the same cream as the hero and no border or shadow, so header and hero read as one block. Logo PNG (`assets/brand/logo-nossa-matilha.webp`, 48px tall, 56px from `lg`, sized to balance the 40px button) on the left, the brown (secondary) "Agendar" button (`size="sm"`) on the right. The section menu comes once the page sections exist.
 
 **Boarding guide header:** sticky 56px header on translucent cream (`bg-cream/95`, `backdrop-blur-sm`, 1px `border-forest/10`) with the brand mark, a chapter index (native Popover API) and a lime reading-progress bar (`scroll-progress`). Chapter eyebrows number the sections ("01", "02"…).
 
@@ -335,6 +340,9 @@ On mobile the home hero shows only the lettering and the portrait (the descripti
 
 ### Highlights (home)
 `Highlights` (`components/home/highlights.tsx`, content in `lib/home/highlights.ts`), right below the hero, information only (no links or buttons). A `forest` band (`rounded-blob`, `shadow-lift`, cream text) with four blocks from `lg`: the lead ("Estrutura completa em Resende, RJ" in Outfit bold `text-h3` white with a 24px lime `PawIcon` right after its last word (kept on the same line, tilted 12° to the right), and the check-in window in lime Outfit semibold); the area figure as a raised card that overflows the band 56px up and down (`leaf` → `olive` gradient, `rounded-card`, 1px white/15 border, a soft lime circle in the corner, an 80px `rounded-md` photo with a white ring, the value in Grandstander white); then "24 horas" and "Até 32 cães" in Grandstander lime with cream/85 captions, split by a 1px cream/15 vertical line. On mobile the blocks stack inside the band (the photo beside the value in the card) with one horizontal line, only between "24 horas" and "Até 32 cães". Values never wrap (`whitespace-nowrap`). The area is always "+1.200 m²" (see `docs/business.md`).
+
+### Services (home)
+`Services` (`components/home/services.tsx`, content in `lib/home/services.ts`): a `cream-light` band (`py-16`, `sm:py-24`) with the eyebrow "Conheça nossos serviços" (small, uppercase, `text-accent`) above the title "Cada cuidado pensado para o bem-estar do seu cão." (Outfit extrabold `text-h1`), then six cards in the owner's order (Creche, Hospedagem, Banho e tosa, Adestramento, Passeio educativo, Transporte): 1 column, 2 from `sm`, 3 from `lg`. No filters, links or buttons. Each card: white, `rounded-card`, 1px `forest/10` border, `shadow-card`; a 3:2 photo (or, until a photo is chosen, a `cream` placeholder with a faint `forest/15` paw tilted 12°) with a leaf-shaped number badge (white, round with a 2px top-right corner, `shadow-card`); then an optional meta line (caption, bold, uppercase, `leaf-ink`), the name (Outfit extrabold `text-h3`), the summary (`fg-muted`) and optional checked points (a `CheckIcon` in a 20px `lime/35` circle). Copy states only facts from `docs/business.md`; services without confirmed details show just the summary.
 
 ### Bacon Says (signature)
 `BaconSays` (`components/boarding-guide/bacon-says.tsx`): Bacon's illustration beside a speech bubble (`bg-surface-raised`, `rounded-card`, `shadow-card`, Outfit semibold lead). One short, light line per bubble; Bacon never states a rule. The illustrations follow `docs/illustration-guide.md`.

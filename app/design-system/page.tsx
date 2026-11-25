@@ -8,6 +8,7 @@ import { HeroLettering } from '@/components/home/hero-lettering';
 import { HeroMotion } from '@/components/home/hero-motion';
 import { HeroPortrait } from '@/components/home/hero-portrait';
 import { Highlights } from '@/components/home/highlights';
+import { Services } from '@/components/home/services';
 import { ScrollCueLabel } from '@/components/home/scroll-cue';
 import {
   ArrowDownIcon,
@@ -742,13 +743,14 @@ export default function DesignSystemPage(): ReactNode {
             </p>
           </Card>
           <Card accent={false} className="h-full">
-            <p className="font-heading font-bold">Cabeçalho fixo</p>
+            <p className="font-heading font-bold">Cabeçalhos</p>
             <p className="mt-1 text-fg-muted">
-              Guia: 56px de altura; <code>min-h-below-header</code> ocupa a
-              primeira tela abaixo dele. Home: 64px (80px no desktop);{' '}
+              Guia: fixo, 56px de altura; <code>min-h-below-header</code> ocupa
+              a primeira tela abaixo dele. Home: não fixo (rola com a página),
+              64px (80px no desktop), com o mesmo fundo do hero, sem divisória e
+              o botão “Agendar” no tamanho <code>sm</code>;{' '}
               <code>min-h-below-home-header</code> faz o hero do celular ocupar
-              a primeira tela, com o mesmo fundo do hero, sem divisória e o
-              botão “Agendar” no tamanho <code>sm</code>.
+              a primeira tela.
             </p>
           </Card>
         </div>
@@ -944,6 +946,17 @@ export default function DesignSystemPage(): ReactNode {
         </p>
         <div className="-mx-4 mt-6 sm:-mx-8">
           <Highlights />
+        </div>
+
+        <Subhead>Serviços (home)</Subhead>
+        <p className="max-w-reading">
+          Faixa cream-light com sobretítulo pequeno acima do título e seis
+          cartões brancos, sem filtros nem botões: foto 3:2 (ou a patinha clara
+          enquanto a foto não existe) com o número num selo em forma de folha, a
+          linha de dados, o nome, o resumo e os pontos com check.
+        </p>
+        <div className="-mx-4 mt-6 sm:-mx-8">
+          <Services />
         </div>
 
         <Subhead>Foto do guia</Subhead>

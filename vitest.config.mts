@@ -35,6 +35,7 @@ export default defineConfig({
         'lib/boarding-guide/photos.ts',
         'lib/home/hero.ts',
         'lib/home/highlights.ts',
+        'lib/home/services.ts',
       ],
       thresholds: {
         'lib/**/*.ts': {
