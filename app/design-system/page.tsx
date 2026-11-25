@@ -950,9 +950,9 @@ export default function DesignSystemPage(): ReactNode {
         <Subhead>Serviços (home)</Subhead>
         <p className="max-w-reading">
           Faixa cream-light com sobretítulo pequeno acima do título e seis
-          cartões brancos, sem filtros nem botões: foto 3:2 (ou a patinha clara
-          enquanto a foto não existe) com o número num selo em forma de folha, a
-          linha de dados, o nome, o resumo e os pontos com check.
+          cartões brancos, sem filtros nem botões: foto 3:2 com o número num
+          selo em forma de folha, a linha de dados, o nome, o resumo e os pontos
+          com check.
         </p>
         <div className="-mx-4 mt-6 sm:-mx-8">
           <Services />

@@ -1,12 +1,11 @@
 import Image from 'next/image';
 import type { ReactNode } from 'react';
-import { CheckIcon, PawIcon } from '@/components/ui/icons';
+import { CheckIcon } from '@/components/ui/icons';
 import { homeServices, type HomeService } from '@/lib/home/services';
 
 /**
  * Home services section (eyebrow "Conheça nossos serviços", then the title): six information cards on
- * a `cream-light` band, in the owner's order. No filters or buttons. A card
- * without a photo shows a paw placeholder until one is chosen.
+ * a `cream-light` band, in the owner's order. No filters or buttons.
  */
 export function Services(): ReactNode {
   return (
@@ -36,26 +35,17 @@ export function Services(): ReactNode {
   );
 }
 
-/** One service card: photo (or placeholder) with the number badge, then text. */
+/** One service card: photo with the number badge, then text. */
 function ServiceCard({ service }: { service: HomeService }): ReactNode {
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-card border border-forest/10 bg-white shadow-card">
       <div className="relative aspect-3/2 overflow-hidden bg-cream">
-        {service.photo ? (
-          <Image
-            src={service.photo.src}
-            alt={service.photo.alt}
-            sizes="(min-width: 1024px) 22rem, (min-width: 640px) 50vw, 100vw"
-            className="size-full object-cover"
-          />
-        ) : (
-          <div
-            aria-hidden="true"
-            className="flex size-full items-center justify-center"
-          >
-            <PawIcon className="size-16 rotate-12 text-forest/15" />
-          </div>
-        )}
+        <Image
+          src={service.photo.src}
+          alt={service.photo.alt}
+          sizes="(min-width: 1024px) 22rem, (min-width: 640px) 50vw, 100vw"
+          className="size-full object-cover"
+        />
         <span
           aria-hidden="true"
           className="absolute top-3.5 left-3.5 flex size-9 items-center justify-center rounded-full rounded-tr-sm bg-white font-heading text-caption font-extrabold text-forest shadow-card"

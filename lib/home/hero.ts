@@ -1,6 +1,8 @@
 import type { StaticImageData } from 'next/image';
+import orbitArmchair from '@/assets/photos/home/hero-orbit-armchair.webp';
+import orbitBeeCostume from '@/assets/photos/home/hero-orbit-bee-costume.webp';
+import orbitYardTrio from '@/assets/photos/home/hero-orbit-yard-trio.webp';
 import silviaAndBacon from '@/assets/photos/home/hero-silvia-and-bacon.webp';
-import { guidePhotos } from '@/lib/boarding-guide/photos';
 
 /** A photo with its pt-BR alt text. */
 export type HomePhoto = {
@@ -20,11 +22,20 @@ export const heroPortrait: HomePhoto = {
 };
 
 /**
- * The three round photos orbiting the hero portrait. Temporary picks from the
- * boarding guide until the dedicated images are produced.
+ * The three round photos orbiting the hero portrait, in position order: left,
+ * top right, bottom right (square WebP crops, no metadata, dogs only).
  */
 export const heroOrbitPhotos: readonly HomePhoto[] = [
-  guidePhotos.dayAfternoonPlay,
-  guidePhotos.groomingBath,
-  guidePhotos.dayMorningYard,
+  {
+    src: orbitArmchair,
+    alt: 'Um shih-tzu de língua de fora, sentado numa poltroninha rosa de unicórnios.',
+  },
+  {
+    src: orbitBeeCostume,
+    alt: 'Um galgo italiano vestido com uma roupinha de abelha, no gramado.',
+  },
+  {
+    src: orbitYardTrio,
+    alt: 'Três cães sorridentes no gramado olhando para a câmera: um border collie, um são-bernardo filhote e um jack russell.',
+  },
 ];

@@ -1,4 +1,9 @@
 import boarding from '@/assets/photos/home/services/boarding.webp';
+import daycare from '@/assets/photos/home/services/daycare.webp';
+import grooming from '@/assets/photos/home/services/grooming.webp';
+import training from '@/assets/photos/home/services/training.webp';
+import transport from '@/assets/photos/home/services/transport.webp';
+import walk from '@/assets/photos/home/services/walk.webp';
 import type { HomePhoto } from '@/lib/home/hero';
 
 /** A service card of the home services section. */
@@ -12,8 +17,8 @@ export type HomeService = {
   summary: string;
   /** Checked points; empty while the owner has not confirmed details. */
   highlights: readonly string[];
-  /** Card photo; omitted until a suitable photo exists (placeholder shown). */
-  photo?: HomePhoto;
+  /** Card photo (3:2 WebP crop, no metadata). */
+  photo: HomePhoto;
 };
 
 /**
@@ -34,6 +39,10 @@ export const homeServices: readonly HomeService[] = [
       'Mais de 1.200 m² para lazer, recreação e descanso',
       'Equipe treinada como monitor de creche',
     ],
+    photo: {
+      src: daycare,
+      alt: 'Quatro cães sorridentes sentados no gramado da creche, com a área coberta ao fundo.',
+    },
   },
   {
     id: 'hospedagem',
@@ -63,6 +72,10 @@ export const homeServices: readonly HomeService[] = [
       'Pode ser incluído na hospedagem, para o seu cão voltar limpo para casa',
       'Atendimento no espaço que o seu cão já conhece',
     ],
+    photo: {
+      src: grooming,
+      alt: 'Um cão caramelo molhado durante o banho, olhando para a câmera, com a banhista ao lado.',
+    },
   },
   {
     id: 'adestramento',
@@ -72,6 +85,10 @@ export const homeServices: readonly HomeService[] = [
     summary:
       'Educação com reforço positivo, com a equipe liderada por Silvia Matrumoto, adestradora certificada pela FBAA.',
     highlights: [],
+    photo: {
+      src: training,
+      alt: 'Aula de adestramento na área coberta: tutores com seus cães na guia e a turma ouvindo a orientação.',
+    },
   },
   {
     id: 'passeio-educativo',
@@ -79,6 +96,10 @@ export const homeServices: readonly HomeService[] = [
     name: 'Passeio educativo',
     summary: 'Passeios educativos conduzidos pela nossa equipe.',
     highlights: [],
+    photo: {
+      src: walk,
+      alt: 'Condutores com cães na guia sobre um tapete vermelho, num evento ao ar livre.',
+    },
   },
   {
     id: 'transporte',
@@ -86,5 +107,9 @@ export const homeServices: readonly HomeService[] = [
     name: 'Transporte',
     summary: 'Transporte do seu cão, para facilitar a rotina da família.',
     highlights: [],
+    photo: {
+      src: transport,
+      alt: 'Um border collie de língua de fora no banco de trás de um carro, protegido por uma capa de banco.',
+    },
   },
 ];
