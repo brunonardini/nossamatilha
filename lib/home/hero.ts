@@ -1,5 +1,5 @@
 import type { StaticImageData } from 'next/image';
-import orbitArmchair from '@/assets/photos/home/hero-orbit-armchair.webp';
+import orbitCape from '@/assets/photos/home/hero-orbit-cape.webp';
 import orbitBeeCostume from '@/assets/photos/home/hero-orbit-bee-costume.webp';
 import orbitYardTrio from '@/assets/photos/home/hero-orbit-yard-trio.webp';
 import silviaAndBacon from '@/assets/photos/home/hero-silvia-and-bacon.webp';
@@ -27,8 +27,8 @@ export const heroPortrait: HomePhoto = {
  */
 export const heroOrbitPhotos: readonly HomePhoto[] = [
   {
-    src: orbitArmchair,
-    alt: 'Um shih-tzu de língua de fora, sentado numa poltroninha rosa de unicórnios.',
+    src: orbitCape,
+    alt: 'Um spitz caramelo fantasiado com capa preta e gola vermelha, sentado na área coberta da creche.',
   },
   {
     src: orbitBeeCostume,
