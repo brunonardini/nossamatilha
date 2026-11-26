@@ -8,6 +8,9 @@
 /** Official Instagram profile, confirmed as public by the owner. */
 export const INSTAGRAM_URL = 'https://www.instagram.com/nossamatilha.resende/';
 
+/** Instagram handle shown next to the profile link. */
+export const INSTAGRAM_HANDLE = '@nossamatilha.resende';
+
 /** A WhatsApp contact ready to be rendered. */
 export type WhatsAppContact = {
   /** Digits only, with country code (e.g. `5524900000000`). */

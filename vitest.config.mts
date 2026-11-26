@@ -38,6 +38,7 @@ export default defineConfig({
         'lib/home/services.ts',
         'lib/home/team.ts',
         'lib/home/reviews.ts',
+        'lib/home/footer.ts',
       ],
       thresholds: {
         'lib/**/*.ts': {

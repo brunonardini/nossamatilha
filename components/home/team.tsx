@@ -12,6 +12,7 @@ import { teamLeadPhoto, teamPhoto, teamSection } from '@/lib/home/team';
 export function Team(): ReactNode {
   return (
     <section
+      id="equipe"
       aria-labelledby="equipe-titulo"
       className="tone-light px-4 pt-24 pb-16 sm:px-8 sm:pb-24"
     >

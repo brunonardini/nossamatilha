@@ -10,6 +10,7 @@ import { homeServices, type HomeService } from '@/lib/home/services';
 export function Services(): ReactNode {
   return (
     <section
+      id="servicos"
       aria-labelledby="servicos-titulo"
       className="tone-light bg-cream-light px-4 py-16 sm:px-8 sm:py-24"
     >

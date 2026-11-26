@@ -12,6 +12,7 @@ import { googleReviewsUrl, homeReviews } from '@/lib/home/reviews';
 export function Reviews(): ReactNode {
   return (
     <section
+      id="avaliacoes"
       aria-labelledby="avaliacoes-titulo"
       className="tone-light bg-cream-light px-4 py-16 sm:px-8 sm:py-24"
     >

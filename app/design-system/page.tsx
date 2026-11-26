@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Laurel } from '@/components/ui/laurel';
 import { Contact } from '@/components/home/contact';
+import { SiteFooter } from '@/components/home/site-footer';
 import { HeroMotion } from '@/components/home/hero-motion';
 import { HeroTitle } from '@/components/home/hero-title';
 import { HeroPortrait } from '@/components/home/hero-portrait';
@@ -1011,6 +1012,17 @@ export default function DesignSystemPage(): ReactNode {
         </p>
         <div className="-mx-4 mt-6 sm:-mx-8">
           <Contact />
+        </div>
+
+        <Subhead>Rodapé (home)</Subhead>
+        <p className="max-w-reading">
+          Logo e copyright, colunas “Menu” e “Para tutores”, e a coluna
+          “Instagram” com três fotos inclinadas, sem caixa. Embaixo, a foto da
+          área coberta e do gramado, com o telhado se dissolvendo no céu e cães
+          que entram correndo.
+        </p>
+        <div className="-mx-4 mt-6 sm:-mx-8">
+          <SiteFooter />
         </div>
 
         <Subhead>Foto do guia</Subhead>
