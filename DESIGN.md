@@ -139,6 +139,11 @@ components:
     textColor: "{colors.ink}"
     rounded: "{rounded.card}"
     padding: "24px"
+  team-box:
+    backgroundColor: "{colors.forest}"
+    textColor: "{colors.cream}"
+    rounded: "{rounded.blob}"
+    padding: "24px"
   scroll-cue:
     backgroundColor: "{colors.white}"
     textColor: "{colors.forest}"
@@ -350,6 +355,9 @@ On mobile the home hero shows only the lettering and the portrait (the descripti
 
 ### Services (home)
 `Services` (`components/home/services.tsx`, content in `lib/home/services.ts`): a `cream-light` band (`py-16`, `sm:py-24`) with the eyebrow "Conheça nossos serviços" (small, uppercase, `text-accent`) above the title "Cada cuidado pensado para o bem-estar do seu cão." (Outfit extrabold `text-h1`), then six cards in the owner's order (Creche, Hospedagem, Banho e tosa, Adestramento, Passeio educativo, Transporte): 1 column, 2 from `sm`, 3 from `lg`. No filters, links or buttons. Each card: white, `rounded-card`, 1px `forest/10` border, `shadow-card`; a 3:2 photo (WebP, no metadata) with a leaf-shaped number badge (white, round with a 2px top-right corner, `shadow-card`); then an optional meta line (caption, bold, uppercase, `leaf-ink`), the name (Outfit extrabold `text-h3`), the summary (`fg-muted`) and optional checked points (a `CheckIcon` in a 20px `lime/35` circle). Copy states only facts from `docs/business.md`; services without confirmed details show just the summary.
+
+### Team (home)
+`Team` (`components/home/team.tsx`, content in `lib/home/team.ts`): a compact section after the services, on a `tone-light` (cream) background, kept short because more sections follow. One forest `rounded-blob` box with `shadow-lift`, like the highlights band; from `lg` three columns: Silvia, the text and the team photo. Silvia (waist-up cut-out on a transparent background) sits over a lime → leaf leaf (round with a 2px top-right corner) and steps out of the top of the box (`-mt-16` from `lg`, `-mt-20` on mobile, so the section has `pt-24`); the cut-out is clipped to the leaf's curve with `rounded-b-full`. The middle column has the eyebrow in `lime`, the title (Outfit extrabold `text-h2`, white), a one-line intro (`cream/85`) and four facts with a `CheckIcon` in a 20px `lime` circle (2 columns from `sm`). The group photo is small (17rem from `lg`), `rounded-card` with a 2px `white/70` ring and a caption. On mobile everything stacks and Silvia's name and role sit beside her. The whiteboard behind the team in the photo is blurred.
 
 ### Bacon Says (signature)
 `BaconSays` (`components/boarding-guide/bacon-says.tsx`): Bacon's illustration beside a speech bubble (`bg-surface-raised`, `rounded-card`, `shadow-card`, Outfit semibold lead). One short, light line per bubble; Bacon never states a rule. The illustrations follow `docs/illustration-guide.md`.

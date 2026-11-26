@@ -36,6 +36,7 @@ export default defineConfig({
         'lib/home/hero.ts',
         'lib/home/highlights.ts',
         'lib/home/services.ts',
+        'lib/home/team.ts',
       ],
       thresholds: {
         'lib/**/*.ts': {

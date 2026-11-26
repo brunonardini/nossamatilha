@@ -9,6 +9,7 @@ import { HeroTitle } from '@/components/home/hero-title';
 import { HeroPortrait } from '@/components/home/hero-portrait';
 import { Highlights } from '@/components/home/highlights';
 import { Services } from '@/components/home/services';
+import { Team } from '@/components/home/team';
 import { ScrollCueLabel } from '@/components/home/scroll-cue';
 import {
   ArrowDownIcon,
@@ -956,6 +957,17 @@ export default function DesignSystemPage(): ReactNode {
         </p>
         <div className="-mx-4 mt-6 sm:-mx-8">
           <Services />
+        </div>
+
+        <Subhead>Equipe (home)</Subhead>
+        <p className="max-w-reading">
+          Bloco compacto: caixa forest com a Silvia saindo pelo topo sobre a
+          folha lima, título, frase curta e quatro pontos com check no meio, e a
+          foto da equipe pequena com legenda à direita. No celular, tudo
+          empilha.
+        </p>
+        <div className="-mx-4 mt-6 sm:-mx-8">
+          <Team />
         </div>
 
         <Subhead>Foto do guia</Subhead>
