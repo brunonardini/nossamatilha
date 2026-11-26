@@ -154,6 +154,21 @@ components:
     textColor: "{colors.cream}"
     rounded: "{rounded.card}"
     padding: "20px"
+  contact-window:
+    backgroundColor: "{colors.white}"
+    textColor: "{colors.forest}"
+    rounded: "{rounded.blob}"
+    padding: "40px"
+  choice-pill:
+    backgroundColor: "{colors.white}"
+    textColor: "{colors.forest}"
+    rounded: "{rounded.full}"
+    padding: "8px 20px 8px 10px"
+  choice-pill-checked:
+    backgroundColor: "{colors.lime}"
+    textColor: "{colors.forest}"
+    rounded: "{rounded.full}"
+    padding: "8px 20px 8px 10px"
   scroll-cue:
     backgroundColor: "{colors.white}"
     textColor: "{colors.forest}"
@@ -371,6 +386,9 @@ On mobile the home hero shows only the lettering and the portrait (the descripti
 
 ### Reviews (home)
 `Reviews` (`components/home/reviews.tsx`, content in `lib/home/reviews.ts`), after the team, on a `cream-light` band (`py-16`, `sm:py-24`). Title: the eyebrow "O que dizem os tutores" (`text-accent`) and "Cuidado que transforma a rotina." (Outfit extrabold `text-h1`), centered between two `sun` laurels (112px tall, 4px from the title on mobile; 128px and 20px from `sm`); the leaves grow from base to tip and the title rises in when it scrolls in (`ReviewsHeading`). Below, one row of reviews shown as chat messages (`ReviewMessage`): the reviewer's photo (44px, 48px from `sm`, 2px white ring), a bubble with the name (Outfit bold), five 14px `sun` stars, the text and two "read" ticks; bubbles alternate white (avatar left, `rounded-bl-sm`) and `forest` with a `lime` name (avatar right, `rounded-br-sm`). No service tags. `ReviewsCarousel` shows three messages from `lg` and one below, and changes page by itself every 7 seconds, wrapping from the last page to the first (`wrappedPage` in `lib/pagination.ts`): a single `leaf` bar on `forest/10` fills during the current page only (it never shows how many pages there are), then each new message "types in" one after another (avatar pops, three dots bounce, the bubble pops out of them). Controls in one row: previous (white), the bar, pause/play (white, `PauseIcon`/`PlayIcon`) and next (`forest` with a `lime` chevron), 44px round. It holds while hovered or focused and while off screen; when paused the list becomes `aria-live="polite"`. With reduced motion nothing moves, the pause button is hidden and pages change only with the arrows. At the end, a discreet text link "Ver todas as avaliações no Google" (caption, `fg-muted`, underlined; never a button, so visitors stay on the site; new tab). Excerpts are only cut or have typos fixed; reviewers authorized their name and photo (see `AGENTS.md`).
+
+### Contact (home)
+`Contact` (`components/home/contact.tsx`, form in `components/home/contact-form.tsx`, logic in `lib/quote.ts`) is the last section: `tone-light` (cream), `max-w-3xl`, the eyebrow "Orçamento sem compromisso" and the title "Complete a mensagem e envie." centered. The form is a chat window: white, `rounded-blob`, `shadow-lift`, `overflow-hidden`. Its `forest` header shows "Para: Nossa Matilha" (a 40px `lime` circle with a `PawIcon` tilted 12°) and a two-option switch (radio buttons on an `olive` track, a `lime` pill that slides under the chosen option with a CSS transform; Outfit bold caption; `sun` focus ring): "Mensagem pronta" and "Escrever do meu jeito". **Mensagem pronta** is a fill-in sentence in Outfit semibold `text-h3`, `forest`: "Olá, Nossa Matilha! Meu nome é ___ e o meu cão se chama ___." The blanks are inline inputs (hidden labels "Seu nome" and "Nome do seu cão"; Outfit bold `leaf-ink`; a 3px `forest/25` underline, `leaf` on focus, `brown` when invalid) that grow with the text. Then the services group, whose legend says "Quero um orçamento de (escolha um ou mais):": one **choice pill** per service (a real checkbox; 48px tall; white with `shadow-card`, an empty 28px circle with a `forest/25` border; when checked the pill turns `lime` and the circle `forest` with a `lime` check that pops in with GSAP). **Escrever do meu jeito** shows a blank textarea ("Sua mensagem", placeholder "Digite sua mensagem aqui", `cream-light`, 2px border, `rounded-md`). Switching modes fades the new content in and keeps what was typed in both. Below a 1px `forest/10` line, aligned right: the primary button with a `ChatIcon` chip, "Solicitar orçamento no WhatsApp" or, when writing, "Enviar mensagem no WhatsApp", and the purpose note (caption, `fg-muted`): nothing is stored, the data only builds the message. Errors are `brown` captions in pt-BR, and focus goes to the first invalid field. Sending opens `wa.me` with the message in a new tab; the number comes from the environment (`lib/contact.ts`).
 
 ### Bacon Says (signature)
 `BaconSays` (`components/boarding-guide/bacon-says.tsx`): Bacon's illustration beside a speech bubble (`bg-surface-raised`, `rounded-card`, `shadow-card`, Outfit semibold lead). One short, light line per bubble; Bacon never states a rule. The illustrations follow `docs/illustration-guide.md`.

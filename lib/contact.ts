@@ -58,8 +58,11 @@ export function getGroomingWhatsApp(): WhatsAppContact {
 /**
  * Builds a `wa.me` link that opens a chat, optionally with a prefilled message.
  *
- * Only pass generic messages (e.g. "Quero um orçamento"); never put personal
- * data in the URL.
+ * Links rendered in the page only carry generic messages (e.g. "Quero um
+ * orçamento"); never put personal data in them. The one exception is a link
+ * built in the browser when the visitor sends a form (the home quote form):
+ * it carries only what they typed, is opened right away and is never stored
+ * or logged.
  *
  * @param contact - Contact returned by {@link getWhatsApp} or {@link getGroomingWhatsApp}.
  * @param message - Optional prefilled message in pt-BR.
