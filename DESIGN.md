@@ -144,6 +144,16 @@ components:
     textColor: "{colors.cream}"
     rounded: "{rounded.blob}"
     padding: "24px"
+  review-bubble:
+    backgroundColor: "{colors.white}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.card}"
+    padding: "20px"
+  review-bubble-alt:
+    backgroundColor: "{colors.forest}"
+    textColor: "{colors.cream}"
+    rounded: "{rounded.card}"
+    padding: "20px"
   scroll-cue:
     backgroundColor: "{colors.white}"
     textColor: "{colors.forest}"
@@ -307,7 +317,7 @@ Depth is soft and warm: two shadows tinted with forest green, never grey or blac
 
 ## Shapes
 
-Everything is rounded, like the brochure cards and the logo's leash circle. Corners: `rounded-sm` (8px, focus ring, small marks), `rounded-md` (14px, list rows, form rows), `rounded-card` (24px, cards, photos, swatches, bubbles), `rounded-blob` (40px, big illustrative shapes), `rounded-full` (buttons, pills, the card accent bar). Photos are 4:5 and rounded. Borders are rare: 2px `border-current` for checkpoint marks; outline buttons draw the same 2px line as an inset ring (`inset-ring-2 inset-ring-current`) so it adds no height. Icons are 24px line icons, 2px stroke, round caps and joins (`components/ui/icons.tsx`); no brand logos as icons (Instagram is a camera).
+Everything is rounded, like the brochure cards and the logo's leash circle. Corners: `rounded-sm` (8px, focus ring, small marks), `rounded-md` (14px, list rows, form rows), `rounded-card` (24px, cards, photos, swatches, bubbles), `rounded-blob` (40px, big illustrative shapes), `rounded-full` (buttons, pills, the card accent bar). Photos are 4:5 and rounded. Borders are rare: 2px `border-current` for checkpoint marks; outline buttons draw the same 2px line as an inset ring (`inset-ring-2 inset-ring-current`) so it adds no height. Icons are 24px line icons, 2px stroke, round caps and joins (`components/ui/icons.tsx`); no brand logos as icons (Instagram is a camera). `PauseIcon` and `PlayIcon` are for self-changing content (the reviews). The **laurel** (`components/ui/laurel.tsx`) is an award branch drawn in `currentColor`, always `sun` and in pairs around a short centered title (left plain, right `flip`), only where the content is an award or praise (the reviews title); each leaf has `data-leaf` so it can grow in with GSAP.
 
 ## Components
 
@@ -358,6 +368,9 @@ On mobile the home hero shows only the lettering and the portrait (the descripti
 
 ### Team (home)
 `Team` (`components/home/team.tsx`, content in `lib/home/team.ts`): a compact section after the services, on a `tone-light` (cream) background, kept short because more sections follow. One forest `rounded-blob` box with `shadow-lift`, like the highlights band; from `lg` three columns: Silvia, the text and the team photo. Silvia (waist-up cut-out on a transparent background) sits over a lime → leaf leaf (round with a 2px top-right corner) and steps out of the top of the box (`-mt-16` from `lg`, `-mt-20` on mobile, so the section has `pt-24`); the cut-out is clipped to the leaf's curve with `rounded-b-full`. The middle column has the eyebrow in `lime`, the title (Outfit extrabold `text-h2`, white), a one-line intro (`cream/85`) and four facts with a `CheckIcon` in a 20px `lime` circle (2 columns from `sm`). The group photo is small (17rem from `lg`), `rounded-card` with a 2px `white/70` ring and a caption. On mobile everything stacks and Silvia's name and role sit beside her. The whiteboard behind the team in the photo is blurred.
+
+### Reviews (home)
+`Reviews` (`components/home/reviews.tsx`, content in `lib/home/reviews.ts`), after the team, on a `cream-light` band (`py-16`, `sm:py-24`). Title: the eyebrow "O que dizem os tutores" (`text-accent`) and "Cuidado que transforma a rotina." (Outfit extrabold `text-h1`), centered between two `sun` laurels (112px tall, 4px from the title on mobile; 128px and 20px from `sm`); the leaves grow from base to tip and the title rises in when it scrolls in (`ReviewsHeading`). Below, one row of reviews shown as chat messages (`ReviewMessage`): the reviewer's photo (44px, 48px from `sm`, 2px white ring), a bubble with the name (Outfit bold), five 14px `sun` stars, the text and two "read" ticks; bubbles alternate white (avatar left, `rounded-bl-sm`) and `forest` with a `lime` name (avatar right, `rounded-br-sm`). No service tags. `ReviewsCarousel` shows three messages from `lg` and one below, and changes page by itself every 7 seconds, wrapping from the last page to the first (`wrappedPage` in `lib/pagination.ts`): a single `leaf` bar on `forest/10` fills during the current page only (it never shows how many pages there are), then each new message "types in" one after another (avatar pops, three dots bounce, the bubble pops out of them). Controls in one row: previous (white), the bar, pause/play (white, `PauseIcon`/`PlayIcon`) and next (`forest` with a `lime` chevron), 44px round. It holds while hovered or focused and while off screen; when paused the list becomes `aria-live="polite"`. With reduced motion nothing moves, the pause button is hidden and pages change only with the arrows. At the end, a discreet text link "Ver todas as avaliações no Google" (caption, `fg-muted`, underlined; never a button, so visitors stay on the site; new tab). Excerpts are only cut or have typos fixed; reviewers authorized their name and photo (see `AGENTS.md`).
 
 ### Bacon Says (signature)
 `BaconSays` (`components/boarding-guide/bacon-says.tsx`): Bacon's illustration beside a speech bubble (`bg-surface-raised`, `rounded-card`, `shadow-card`, Outfit semibold lead). One short, light line per bubble; Bacon never states a rule. The illustrations follow `docs/illustration-guide.md`.

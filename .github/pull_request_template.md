@@ -37,6 +37,6 @@ Closes #
 - [ ] UI uses design tokens only (no raw hex/arbitrary values), works in both section tones and with reduced motion
 - [ ] Design system changes update `DESIGN.md`, `app/globals.css` and the `/design-system` page together
 - [ ] New environment variables documented in `docs/environment.md` with fictitious values in `.env.example`
-- [ ] No personal or confidential data committed; images stripped of EXIF/GPS metadata
+- [ ] No personal or confidential data committed beyond the approved exceptions in AGENTS.md (e.g. authorized reviews); images stripped of EXIF/GPS metadata
 - [ ] Privacy policy / consent updated if data collection, cookies or third-party services changed
 - [ ] `AGENTS.md`, `README.md`, `docs/` and these templates updated if rules, scripts or checks changed

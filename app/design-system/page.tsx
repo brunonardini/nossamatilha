@@ -4,10 +4,12 @@ import { BaconSays } from '@/components/boarding-guide/bacon-says';
 import { GuidePhoto } from '@/components/boarding-guide/guide-photo';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Laurel } from '@/components/ui/laurel';
 import { HeroMotion } from '@/components/home/hero-motion';
 import { HeroTitle } from '@/components/home/hero-title';
 import { HeroPortrait } from '@/components/home/hero-portrait';
 import { Highlights } from '@/components/home/highlights';
+import { Reviews } from '@/components/home/reviews';
 import { Services } from '@/components/home/services';
 import { Team } from '@/components/home/team';
 import { ScrollCueLabel } from '@/components/home/scroll-cue';
@@ -21,7 +23,9 @@ import {
   ChevronRightIcon,
   CrossIcon,
   ListIcon,
+  PauseIcon,
   PawIcon,
+  PlayIcon,
   StarIcon,
 } from '@/components/ui/icons';
 import { guidePhotos } from '@/lib/boarding-guide/photos';
@@ -339,6 +343,8 @@ const icons: Icon[] = [
   { name: 'StarIcon', render: <StarIcon className="size-6 text-sun" /> },
   { name: 'CameraIcon', render: <CameraIcon /> },
   { name: 'PawIcon', render: <PawIcon /> },
+  { name: 'PauseIcon', render: <PauseIcon /> },
+  { name: 'PlayIcon', render: <PlayIcon /> },
 ];
 
 type Easing = { token: string; value: string; use: string };
@@ -826,6 +832,19 @@ export default function DesignSystemPage(): ReactNode {
             </li>
           ))}
         </ul>
+        <Subhead>Louros</Subhead>
+        <p className="max-w-reading">
+          Ramo de premiação em sun, sempre em par ao redor de um título curto e
+          centralizado (o da direita espelhado). Só onde o conteúdo é elogio ou
+          prêmio, como as avaliações.
+        </p>
+        <div className="mt-6 flex items-center gap-3">
+          <Laurel className="h-24 w-12 text-sun" />
+          <p className="font-heading text-h2 font-extrabold text-heading">
+            Título curto
+          </p>
+          <Laurel flip className="h-24 w-12 text-sun" />
+        </div>
       </Section>
 
       <Section
@@ -968,6 +987,18 @@ export default function DesignSystemPage(): ReactNode {
         </p>
         <div className="-mx-4 mt-6 sm:-mx-8">
           <Team />
+        </div>
+
+        <Subhead>Avaliações (home)</Subhead>
+        <p className="max-w-reading">
+          Título entre louros e avaliações como mensagens de conversa, numa
+          fileira só (três no desktop, uma no celular) que troca sozinha: uma
+          barra única mostra o tempo da página atual, as mensagens chegam com
+          “digitando…” e há botões de anterior, pausa e próxima. O link para o
+          Google é discreto, em texto.
+        </p>
+        <div className="-mx-4 mt-6 sm:-mx-8">
+          <Reviews />
         </div>
 
         <Subhead>Foto do guia</Subhead>

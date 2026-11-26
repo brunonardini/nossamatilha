@@ -40,6 +40,7 @@ Contact data shown on the site must be confirmed by the owner as public. Phone n
 **Approved exceptions** (owner's consent):
 
 - **Silvia Matrumoto**, CEO and public face of the brand: her name and photos (`tmp/marca/fotos/silvia`) may be used on the site and in docs. **Bacon**, her dog, is the site's narrator.
+- **Customers quoted in the home reviews** (`lib/home/reviews.ts`): they authorized the owner to publish their name, Google profile photo and review text. Excerpts may only be cut or have typos fixed, never reworded. Adding another review needs the same authorization first.
 - **Photos of staff and customers' dogs** in `tmp/marca/fotos`: the business holds signed image-use authorizations, so they may be published. Still strip metadata and never publish documents (vaccination cards, forms) visible in a photo.
 
 **Material in `tmp/`** may contain personal data (e.g. people in photos, a vaccination card with the owner's name). Before publishing any of it:
