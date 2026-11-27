@@ -34,7 +34,7 @@ export const homeServices: readonly HomeService[] = [
     highlights: [
       'Grupos por nível de energia, não por porte',
       'Mais de 1.200 m² para lazer, recreação e descanso',
-      'Equipe treinada como monitor de creche',
+      'Monitores com experiência em cuidado de cães',
     ],
     photo: {
       src: daycare,
@@ -51,6 +51,7 @@ export const homeServices: readonly HomeService[] = [
       'Monitoramento 24h por equipe qualificada',
       'Equipe com formação de auxiliar veterinário',
       'Até 32 cães, com atenção a cada um',
+      'Dormitórios fechados, climatizados e aconchegantes',
     ],
     photo: {
       src: boarding,
@@ -58,50 +59,20 @@ export const homeServices: readonly HomeService[] = [
     },
   },
   {
-    id: 'banho-e-tosa',
-    name: 'Banho e tosa',
-    meta: 'Parceria Encantacão · Aqui no espaço',
-    summary:
-      'Banho e tosa feitos no nosso espaço pela parceira Encantacão, com agendamento direto com ela.',
-    highlights: [
-      'Pode ser incluído na hospedagem, para o seu cão voltar limpo para casa',
-      'Atendimento no espaço que o seu cão já conhece',
-    ],
-    photo: {
-      src: grooming,
-      alt: 'Um cão caramelo molhado durante o banho, olhando para a câmera, com a banhista ao lado.',
-    },
-  },
-  {
     id: 'adestramento',
     name: 'Adestramento',
     meta: 'Certificação FBAA',
     summary:
-      'Educação com reforço positivo, com a equipe liderada por Silvia Matrumoto, adestradora certificada pela FBAA.',
-    highlights: [],
+      'Educação com reforço positivo, com profissionais qualificados, em um espaço adequado com as devidas condições sanitárias.',
+    highlights: [
+      'Treinamento sem petiscos',
+      'Certificado de conclusão',
+      'Espaço de socialização com outros cães',
+      'Aulas com o tutor',
+    ],
     photo: {
       src: training,
       alt: 'Aula de adestramento na área coberta: tutores com seus cães na guia e a turma ouvindo a orientação.',
-    },
-  },
-  {
-    id: 'passeio-educativo',
-    name: 'Passeio educativo',
-    summary: 'Passeios educativos conduzidos pela nossa equipe.',
-    highlights: [],
-    photo: {
-      src: walk,
-      alt: 'Condutores com cães na guia sobre um tapete vermelho, num evento ao ar livre.',
-    },
-  },
-  {
-    id: 'transporte',
-    name: 'Transporte',
-    summary: 'Transporte do seu cão, para facilitar a rotina da família.',
-    highlights: [],
-    photo: {
-      src: transport,
-      alt: 'Um border collie de língua de fora no banco de trás de um carro, protegido por uma capa de banco.',
     },
   },
 ];

@@ -21,13 +21,8 @@ export const teamSection: {
     'A Silvia Matrumoto, CEO e adestradora certificada pela FBAA, acompanha de perto a rotina dos cães, com uma equipe em formação contínua.',
   leadName: 'Silvia Matrumoto',
   leadRole: 'CEO · Certificação FBAA',
-  facts: [
-    'Formação de auxiliar veterinário',
-    'Monitores de creche',
-    'Formação contínua',
-    'Plantão 24 horas',
-  ],
-  teamCaption: 'Nossa equipe na área coberta da creche.',
+  facts: [],
+  teamCaption: 'Nossa equipe.',
 };
 
 /**

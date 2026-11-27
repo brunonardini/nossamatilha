@@ -28,8 +28,7 @@ export function Hero(): ReactNode {
 
         <div className="hidden lg:col-start-1 lg:block lg:row-start-2 lg:mt-8 lg:self-start">
           <p className="max-w-reading text-lead">
-            Creche, hospedagem 24h, banho e tosa, adestramento positivo,
-            passeios educativos e transporte. Cuidado completo com uma equipe
+            Adestramento, creche e hospedagem. Cuidado completo com uma equipe
             especializada e apaixonada pelo que faz.
           </p>
           {/* No actions yet: the target sections are built later. */}
