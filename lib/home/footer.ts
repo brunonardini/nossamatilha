@@ -19,7 +19,7 @@ export const footerMenu: readonly FooterLink[] = [
   { href: '/#servicos', label: 'Serviços' },
   { href: '/#equipe', label: 'Equipe' },
   { href: '/#avaliacoes', label: 'Avaliações' },
-  { href: '/#orcamento', label: 'Orçamento' },
+  { href: '/#contato', label: 'Contato' },
 ];
 
 /** Pages for tutors. The privacy policy page is required by AGENTS.md. */

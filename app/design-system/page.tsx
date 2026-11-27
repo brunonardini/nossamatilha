@@ -1005,10 +1005,9 @@ export default function DesignSystemPage(): ReactNode {
 
         <Subhead>Contato (home)</Subhead>
         <p className="max-w-reading">
-          Formulário em forma de janela de conversa: seletor entre “Mensagem
-          pronta” (frase com lacunas e pílulas de serviço com check, várias ao
-          mesmo tempo) e “Escrever do meu jeito” (caixa de texto em branco). O
-          botão muda de texto conforme o modo e abre o WhatsApp; nada é salvo.
+          Dois cartões lado a lado, sem formulário: WhatsApp (cartão verde
+          escuro, o canal principal, com uma mensagem genérica pronta) e
+          Instagram (cartão branco com três fotos inclinadas e o perfil).
         </p>
         <div className="-mx-4 mt-6 sm:-mx-8">
           <Contact />

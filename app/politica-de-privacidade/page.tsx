@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 /** Date of the last change to this policy (update it with every change). */
-const UPDATED_AT = '26 de novembro de 2026';
+const UPDATED_AT = '27 de novembro de 2026';
 
 /** A numbered policy section. */
 function Section({
@@ -36,7 +36,7 @@ function Section({
  * Privacy policy (LGPD), linked from the footer. It describes only what the
  * site and the business actually do (see AGENTS.md "Privacy and LGPD" and
  * docs/business.md): the site stores nothing, sets no cookies and loads no
- * trackers; the quote form only builds a WhatsApp message. Update it, and
+ * trackers; contact links only open WhatsApp or Instagram. Update it, and
  * `UPDATED_AT`, whenever data collection, cookies or third parties change.
  */
 export default function PrivacyPolicyPage(): ReactNode {
@@ -75,12 +75,9 @@ export default function PrivacyPolicyPage(): ReactNode {
               login, banco de dados nem armazenamento no seu navegador.
             </p>
             <p>
-              O formulário de orçamento pede apenas o necessário: o seu nome, o
-              nome do seu cão e os serviços de interesse (ou uma mensagem
-              escrita por você). Esses dados servem só para montar a mensagem.
-              Ao clicar no botão, o WhatsApp abre com o texto pronto, e é você
-              quem decide se envia. Nada do que você digita é guardado ou
-              registrado pelo site.
+              O site não tem formulários. Os botões de contato apenas abrem o
+              nosso WhatsApp, com uma mensagem genérica que você pode editar
+              antes de enviar, ou o nosso perfil no Instagram.
             </p>
           </Section>
 
