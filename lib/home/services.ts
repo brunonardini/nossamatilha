@@ -9,8 +9,6 @@ import type { HomePhoto } from '@/lib/home/hero';
 /** A service card of the home services section. */
 export type HomeService = {
   id: string;
-  /** Two-digit order shown in the card badge ("01"). */
-  number: string;
   name: string;
   /** Short facts line above the name; omitted while unconfirmed. */
   meta?: string;
@@ -29,7 +27,6 @@ export type HomeService = {
 export const homeServices: readonly HomeService[] = [
   {
     id: 'creche',
-    number: '01',
     name: 'Creche',
     meta: '7h às 18h · Gramado e área coberta',
     summary:
@@ -46,7 +43,6 @@ export const homeServices: readonly HomeService[] = [
   },
   {
     id: 'hospedagem',
-    number: '02',
     name: 'Hospedagem',
     meta: 'Diária de 24h · Reserva com 48h',
     summary:
@@ -63,7 +59,6 @@ export const homeServices: readonly HomeService[] = [
   },
   {
     id: 'banho-e-tosa',
-    number: '03',
     name: 'Banho e tosa',
     meta: 'Parceria Encantacão · Aqui no espaço',
     summary:
@@ -79,7 +74,6 @@ export const homeServices: readonly HomeService[] = [
   },
   {
     id: 'adestramento',
-    number: '04',
     name: 'Adestramento',
     meta: 'Certificação FBAA',
     summary:
@@ -92,7 +86,6 @@ export const homeServices: readonly HomeService[] = [
   },
   {
     id: 'passeio-educativo',
-    number: '05',
     name: 'Passeio educativo',
     summary: 'Passeios educativos conduzidos pela nossa equipe.',
     highlights: [],
@@ -103,7 +96,6 @@ export const homeServices: readonly HomeService[] = [
   },
   {
     id: 'transporte',
-    number: '06',
     name: 'Transporte',
     summary: 'Transporte do seu cão, para facilitar a rotina da família.',
     highlights: [],

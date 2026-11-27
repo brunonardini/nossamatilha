@@ -36,23 +36,17 @@ export function Services(): ReactNode {
   );
 }
 
-/** One service card: photo with the number badge, then text. */
+/** One service card: photo, then text. */
 function ServiceCard({ service }: { service: HomeService }): ReactNode {
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-card border border-forest/10 bg-white shadow-card">
-      <div className="relative aspect-3/2 overflow-hidden bg-cream">
+      <div className="aspect-3/2 overflow-hidden bg-cream">
         <Image
           src={service.photo.src}
           alt={service.photo.alt}
           sizes="(min-width: 1024px) 22rem, (min-width: 640px) 50vw, 100vw"
           className="size-full object-cover"
         />
-        <span
-          aria-hidden="true"
-          className="absolute top-3.5 left-3.5 flex size-9 items-center justify-center rounded-full rounded-tr-sm bg-white font-heading text-caption font-extrabold text-forest shadow-card"
-        >
-          {service.number}
-        </span>
       </div>
 
       <div className="flex flex-1 flex-col gap-4 p-6">
