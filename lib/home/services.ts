@@ -1,9 +1,6 @@
 import boarding from '@/assets/photos/home/services/boarding.webp';
 import daycare from '@/assets/photos/home/services/daycare.webp';
-import grooming from '@/assets/photos/home/services/grooming.webp';
 import training from '@/assets/photos/home/services/training.webp';
-import transport from '@/assets/photos/home/services/transport.webp';
-import walk from '@/assets/photos/home/services/walk.webp';
 import type { HomePhoto } from '@/lib/home/hero';
 
 /** A service card of the home services section. */

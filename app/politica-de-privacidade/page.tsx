@@ -3,12 +3,7 @@ import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { SiteFooter } from '@/components/home/site-footer';
 import { SiteHeader } from '@/components/home/site-header';
-import {
-  getWhatsApp,
-  INSTAGRAM_HANDLE,
-  INSTAGRAM_URL,
-  whatsAppLink,
-} from '@/lib/contact';
+import { INSTAGRAM_HANDLE, INSTAGRAM_URL } from '@/lib/contact';
 
 export const metadata: Metadata = {
   title: 'Política de Privacidade | Nossa Matilha',
@@ -45,8 +40,6 @@ function Section({
  * `UPDATED_AT`, whenever data collection, cookies or third parties change.
  */
 export default function PrivacyPolicyPage(): ReactNode {
-  const whatsApp = getWhatsApp();
-  const whatsAppHref = whatsAppLink(whatsApp);
   const link = 'font-semibold text-leaf-ink underline underline-offset-4';
 
   return (

@@ -1,12 +1,10 @@
 import type { StaticImageData } from 'next/image';
-import anaPaula from '@/assets/photos/home/reviews/ana-paula.webp';
+import andreaPimentel from '@/assets/photos/home/reviews/andrea-pimentel.webp';
 import ariana from '@/assets/photos/home/reviews/ariana.webp';
-import dinah from '@/assets/photos/home/reviews/dinah.webp';
 import fabiano from '@/assets/photos/home/reviews/fabiano.webp';
 import leonardo from '@/assets/photos/home/reviews/leonardo.webp';
 import luciene from '@/assets/photos/home/reviews/luciene.webp';
 import paolla from '@/assets/photos/home/reviews/paolla.webp';
-import patriciaCabral from '@/assets/photos/home/reviews/patricia-cabral.webp';
 import patriciaSuane from '@/assets/photos/home/reviews/patricia-suane.webp';
 
 /**
@@ -28,12 +26,6 @@ export const googleReviewsUrl =
 
 /** Reviews in display order: the strongest first. */
 export const homeReviews: readonly HomeReview[] = [
-  {
-    id: 'ana-paula',
-    name: 'Ana Paula Alvarenga Tibo',
-    avatar: anaPaula,
-    text: 'As fotos e atualizações me deixaram muito tranquila, e o melhor de tudo foi ver o quanto ele estava feliz, à vontade e se divertindo. Isso não tem preço.',
-  },
   {
     id: 'fabiano',
     name: 'Fabiano Dutra',
@@ -59,18 +51,6 @@ export const homeReviews: readonly HomeReview[] = [
     text: 'Vocês o acolheram no momento mais precioso e delicado, e a transformação dele é emocionante. Hoje ele é outro cachorro, muito mais feliz, sociável e saudável!',
   },
   {
-    id: 'dinah',
-    name: 'Dinah Magalhães Bogossian',
-    avatar: dinah,
-    text: 'Hospedei minha chihuahua por dois dias e fiquei muito feliz por todo carinho e cuidado com ela. Me mandavam fotos e vídeos em vários momentos do dia.',
-  },
-  {
-    id: 'patricia-cabral',
-    name: 'Patrícia Cabral',
-    avatar: patriciaCabral,
-    text: 'A Silvia foi muito atenciosa, passando diariamente feedback e vídeos sobre o Gigante. Foi a primeira vez dele dormindo fora de casa e foram cuidadosos na adaptação.',
-  },
-  {
     id: 'leonardo',
     name: 'Leonardo Pimentel',
     avatar: leonardo,
@@ -81,5 +61,11 @@ export const homeReviews: readonly HomeReview[] = [
     name: 'Patrícia Suane',
     avatar: patriciaSuane,
     text: 'Minha cachorrinha é muito medrosa, voltou tranquila e sem sinais de estresse. Fomos muito bem acolhidas.',
+  },
+  {
+    id: 'andrea-pimentel',
+    name: 'Andréa Pimentel',
+    avatar: andreaPimentel,
+    text: 'Nós super recomendamos o Nossa Matilha! Lá nosso cachorro, o Bacana, está sempre feliz! Volta exausto e contentíssimo! Depois do Nossa Matilha, ele é outro: super sociável, obediente… recomendo muito!',
   },
 ];
