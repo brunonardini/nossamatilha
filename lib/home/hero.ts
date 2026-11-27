@@ -1,6 +1,6 @@
 import type { StaticImageData } from 'next/image';
-import orbitCape from '@/assets/photos/home/hero-orbit-cape.webp';
-import orbitBeeCostume from '@/assets/photos/home/hero-orbit-bee-costume.webp';
+import orbitLyingFluffy from '@/assets/photos/home/hero-orbit-lying-fluffy.webp';
+import orbitSmilingBully from '@/assets/photos/home/hero-orbit-smiling-bully.webp';
 import orbitYardTrio from '@/assets/photos/home/hero-orbit-yard-trio.webp';
 import silviaAndBacon from '@/assets/photos/home/hero-silvia-and-bacon.webp';
 
@@ -27,12 +27,12 @@ export const heroPortrait: HomePhoto = {
  */
 export const heroOrbitPhotos: readonly HomePhoto[] = [
   {
-    src: orbitCape,
-    alt: 'Um spitz caramelo fantasiado com capa preta e gola vermelha, sentado na área coberta da creche.',
+    src: orbitLyingFluffy,
+    alt: 'Um cão peludo preto e caramelo deitado no chão da área coberta da creche, com a língua de fora.',
   },
   {
-    src: orbitBeeCostume,
-    alt: 'Um galgo italiano vestido com uma roupinha de abelha, no gramado.',
+    src: orbitSmilingBully,
+    alt: 'Um bully caramelo de olhos fechados e língua de fora, sorrindo no gramado ao lado de uma bolinha azul.',
   },
   {
     src: orbitYardTrio,

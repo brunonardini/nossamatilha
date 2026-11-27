@@ -6,9 +6,9 @@ import dachshund from '@/assets/photos/footer/dog-dachshund.webp';
 import golden from '@/assets/photos/footer/dog-golden.webp';
 import jackRussell from '@/assets/photos/footer/dog-jack-russell.webp';
 import scene from '@/assets/photos/footer/scene.webp';
-import beeCostume from '@/assets/photos/home/hero-orbit-bee-costume.webp';
-import cape from '@/assets/photos/home/hero-orbit-cape.webp';
-import yardTrio from '@/assets/photos/home/hero-orbit-yard-trio.webp';
+import snapshotBorderCollie from '@/assets/photos/footer/snapshot-border-collie.webp';
+import snapshotEarScratch from '@/assets/photos/footer/snapshot-ear-scratch.webp';
+import snapshotYardTrio from '@/assets/photos/footer/snapshot-yard-trio.webp';
 import type { HomePhoto } from '@/lib/home/hero';
 
 /** A footer link: an anchor on the home page or another route. */
@@ -114,9 +114,12 @@ export const footerDogs: readonly FooterDog[] = [
   },
 ];
 
-/** Three snapshots next to the Instagram link (photos already on the site). */
+/**
+ * Three snapshots next to the Instagram link (square WebP crops, no metadata,
+ * dogs only; decorative).
+ */
 export const footerSnapshots: readonly StaticImageData[] = [
-  yardTrio,
-  cape,
-  beeCostume,
+  snapshotYardTrio,
+  snapshotEarScratch,
+  snapshotBorderCollie,
 ];
