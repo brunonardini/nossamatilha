@@ -54,7 +54,7 @@ Contact data shown on the site must be confirmed by the owner as public. Phone n
 - Collect only the minimum data needed (data minimization) and state the purpose next to the form. This applies to the planned online registration form (ficha cadastral), which today is exchanged on WhatsApp: it holds personal and pet health data and needs a privacy review before being built.
 - Do not store or log form data in the repository, build output or client storage; send it straight to the agreed channel.
 - Do not load analytics, marketing pixels or other non-essential cookies/trackers before the visitor consents; essential cookies only by default.
-- Keep a privacy policy page ("Política de Privacidade", pt-BR) linked in the footer, and update it whenever data collection, cookies or third-party services change.
+- Keep the privacy policy page ("Política de Privacidade", `app/politica-de-privacidade/page.tsx`) linked in the footer, and update it, with its `UPDATED_AT` date, whenever data collection, cookies, hosting or third-party services change. It states only what the site and the business actually do; legal wording needs the owner's review.
 - Prefer embeds and third-party scripts that do not track visitors (or load them only after consent).
 
 When unsure whether some data is personal or confidential, treat it as such and ask the owner.
