@@ -3,7 +3,7 @@ import { HeroTitle } from '@/components/home/hero-title';
 import { HeroMotion } from '@/components/home/hero-motion';
 import { HeroPortrait } from '@/components/home/hero-portrait';
 import { ScrollCue } from '@/components/home/scroll-cue';
-import { Button } from '@/components/ui/button';
+import { ButtonAnchor } from '@/components/ui/button';
 import { ChevronRightIcon } from '@/components/ui/icons';
 
 /**
@@ -31,12 +31,16 @@ export function Hero(): ReactNode {
             Adestramento, creche e hospedagem. Cuidado completo com uma equipe
             especializada e apaixonada pelo que faz.
           </p>
-          {/* No actions yet: the target sections are built later. */}
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-            <Button icon={<ChevronRightIcon className="size-5" />}>
+            <ButtonAnchor
+              href="/#servicos"
+              icon={<ChevronRightIcon className="size-5" />}
+            >
               Explorar serviços
-            </Button>
-            <Button variant="link">Solicitar avaliação</Button>
+            </ButtonAnchor>
+            <ButtonAnchor href="/#contato" variant="link">
+              Solicitar avaliação
+            </ButtonAnchor>
           </div>
         </div>
       </div>

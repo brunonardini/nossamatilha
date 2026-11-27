@@ -2,12 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import logo from '@/assets/brand/logo-nossa-matilha.webp';
-import { Button } from '@/components/ui/button';
+import { ButtonAnchor } from '@/components/ui/button';
 import { CalendarIcon } from '@/components/ui/icons';
 
 /**
- * Sticky site header of the home page: logo on the left, booking action on
- * the right. It shares the hero background (no border or shadow) so both read
+ * Site header of the home page: logo on the left, the booking action on the
+ * right ("Agendar", which glides to the contact section). It shares the hero background (no border or shadow) so both read
  * as one block. The section menu comes later, once every section exists.
  */
 export function SiteHeader(): ReactNode {
@@ -23,14 +23,14 @@ export function SiteHeader(): ReactNode {
             className="h-12 w-auto lg:h-14"
           />
         </Link>
-        {/* No action yet: the booking flow is built later. */}
-        <Button
+        <ButtonAnchor
+          href="/#contato"
           variant="secondary"
           size="sm"
           icon={<CalendarIcon className="size-4" />}
         >
           Agendar
-        </Button>
+        </ButtonAnchor>
       </div>
     </header>
   );

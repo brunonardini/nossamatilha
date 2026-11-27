@@ -1156,6 +1156,12 @@ export default function DesignSystemPage(): ReactNode {
           Sequências e efeitos ligados à rolagem usam GSAP, só em componentes de
           cliente e sempre dentro de <code>gsap.matchMedia()</code>.
         </p>
+        <p className="mt-4 max-w-reading">
+          Links para seções da mesma página (“Agendar”, “Explorar serviços”,
+          “Solicitar avaliação”, o menu do rodapé) rolam suavemente até o
+          destino; a troca de página continua instantânea, e com movimento
+          reduzido o salto é direto.
+        </p>
       </Section>
 
       <Section id="regras" number={10} title="Faça e não faça" tone="dark">

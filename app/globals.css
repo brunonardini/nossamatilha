@@ -426,6 +426,9 @@
   html {
     -webkit-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
+    /* In-page anchors glide (off with reduced motion, below). Route changes
+       stay instant through `data-scroll-behavior` in app/layout.tsx. */
+    scroll-behavior: smooth;
   }
 
   body {

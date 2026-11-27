@@ -169,6 +169,45 @@ export function ButtonLink({
   );
 }
 
+/** Props for {@link ButtonAnchor}. */
+export type ButtonAnchorProps = ComponentProps<'a'> &
+  ButtonOwnProps & {
+    /** In-page anchor, e.g. `/#contato` (works from other pages too). */
+    href: string;
+    children: ReactNode;
+  };
+
+/**
+ * A native anchor styled as a button, for links to a section (`#id`). Unlike
+ * {@link ButtonLink}, every click scrolls to the target, even when the URL
+ * already ends in that hash (Next's `Link` skips same-URL clicks); the glide
+ * comes from `scroll-behavior: smooth` in `app/globals.css`.
+ */
+export function ButtonAnchor({
+  variant = 'primary',
+  size = 'md',
+  icon,
+  className,
+  children,
+  ...props
+}: ButtonAnchorProps): ReactNode {
+  return (
+    <a
+      className={buttonClasses(
+        variant,
+        className,
+        Boolean(icon && chips[variant]),
+        size,
+      )}
+      {...props}
+    >
+      <ButtonContent variant={variant} size={size} icon={icon}>
+        {children}
+      </ButtonContent>
+    </a>
+  );
+}
+
 /** Props for {@link Button}. */
 export type ButtonProps = ComponentProps<'button'> & ButtonOwnProps;
 

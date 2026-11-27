@@ -332,7 +332,7 @@ Everything is rounded, like the brochure cards and the logo's leash circle. Corn
 ## Components
 
 ### Buttons
-Tactile and confident: a pill that lifts on hover. `Button` and `ButtonLink` (`components/ui/button.tsx`).
+Tactile and confident: a pill that lifts on hover. `Button`, `ButtonLink` and `ButtonAnchor` (`components/ui/button.tsx`); `ButtonAnchor` is a native `<a>` for in-page anchors (`/#contato`), so every click scrolls, even when the URL already has that hash.
 - **Shape:** pill (`rounded-full`), 48px tall (`min-h-12`), `px-6 py-2.5` so the 1.6 line height never pushes it past 48px, Outfit bold 16px.
 - **Sizes** (`size` prop): `md` (default) is the shape above, for actions inside the page. `sm` is 40px tall, `px-4 py-1.5`, 6px gap, a 32px icon chip (`py-1 pr-1 pl-4`) and 16px icons, still Outfit bold 16px; for compact places like the site header. Any variant takes either size.
 - **Primary:** lime with forest text and `shadow-card`. The main action of a block (WhatsApp).
@@ -358,7 +358,7 @@ The `tone-alert` block: brown card, cream text, sun heading, `shadow-lift`, `rou
 Native checkboxes (`accent-lime`, 24px) inside full-row labels of at least 48px: `rounded-md bg-surface-raised px-4 py-3`, hover darkens the row, checked rows get a 2px lime ring. Feedback is CSS-only with `.checklist` and `data-checklist-state="empty" | "missing" | "done"` in an `aria-live="polite"` region (see `app/globals.css`). Selects in the simulators are native.
 
 ### Navigation
-**Home header** (`components/home/site-header.tsx`): not sticky (it scrolls away with the page), 64px (80px from `lg`), `tone-light` with the same cream as the hero and no border or shadow, so header and hero read as one block. Logo PNG (`assets/brand/logo-nossa-matilha.webp`, 48px tall, 56px from `lg`, sized to balance the 40px button) on the left, the brown (secondary) "Agendar" button (`size="sm"`) on the right. The section menu comes once the page sections exist.
+**Home header** (`components/home/site-header.tsx`): not sticky (it scrolls away with the page), 64px (80px from `lg`), `tone-light` with the same cream as the hero and no border or shadow, so header and hero read as one block. Logo PNG (`assets/brand/logo-nossa-matilha.webp`, 48px tall, 56px from `lg`, sized to balance the 40px button) on the left, the brown (secondary) "Agendar" button (`size="sm"`) on the right, a link to `/#contato`. The section menu comes once the page sections exist.
 
 **Boarding guide header:** sticky 56px header on translucent cream (`bg-cream/95`, `backdrop-blur-sm`, 1px `border-forest/10`) with the brand mark, a chapter index (native Popover API) and a lime reading-progress bar (`scroll-progress`). Chapter eyebrows number the sections ("01", "02"…).
 
@@ -398,6 +398,7 @@ On mobile the home hero shows only the lettering and the portrait (the descripti
 - **Easings:** `ease-out-soft` `cubic-bezier(0.22, 1, 0.36, 1)` for entrances; `ease-playful` `cubic-bezier(0.34, 1.56, 0.64, 1)` (slight overshoot) for buttons and playful details; `ease-in-out-soft` `cubic-bezier(0.65, 0, 0.35, 1)` for loops.
 - **Durations:** `duration-(--duration-fast)` 150ms (colors), `--duration-base` 300ms (hover, state), `--duration-slow` 600ms (entrances).
 - **CSS animations:** `animate-reveal` (fade and rise), `animate-wag` (tail-wag loop), `animate-nudge-down` ("scroll down" cue).
+- **Smooth anchors:** `html` has `scroll-behavior: smooth`, so in-page links ("Agendar", "Explorar serviços", "Solicitar avaliação", the footer menu) glide to their section; `data-scroll-behavior="smooth"` on `<html>` keeps route changes instant, and reduced motion jumps.
 - **CSS scroll-driven (progressive enhancement):** `scroll-reveal` (rise on entering the viewport), `scroll-progress` (reading bar).
 - **GSAP** (`gsap`, `@gsap/react`, ScrollTrigger, SplitText) for choreographed and scroll-linked sequences, through `lib/gsap.ts`, `useGSAP` and `gsap.matchMedia()`. Rules in `AGENTS.md`; the boarding guide's motion catalog is in `docs/boarding-guide-plan.md`.
 - `motion-pending` hides an above-the-fold block GSAP animates until its start state is set (3s CSS fallback).

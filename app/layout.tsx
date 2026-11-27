@@ -13,7 +13,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
-    <html lang="pt-BR" className={fontVariables}>
+    <html lang="pt-BR" className={fontVariables} data-scroll-behavior="smooth">
       <body>{children}</body>
     </html>
   );
