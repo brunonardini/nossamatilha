@@ -1,24 +1,122 @@
 version: 2.1
 
-orbs:
-  node: circleci/node@5.0.0
+executors:
+  node:
+    docker:
+      # Keep in sync with .nvmrc (the setup job fails if they differ).
+      - image: cimg/node:26.13.1
+    resource_class: medium
+    working_directory: ~/project
+
+commands:
+  attach-project:
+    description: Restore the checked-out project with installed dependencies.
+    steps:
+      - attach_workspace:
+          at: ~/
 
 jobs:
-  build-and-test:
-    docker:
-      - image: cimg/node:16.14
+  setup:
+    executor: node
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn
       - run:
-          name: Run lint
-          command: yarn lint
+          name: Check Node.js version matches .nvmrc
+          command: |
+            expected="v$(cat .nvmrc | tr -d '[:space:]' | sed 's/^v//')"
+            actual="$(node --version)"
+            if [ "$expected" != "$actual" ]; then
+              echo "Node.js $actual does not match .nvmrc ($expected). Update the image in .circleci/config.yml."
+              exit 1
+            fi
+      - restore_cache:
+          keys:
+            - npm-v1-{{ checksum ".nvmrc" }}-{{ checksum "package-lock.json" }}
+            - npm-v1-{{ checksum ".nvmrc" }}-
       - run:
-          name: Run tests
-          command: yarn test:ci
+          name: Install dependencies
+          command: npm ci --prefer-offline --no-audit --no-fund
+      - save_cache:
+          key: npm-v1-{{ checksum ".nvmrc" }}-{{ checksum "package-lock.json" }}
+          paths:
+            - ~/.npm
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project
+
+  lint:
+    executor: node
+    steps:
+      - attach-project
+      - run:
+          name: Lint
+          command: npm run lint
+
+  format-check:
+    executor: node
+    steps:
+      - attach-project
+      - run:
+          name: Check formatting
+          command: npm run format:check
+
+  type-check:
+    executor: node
+    steps:
+      - attach-project
+      - run:
+          name: Type check
+          command: npm run typecheck
+
+  unit-test:
+    executor: node
+    steps:
+      - attach-project
+      - run:
+          name: Unit tests with coverage
+          command: npm run test:coverage -- --reporter=default --reporter=junit --outputFile.junit=reports/junit.xml
+      - store_test_results:
+          path: reports
+      - store_artifacts:
+          path: coverage
+          destination: coverage
+
+  build:
+    executor: node
+    steps:
+      - attach-project
+      - restore_cache:
+          keys:
+            - next-v1-{{ checksum "package-lock.json" }}-{{ .Revision }}
+            - next-v1-{{ checksum "package-lock.json" }}-
+      - run:
+          name: Use fictitious environment values
+          command: cp .env.example .env
+      - run:
+          name: Build
+          command: npm run build
+      - save_cache:
+          key: next-v1-{{ checksum "package-lock.json" }}-{{ .Revision }}
+          paths:
+            - .next/cache
 
 workflows:
-  sample:
+  ci:
     jobs:
-      - build-and-test
+      - setup
+      - lint:
+          requires:
+            - setup
+      - format-check:
+          requires:
+            - setup
+      - type-check:
+          requires:
+            - setup
+      - unit-test:
+          requires:
+            - setup
+      - build:
+          requires:
+            - setup

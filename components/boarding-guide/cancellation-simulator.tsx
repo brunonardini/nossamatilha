@@ -1,0 +1,237 @@
+'use client';
+
+import { useId, useRef, useState, type ReactNode } from 'react';
+import { CheckIcon } from '@/components/ui/icons';
+import {
+  MAX_STAY_DAYS,
+  cancellationQuote,
+  clampStayDays,
+  type Notice,
+} from '@/lib/boarding-guide/cancellation';
+import { CANCELLATION, formatBRL } from '@/lib/boarding-guide/pricing';
+import { useStayDays } from '@/lib/boarding-guide/stay-store';
+import { percent } from '@/lib/format';
+import { MOTION_OK, gsap, useGSAP } from '@/lib/gsap';
+
+const notices: { value: Notice; label: string }[] = [
+  { value: 'withNotice', label: '48 horas ou mais de antecedência' },
+  { value: 'late', label: 'Menos de 48 horas ou não comparecimento' },
+];
+
+/**
+ * Checkpoint 4: the visitor picks how early they cancel and sees both
+ * options (refund or credit) for their stay. The number of daily rates
+ * comes from the daily-rate simulator and can be adjusted here.
+ * Completes after the visitor has seen both notices.
+ */
+export function CancellationSimulator(): ReactNode {
+  const id = useId();
+  const sharedDays = useStayDays();
+  const [ownDays, setOwnDays] = useState<number | null>(null);
+  const [notice, setNotice] = useState<Notice>('withNotice');
+  const [seen, setSeen] = useState<ReadonlySet<Notice>>(
+    () => new Set<Notice>(['withNotice']),
+  );
+
+  const days = ownDays ?? sharedDays;
+  const quote = cancellationQuote(days, notice);
+  const done = seen.size === notices.length;
+
+  // Motion on changes (not on mount): the day count bumps in the direction
+  // of the change, the amounts pop and, once, the done badge pops in.
+  const scope = useRef<HTMLDivElement>(null);
+  const shown = useRef({ days, notice, done });
+  useGSAP(
+    () => {
+      const root = scope.current;
+      const previous = shown.current;
+      shown.current = { days, notice, done };
+      if (!root) return;
+      if (
+        previous.days === days &&
+        previous.notice === notice &&
+        previous.done === done
+      ) {
+        return;
+      }
+      gsap.matchMedia().add(MOTION_OK, () => {
+        if (previous.days !== days) {
+          gsap.fromTo(
+            root.querySelector('[data-cancel-days]'),
+            { y: days > previous.days ? 14 : -14, autoAlpha: 0.2 },
+            { y: 0, autoAlpha: 1, duration: 0.35, ease: 'back.out(2)' },
+          );
+        }
+        if (previous.days !== days || previous.notice !== notice) {
+          gsap.fromTo(
+            root.querySelectorAll('[data-cancel-amount]'),
+            { scale: 0.85, autoAlpha: 0.3 },
+            {
+              scale: 1,
+              autoAlpha: 1,
+              duration: 0.45,
+              ease: 'back.out(2.2)',
+              stagger: 0.08,
+            },
+          );
+        }
+        if (done && !previous.done) {
+          gsap.from(root.querySelector('[data-cancel-done]'), {
+            autoAlpha: 0,
+            y: 16,
+            scale: 0.92,
+            duration: 0.6,
+            delay: 0.15,
+            ease: 'back.out(1.8)',
+          });
+        }
+      });
+    },
+    { scope, dependencies: [days, notice, done] },
+  );
+
+  function chooseNotice(value: Notice): void {
+    setNotice(value);
+    setSeen((previous) => new Set(previous).add(value));
+  }
+
+  function changeDays(delta: number): void {
+    setOwnDays(clampStayDays(days + delta));
+  }
+
+  const stepButton =
+    'grid size-11 place-items-center rounded-full bg-olive font-heading text-h3 font-bold text-cream transition-transform duration-(--duration-fast) hover:-translate-y-0.5 disabled:opacity-40';
+
+  return (
+    <div
+      ref={scope}
+      data-checkpoint="cancelamento"
+      data-done={done || undefined}
+      className="rounded-card bg-surface-raised p-5 shadow-card sm:p-6"
+    >
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <p id={`${id}-days-label`} className="font-heading font-bold">
+            Sua reserva
+          </p>
+          <p className="text-caption text-fg-muted">
+            {ownDays === null
+              ? 'Usando as diárias da sua simulação.'
+              : 'Ajuste quantas diárias foram pagas.'}
+          </p>
+        </div>
+        <div
+          role="group"
+          aria-labelledby={`${id}-days-label`}
+          className="flex items-center gap-3"
+        >
+          <button
+            type="button"
+            onClick={() => changeDays(-1)}
+            disabled={days <= 1}
+            aria-label="Menos uma diária"
+            className={stepButton}
+          >
+            −
+          </button>
+          <p aria-live="polite" className="min-w-28 text-center">
+            <span
+              data-cancel-days
+              className="block font-display text-h2 text-accent"
+            >
+              {days} {days === 1 ? 'diária' : 'diárias'}
+            </span>
+            <span className="text-caption text-fg-muted">
+              {formatBRL(quote.paid)} pagos
+            </span>
+          </p>
+          <button
+            type="button"
+            onClick={() => changeDays(1)}
+            disabled={days >= MAX_STAY_DAYS}
+            aria-label="Mais uma diária"
+            className={stepButton}
+          >
+            +
+          </button>
+        </div>
+      </div>
+
+      <fieldset className="mt-6">
+        <legend className="font-heading font-bold">
+          Com quanto tempo de antecedência você cancelou?
+        </legend>
+        <div className="mt-3 grid gap-2 sm:grid-cols-2">
+          {notices.map((option) => (
+            <label
+              key={option.value}
+              className="flex min-h-12 cursor-pointer items-center gap-3 rounded-md border-2 border-cream/30 px-4 py-2 font-heading font-semibold transition-colors duration-(--duration-fast) has-checked:border-lime has-checked:bg-lime has-checked:text-forest has-focus-visible:outline-3 has-focus-visible:outline-sun"
+            >
+              <input
+                type="radio"
+                name={`${id}-notice`}
+                value={option.value}
+                checked={notice === option.value}
+                onChange={() => chooseNotice(option.value)}
+                className="sr-only"
+              />
+              {option.label}
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <div aria-live="polite">
+        <p className="mt-6 text-caption text-fg-muted">
+          Escolha entre devolução e crédito.
+        </p>
+        <div className="mt-2 grid gap-3 sm:grid-cols-2">
+          <div className="rounded-md bg-olive p-4">
+            <p className="text-caption text-fg-muted">
+              Devolução de {percent(quote.refundRate)}
+            </p>
+            <p
+              data-cancel-amount
+              className="w-fit font-display text-h1 text-accent"
+            >
+              {formatBRL(quote.refund)}
+            </p>
+            <p className="text-caption text-fg-muted">
+              {quote.retained > 0
+                ? `Retenção de ${formatBRL(quote.retained)}`
+                : 'Sem retenção'}
+            </p>
+          </div>
+          <div className="rounded-md bg-olive p-4">
+            <p className="text-caption text-fg-muted">
+              Crédito de {percent(quote.creditRate)}
+            </p>
+            <p
+              data-cancel-amount
+              className="w-fit font-display text-h1 text-accent"
+            >
+              {formatBRL(quote.credit)}
+            </p>
+            <p className="text-caption text-fg-muted">
+              Para usar em até {CANCELLATION.creditValidityMonths} meses
+            </p>
+          </div>
+        </div>
+
+        {done ? (
+          <p
+            data-cancel-done
+            className="checkpoint-complete mt-6 flex items-center gap-2 rounded-card bg-lime p-4 font-heading font-bold text-forest"
+          >
+            <CheckIcon className="size-5" />
+            Parada 4 de 4 concluída
+          </p>
+        ) : (
+          <p className="mt-6 text-caption text-highlight">
+            Selecione o outro prazo para comparar os valores.
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}

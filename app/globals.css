@@ -1,0 +1,486 @@
+@import 'tailwindcss';
+
+/*
+ * Nossa Matilha design tokens. Usage rules: DESIGN.md (repo root); live
+ * preview: /design-system. Change all three together.
+ * Brand colors are sampled from the boarding brochure (current artwork).
+ */
+
+@theme {
+  /* Reset Tailwind's default palette: only brand colors are available. */
+  --color-*: initial;
+
+  /* Brand palette */
+  --color-white: #ffffff;
+  --color-ink: #231f20;
+  --color-cream: #f3eee2;
+  --color-cream-light: #faf7f0;
+  --color-forest: #384e20;
+  --color-olive: #4a5b32;
+  --color-leaf: #67973f;
+  --color-leaf-ink: #507531;
+  --color-lime: #a8cf45;
+  --color-brown: #693922;
+  --color-sun: #ffcb03;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  /* Font families (CSS variables come from next/font in app/fonts.ts) */
+  --font-display:
+    var(--font-grandstander), 'Arial Rounded MT Bold', system-ui, sans-serif;
+  --font-heading: var(--font-outfit), system-ui, sans-serif;
+  --font-sans: var(--font-figtree), system-ui, sans-serif;
+  --font-lettering:
+    var(--font-goldplay-alt), var(--font-outfit), system-ui, sans-serif;
+
+  /* Fluid type scale (mobile 390px → desktop 1280px) */
+  --text-display-xl: clamp(2.5rem, 1.75rem + 3.75vw, 5rem);
+  --text-display-xl--line-height: 1.05;
+  --text-display: clamp(2rem, 1.55rem + 2.25vw, 3.5rem);
+  --text-display--line-height: 1.1;
+  --text-h1: clamp(1.75rem, 1.45rem + 1.5vw, 2.75rem);
+  --text-h1--line-height: 1.15;
+  --text-h2: clamp(1.375rem, 1.2rem + 0.9vw, 2rem);
+  --text-h2--line-height: 1.2;
+  --text-h3: clamp(1.125rem, 1.05rem + 0.4vw, 1.375rem);
+  --text-h3--line-height: 1.3;
+  --text-lead: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  --text-lead--line-height: 1.55;
+  --text-intro: clamp(1.25rem, 1.12rem + 0.6vw, 1.5rem);
+  --text-intro--line-height: 1.5;
+  --text-body: 1rem;
+  --text-body--line-height: 1.6;
+  --text-caption: 0.875rem;
+  --text-caption--line-height: 1.45;
+
+  /* Radii: the brochure uses soft, generously rounded cards */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.875rem;
+  --radius-card: 1.5rem;
+  --radius-blob: 2.5rem;
+
+  /* Warm, low shadows tinted with forest green */
+  --shadow-card:
+    0 1px 2px rgb(56 78 32 / 0.08), 0 8px 24px -6px rgb(56 78 32 / 0.16);
+  --shadow-lift:
+    0 2px 4px rgb(56 78 32 / 0.1), 0 18px 40px -12px rgb(56 78 32 / 0.28);
+
+  /* Layout */
+  --container-reading: 38rem;
+  --container-page: 72rem;
+
+  /* Motion */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-playful: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --animate-reveal: reveal 600ms var(--ease-out-soft) both;
+  --animate-wag: wag 900ms var(--ease-in-out-soft) infinite;
+  --animate-nudge-down: nudge-down 1.6s var(--ease-in-out-soft) infinite;
+
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes nudge-down {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(0.375rem);
+    }
+  }
+
+  @keyframes wag {
+    0%,
+    100% {
+      transform: rotate(-8deg);
+    }
+    50% {
+      transform: rotate(8deg);
+    }
+  }
+}
+
+/* Motion durations (used with `duration-(--duration-*)`) */
+:root {
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 600ms;
+}
+
+/*
+ * Section tones. The brochure alternates cream pages and dark green pages;
+ * `tone-light` / `tone-dark` set the semantic surface and text colors for a
+ * section, and every child component reads them through these utilities.
+ */
+@theme inline {
+  --color-surface: var(--tone-surface);
+  --color-surface-raised: var(--tone-surface-raised);
+  --color-fg: var(--tone-fg);
+  --color-fg-muted: var(--tone-fg-muted);
+  --color-heading: var(--tone-heading);
+  --color-accent: var(--tone-accent);
+  --color-highlight: var(--tone-highlight);
+}
+
+@utility tone-light {
+  --tone-surface: var(--color-cream);
+  --tone-surface-raised: var(--color-white);
+  --tone-fg: var(--color-ink);
+  --tone-fg-muted: color-mix(
+    in oklab,
+    var(--color-ink) 72%,
+    var(--color-cream)
+  );
+  --tone-heading: var(--color-forest);
+  --tone-accent: var(--color-brown);
+  --tone-highlight: var(--color-leaf-ink);
+  /* Sun fails on cream (1.3:1); forest keeps the ring visible (8:1). */
+  --tone-focus: var(--color-forest);
+  background-color: var(--tone-surface);
+  color: var(--tone-fg);
+}
+
+@utility tone-dark {
+  --tone-surface: var(--color-olive);
+  --tone-surface-raised: var(--color-forest);
+  --tone-fg: var(--color-cream);
+  --tone-fg-muted: color-mix(
+    in oklab,
+    var(--color-cream) 80%,
+    var(--color-olive)
+  );
+  --tone-heading: var(--color-white);
+  /* Pure lime is 4.1:1 on olive; lifted toward cream it passes 4.5:1 for small text. */
+  --tone-accent: color-mix(in oklab, var(--color-lime) 80%, var(--color-cream));
+  --tone-highlight: var(--color-sun);
+  --tone-focus: var(--color-sun);
+  background-color: var(--tone-surface);
+  color: var(--tone-fg);
+}
+
+/* Critical warnings only (one or two per page). */
+@utility tone-alert {
+  --tone-surface: var(--color-brown);
+  --tone-surface-raised: color-mix(
+    in oklab,
+    var(--color-brown) 82%,
+    var(--color-ink)
+  );
+  --tone-fg: var(--color-cream);
+  --tone-fg-muted: color-mix(
+    in oklab,
+    var(--color-cream) 82%,
+    var(--color-brown)
+  );
+  --tone-heading: var(--color-sun);
+  --tone-accent: var(--color-lime);
+  --tone-highlight: var(--color-sun);
+  --tone-focus: var(--color-sun);
+  background-color: var(--tone-surface);
+  color: var(--tone-fg);
+}
+
+/*
+ * Scroll-driven effects (progressive enhancement).
+ * They run only where `animation-timeline` is supported and the visitor has
+ * not asked for reduced motion; everywhere else the content is simply shown.
+ */
+
+@keyframes scroll-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(2rem) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes scroll-grow-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Fades and rises an element as it enters the viewport. */
+@utility scroll-reveal {
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      animation: scroll-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 70%;
+    }
+  }
+}
+
+/* Page reading progress: a bar that grows with the root scroll. */
+@utility scroll-progress {
+  transform-origin: left;
+  transform: scaleX(0);
+  @supports (animation-timeline: scroll()) {
+    animation: scroll-grow-x linear both;
+    animation-timeline: scroll(root block);
+  }
+}
+
+/* At least the screen height below the 56px (+1px border) sticky header. */
+@utility min-h-below-header {
+  min-height: calc(100svh - 3.5rem - 1px);
+}
+
+/* At least the screen height below the 64px home header (mobile hero). */
+@utility min-h-below-home-header {
+  min-height: calc(100svh - 4rem);
+}
+
+/*
+ * Hides a GSAP-animated block until its client component sets the starting
+ * state (only with JavaScript and without reduced motion), so server-rendered
+ * content does not flash before the entrance. If the script never runs, a
+ * delayed animation shows the block anyway.
+ */
+@keyframes motion-fallback {
+  to {
+    visibility: visible;
+  }
+}
+
+/*
+ * Hero lettering line: one line of text sized so its ink fills the width of
+ * its container (the parent sets `@container`). The value is the line's ink
+ * width in thousandths of an em, measured in the browser with the font loaded
+ * (e.g. `lettering-fit-6247` for a line 6.247em wide).
+ */
+@utility lettering-fit-* {
+  display: block;
+  white-space: nowrap;
+  font-size: calc(100cqi * 1000 / --value(integer));
+  line-height: 1;
+}
+
+/*
+ * Pulls a lettering line left by its left side bearing (thousandths of an
+ * em), so italic ink starts flush with the column edge.
+ */
+@utility lettering-inset-* {
+  margin-inline-start: calc(--value(integer) * -0.001em);
+}
+
+/*
+ * Extra room above a lettering line (thousandths of an em), for accents that
+ * rise above the capitals (the tilde of "CÃO").
+ */
+@utility lettering-room-* {
+  padding-top: calc(--value(integer) * 0.001em);
+}
+
+@utility motion-pending {
+  @media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+    visibility: hidden;
+    animation: motion-fallback 0s 3s forwards;
+  }
+}
+
+/*
+ * Checklist feedback without JavaScript (CSS `:has()`).
+ * Inside `.checklist`, children with `data-checklist-state` show only in their
+ * state: `empty` (nothing ticked), `missing` (some ticked, a required item
+ * still unticked) or `done` (every `[data-required]` input ticked).
+ */
+@layer components {
+  .checklist [data-checklist-state] {
+    display: none;
+  }
+
+  .checklist:not(:has(input:checked)) [data-checklist-state='empty'],
+  .checklist:has(input:checked):has(input[data-required]:not(:checked))
+    [data-checklist-state='missing'],
+  .checklist:not(:has(input[data-required]:not(:checked)))
+    [data-checklist-state='done'] {
+    display: block;
+    animation: scroll-reveal 400ms var(--ease-out-soft) both;
+  }
+
+  /* Browsers without :has(): show the final message so nothing is lost. */
+  @supports not selector(:has(*)) {
+    .checklist [data-checklist-state='done'] {
+      display: block;
+    }
+  }
+}
+
+/*
+ * Boarding guide checkpoint progress, without JavaScript.
+ *
+ * - `.guide` wraps the whole page and resets the `checkpoints` counter.
+ * - `.checkpoint-complete` marks the "Parada N concluída" element of each
+ *   checkpoint. It is hidden (CSS checkpoints) or not rendered (simulators)
+ *   until completed, so the counter only counts finished checkpoints.
+ * - `.checkpoint-count::after` prints the counter; it must come after the
+ *   checkpoints in the document (the final summary).
+ * - `[data-checkpoint-item]` elements (summary list, chapter index) get the
+ *   done style when their checkpoint is complete, using `:has()`. `:has()`
+ *   cannot be nested, so CSS-only checkpoints are matched by their input ids
+ *   (keep them in sync with vaccine-checklist.tsx and bag-packer.tsx).
+ */
+@layer components {
+  .guide {
+    counter-reset: checkpoints;
+  }
+
+  .checkpoint-complete {
+    counter-increment: checkpoints;
+  }
+
+  .checkpoint-count::after {
+    content: counter(checkpoints);
+  }
+
+  .checkpoint-mark {
+    border: 2px solid currentColor;
+    opacity: 0.55;
+    transition:
+      opacity var(--duration-base) var(--ease-out-soft),
+      transform var(--duration-base) var(--ease-playful);
+  }
+
+  .checkpoint-mark > svg {
+    opacity: 0;
+  }
+
+  :is(
+      .guide:has(#vacina-v10:checked):has(#vacina-raiva:checked):has(
+          #vacina-antiparasitario:checked
+        )
+        [data-checkpoint-item='vacinas'],
+      .guide:has([data-checkpoint='diaria'][data-done])
+        [data-checkpoint-item='diaria'],
+      .guide:has(#malinha-racao:checked) [data-checkpoint-item='malinha'],
+      .guide:has([data-checkpoint='cancelamento'][data-done])
+        [data-checkpoint-item='cancelamento']
+    )
+    .checkpoint-mark {
+    border-color: var(--color-lime);
+    background-color: var(--color-lime);
+    color: var(--color-forest);
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  :is(
+      .guide:has(#vacina-v10:checked):has(#vacina-raiva:checked):has(
+          #vacina-antiparasitario:checked
+        )
+        [data-checkpoint-item='vacinas'],
+      .guide:has([data-checkpoint='diaria'][data-done])
+        [data-checkpoint-item='diaria'],
+      .guide:has(#malinha-racao:checked) [data-checkpoint-item='malinha'],
+      .guide:has([data-checkpoint='cancelamento'][data-done])
+        [data-checkpoint-item='cancelamento']
+    )
+    .checkpoint-mark
+    > svg {
+    opacity: 1;
+  }
+
+  /* Shown only when every checkpoint is complete. */
+  [data-all-checkpoints='done'] {
+    display: none;
+  }
+
+  .guide:has(#vacina-v10:checked):has(#vacina-raiva:checked):has(
+      #vacina-antiparasitario:checked
+    ):has([data-checkpoint='diaria'][data-done]):has(
+      #malinha-racao:checked
+    ):has([data-checkpoint='cancelamento'][data-done])
+    [data-all-checkpoints='done'] {
+    display: block;
+    animation: scroll-reveal 500ms var(--ease-out-soft) both;
+  }
+
+  .guide:has(#vacina-v10:checked):has(#vacina-raiva:checked):has(
+      #vacina-antiparasitario:checked
+    ):has([data-checkpoint='diaria'][data-done]):has(
+      #malinha-racao:checked
+    ):has([data-checkpoint='cancelamento'][data-done])
+    [data-all-checkpoints='pending'] {
+    display: none;
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    /* In-page anchors glide (off with reduced motion, below). Route changes
+       stay instant through `data-scroll-behavior` in app/layout.tsx. */
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply tone-light font-sans text-body antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+    /* Read the tone variable directly: `--color-heading` resolves on :root. */
+    color: var(--tone-heading);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Tailwind v4 resets buttons to the default cursor; every clickable control
+     shows the hand, like links do. */
+  button:not(:disabled),
+  [role='button']:not([aria-disabled='true']),
+  a[href],
+  summary,
+  label[for],
+  select {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    /* Follows the section tone: forest on light, sun on dark and alert. */
+    outline: 3px solid var(--tone-focus, var(--color-forest));
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  ::selection {
+    background-color: var(--color-lime);
+    color: var(--color-forest);
+  }
+
+  /* Respect the visitor's reduced-motion preference everywhere. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 1ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

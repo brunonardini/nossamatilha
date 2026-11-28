@@ -1,26 +1,63 @@
 # Nossa Matilha
 
-[![NossaMatilha](https://circleci.com/gh/megatroom/nossamatilha.svg?style=svg)](https://circleci.com/gh/megatroom/nossamatilha)
+Website for **Nossa Matilha**, a dog boarding (hospedagem) and daycare (creche) in Resende/RJ, Brazil.
 
-Source code for [nossamatilhadogs.com.br](https://nossamatilhadogs.com.br).
+🌐 https://www.nossamatilharesende.com.br/
 
-## Getting Started
+Built with [Next.js](https://nextjs.org/) (App Router), React, TypeScript and Tailwind CSS. The site content is in Brazilian Portuguese.
 
-First, run the development server:
+## Requirements
+
+- [nvm](https://github.com/nvm-sh/nvm) — the Node.js version is pinned in [`.nvmrc`](.nvmrc).
+
+This project uses nvm: always run `nvm use` in your shell before any `node` or `npm` command.
+
+## Getting started
+
+Setup your environment:
+
+```bash
+nvm install
+nvm use
+npm install
+```
+
+Create your local environment file and fill in the real values (see [`docs/environment.md`](docs/environment.md)):
+
+```bash
+cp .env.example .env
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:4630](http://localhost:4630) in your browser.
 
-## Environment Variables
+The app always runs on port **4630** (fixed in `package.json`) to avoid clashing with other local services. If the port is busy, the command fails instead of silently switching ports — stop the other process or free the port.
 
-You can create the `.env.local` file with this example:
+## Scripts
 
-```bash
-NEXT_PUBLIC_WHATSAPP_PHONE_NUMBER=5511999999999
-NEXT_PUBLIC_ANALYTICS_ENABLED=false
-```
+| Command                 | Description                                                           |
+| ----------------------- | --------------------------------------------------------------------- |
+| `npm run dev`           | Starts the development server with hot reload on port 4630.           |
+| `npm run build`         | Creates an optimized production build.                                |
+| `npm run start`         | Serves the production build on port 4630 (run `npm run build` first). |
+| `npm run lint`          | Lints the code with ESLint (fails on any warning).                    |
+| `npm run typecheck`     | Generates Next.js route types and checks types with the TS compiler.  |
+| `npm run test`          | Runs the unit tests once with Vitest.                                 |
+| `npm run test:watch`    | Runs the unit tests in watch mode.                                    |
+| `npm run test:coverage` | Runs the unit tests and checks coverage of `lib/`.                    |
+| `npm run format:check`  | Checks formatting with Prettier.                                      |
+| `npm run format:write`  | Formats all files with Prettier.                                      |
+
+## Documentation
+
+- [`docs/`](docs/) — business information and brand reference.
+- [`AGENTS.md`](AGENTS.md) — development rules and workflow (this project is developed by AI agents).
+
+## License
+
+[MIT](LICENSE)

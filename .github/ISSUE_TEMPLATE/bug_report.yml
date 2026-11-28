@@ -1,0 +1,56 @@
+name: Bug report
+description: Something on the site is broken or behaves unexpectedly.
+title: 'fix: '
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This repository is public. **Do not include personal data** (names, phone numbers, emails, documents, customer or pet records) in this issue — see "Privacy and LGPD" in `AGENTS.md`.
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What is wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Page URL
+      placeholder: https://www.nossamatilharesende.com.br/
+  - type: dropdown
+    id: device
+    attributes:
+      label: Device
+      multiple: true
+      options:
+        - Mobile
+        - Tablet
+        - Desktop
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: e.g. Chrome 140, Safari iOS 19
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Crop or blur any personal data before attaching.

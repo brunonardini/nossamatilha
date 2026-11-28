@@ -1,0 +1,50 @@
+import type { ReactNode } from 'react';
+import { HeroTitle } from '@/components/home/hero-title';
+import { HeroMotion } from '@/components/home/hero-motion';
+import { HeroPortrait } from '@/components/home/hero-portrait';
+import { ScrollCue } from '@/components/home/scroll-cue';
+import { ButtonAnchor } from '@/components/ui/button';
+import { ChevronRightIcon } from '@/components/ui/icons';
+
+/**
+ * Home hero. Mobile first: the title and the portrait fill the first screen
+ * (the portrait overlaps the title, so Silvia stands in front of the words)
+ * and a {@link ScrollCue} invites the visitor down; the description and the
+ * calls to action appear only from `lg`, with the text on the left and the
+ * portrait on the right.
+ */
+export function Hero(): ReactNode {
+  return (
+    <section
+      aria-labelledby="hero-titulo"
+      className="tone-light min-h-below-home-header overflow-x-clip lg:min-h-0"
+    >
+      <div className="mx-auto grid max-w-page px-4 pt-4 pb-16 sm:px-8 sm:pb-24 lg:grid-cols-2 lg:items-center lg:gap-x-16 lg:pt-12">
+        <HeroTitle className="lg:col-start-1 lg:row-start-1 lg:max-w-md lg:self-end" />
+
+        <HeroMotion className="-mt-6 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:mt-0">
+          <HeroPortrait />
+        </HeroMotion>
+
+        <div className="hidden lg:col-start-1 lg:block lg:row-start-2 lg:mt-8 lg:self-start">
+          <p className="max-w-reading text-lead">
+            Adestramento, creche e hospedagem. Cuidado completo com uma equipe
+            especializada e apaixonada pelo que faz.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+            <ButtonAnchor
+              href="/#servicos"
+              icon={<ChevronRightIcon className="size-5" />}
+            >
+              Explorar serviços
+            </ButtonAnchor>
+            <ButtonAnchor href="/#contato" variant="link">
+              Solicitar avaliação
+            </ButtonAnchor>
+          </div>
+        </div>
+      </div>
+      <ScrollCue />
+    </section>
+  );
+}

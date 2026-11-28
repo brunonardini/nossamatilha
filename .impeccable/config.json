@@ -1,0 +1,7 @@
+{
+  "telemetry": false,
+  "updateCheck": false,
+  "hook": {
+    "enabled": false
+  }
+}

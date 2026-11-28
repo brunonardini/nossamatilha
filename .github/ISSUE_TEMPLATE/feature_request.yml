@@ -1,0 +1,43 @@
+name: Feature request
+description: Propose a new page, section, content change or improvement.
+title: 'feat: '
+labels: ['enhancement']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This repository is public. **Do not include personal data** (names, phone numbers, emails, documents, customer or pet records) in this issue — see "Privacy and LGPD" in `AGENTS.md`.
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What problem does this solve, and for whom (visitors, owner, team)?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: What should be built or changed? Include the pt-BR copy if it is a content change.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy (LGPD)
+      options:
+        - label: This feature collects, stores or sends personal data, or adds cookies/trackers/third-party scripts (privacy policy and consent must be reviewed).
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Links, mockups or screenshots (no personal data).
