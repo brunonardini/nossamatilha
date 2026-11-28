@@ -11,6 +11,7 @@ import { HeroMotion } from '@/components/home/hero-motion';
 import { HeroTitle } from '@/components/home/hero-title';
 import { HeroPortrait } from '@/components/home/hero-portrait';
 import { Highlights } from '@/components/home/highlights';
+import { Location } from '@/components/home/location';
 import { Reviews } from '@/components/home/reviews';
 import { Services } from '@/components/home/services';
 import { Team } from '@/components/home/team';
@@ -25,6 +26,7 @@ import {
   ChevronRightIcon,
   CrossIcon,
   ListIcon,
+  MapPinIcon,
   PauseIcon,
   PawIcon,
   PlayIcon,
@@ -344,6 +346,7 @@ const icons: Icon[] = [
   { name: 'AwardIcon', render: <AwardIcon /> },
   { name: 'StarIcon', render: <StarIcon className="size-6 text-sun" /> },
   { name: 'CameraIcon', render: <CameraIcon /> },
+  { name: 'MapPinIcon', render: <MapPinIcon /> },
   { name: 'PawIcon', render: <PawIcon /> },
   { name: 'PauseIcon', render: <PauseIcon /> },
   { name: 'PlayIcon', render: <PlayIcon /> },
@@ -1011,6 +1014,17 @@ export default function DesignSystemPage(): ReactNode {
         </p>
         <div className="-mx-4 mt-6 sm:-mx-8">
           <Contact />
+        </div>
+
+        <Subhead>Localização (home)</Subhead>
+        <p className="max-w-reading">
+          Foto da entrada ao lado de um mapa desenhado; o mapa do Google só
+          carrega quando o visitante clica em “Mostrar mapa”. Embaixo, o
+          endereço com “Como chegar” e “Ver no Google Maps”, centralizados no
+          celular.
+        </p>
+        <div className="-mx-4 mt-6 sm:-mx-8">
+          <Location />
         </div>
 
         <Subhead>Rodapé (home)</Subhead>

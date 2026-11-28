@@ -6,6 +6,7 @@ import leonardo from '@/assets/photos/home/reviews/leonardo.webp';
 import luciene from '@/assets/photos/home/reviews/luciene.webp';
 import paolla from '@/assets/photos/home/reviews/paolla.webp';
 import patriciaSuane from '@/assets/photos/home/reviews/patricia-suane.webp';
+import { GOOGLE_MAPS_URL } from '@/lib/contact';
 
 /**
  * A five-star Google review shown on the home page. The reviewers authorized
@@ -20,9 +21,8 @@ export type HomeReview = {
   text: string;
 };
 
-/** Google Maps page of the business with all reviews (no tracking parameters). */
-export const googleReviewsUrl =
-  'https://www.google.com/maps?cid=18369256326643483100';
+/** Google Maps page of the business with all reviews. */
+export const googleReviewsUrl = GOOGLE_MAPS_URL;
 
 /** Reviews in display order: the strongest first. */
 export const homeReviews: readonly HomeReview[] = [

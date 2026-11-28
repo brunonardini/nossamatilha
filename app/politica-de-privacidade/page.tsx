@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 /** Date of the last change to this policy (update it with every change). */
-const UPDATED_AT = '27 de novembro de 2026';
+const UPDATED_AT = '28 de novembro de 2026';
 
 /** A numbered policy section. */
 function Section({
@@ -36,7 +36,8 @@ function Section({
  * Privacy policy (LGPD), linked from the footer. It describes only what the
  * site and the business actually do (see AGENTS.md "Privacy and LGPD" and
  * docs/business.md): the site stores nothing, sets no cookies and loads no
- * trackers; contact links only open WhatsApp or Instagram. Update it, and
+ * trackers until the visitor asks for the Google map; contact links only open
+ * WhatsApp, Instagram or Google Maps. Update it, and
  * `UPDATED_AT`, whenever data collection, cookies or third parties change.
  */
 export default function PrivacyPolicyPage(): ReactNode {
@@ -87,6 +88,12 @@ export default function PrivacyPolicyPage(): ReactNode {
               pixels de anúncios ou qualquer outro rastreador. As fontes e as
               imagens são servidas pelo próprio site, sem chamadas a serviços de
               terceiros.
+            </p>
+            <p>
+              A única exceção é o mapa da seção “Onde estamos”: ele só é
+              carregado do Google Maps se você clicar em “Mostrar mapa”. A
+              partir desse clique, o Google pode usar cookies e registrar dados
+              de acesso, conforme a política de privacidade dele.
             </p>
             <p>
               Se um dia passarmos a usar alguma ferramenta desse tipo, ela só
@@ -150,10 +157,10 @@ export default function PrivacyPolicyPage(): ReactNode {
                 rel="noopener noreferrer"
               >
                 Instagram ({INSTAGRAM_HANDLE})
-              </a>{' '}
-              e para as avaliações no Google levam a serviços de terceiros, com
-              políticas de privacidade próprias. Eles só recebem dados se você
-              abrir esses links.
+              </a>
+              , para as rotas e para as avaliações no Google Maps levam a
+              serviços de terceiros, com políticas de privacidade próprias. Eles
+              só recebem dados se você abrir esses links.
             </p>
           </Section>
 

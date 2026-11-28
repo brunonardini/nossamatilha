@@ -1,5 +1,11 @@
 import { describe, expect, it, vi } from 'vitest';
-import { getGroomingWhatsApp, getWhatsApp, whatsAppLink } from './contact';
+import {
+  directionsLink,
+  formatAddress,
+  getGroomingWhatsApp,
+  getWhatsApp,
+  whatsAppLink,
+} from './contact';
 
 // Fictitious numbers only (see "Privacy and LGPD" in AGENTS.md).
 describe('getWhatsApp', () => {
@@ -28,6 +34,31 @@ describe('getGroomingWhatsApp', () => {
   it('reads its own variable', () => {
     vi.stubEnv('NEXT_PUBLIC_GROOMING_WHATSAPP_PHONE_NUMBER', '+5524911111111');
     expect(getGroomingWhatsApp().digits).toBe('5524911111111');
+  });
+});
+
+describe('formatAddress and directionsLink', () => {
+  // Fictitious address (see "Privacy and LGPD" in AGENTS.md).
+  const address = {
+    street: 'Rua Exemplo, 10',
+    district: 'Centro',
+    city: 'Cidade',
+    state: 'RJ',
+    postalCode: '00000-000',
+    country: 'Brasil',
+  };
+
+  it('writes the address on one line', () => {
+    expect(formatAddress(address)).toBe(
+      'Rua Exemplo, 10, Centro, Cidade - RJ, 00000-000, Brasil',
+    );
+  });
+
+  it('links to Google Maps directions with the encoded address', () => {
+    const url = new URL(directionsLink(address));
+    expect(url.origin + url.pathname).toBe('https://www.google.com/maps/dir/');
+    expect(url.searchParams.get('api')).toBe('1');
+    expect(url.searchParams.get('destination')).toBe(formatAddress(address));
   });
 });
 

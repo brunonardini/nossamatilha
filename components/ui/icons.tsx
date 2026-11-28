@@ -131,6 +131,16 @@ export function CameraIcon(props: IconProps): ReactNode {
   );
 }
 
+/** Map pin, for addresses and directions. */
+export function MapPinIcon(props: IconProps): ReactNode {
+  return (
+    <Svg {...props}>
+      <path d="M12 21s-7-6.2-7-11.5a7 7 0 1 1 14 0C19 14.8 12 21 12 21Z" />
+      <circle cx="12" cy="9.5" r="2.5" />
+    </Svg>
+  );
+}
+
 /** Paw print, filled, for decoration. */
 export function PawIcon({
   className = 'size-6',
